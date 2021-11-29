@@ -1,0 +1,98 @@
+.questionbank_btn {
+ padding-top: 2rem;
+}
+
+.question_section {
+ padding-top: .8rem;
+}
+
+.section {
+ width: 42%;
+ height: 49px;
+ margin: 30px;
+ border-radius: 17px;
+ border: 1px solid lightgray;
+}
+
+.question_section input {
+ margin-left: 1rem;
+ padding: 1rem;
+}
+
+.position {
+ width: 42%;
+ height: 49px;
+ border-radius: 17px;
+ margin: 20px;
+ border: 1px solid lightgray;
+ }
+ 
+
+ .question_space {
+  width: 88%;
+  height: 100px;
+  border-radius: 17px;
+  margin-bottom: 20px;
+  border: 1px solid lightgray;
+ }
+
+.option {
+  width: 42%;
+  height: 49px;
+  margin: 30px;
+  border-radius: 17px;
+  border: 1px solid lightgray;
+ 
+}
+
+.remove_option {
+  margin-left: 1rem;
+}
+
+.remove_btn {
+  padding: 10px;
+  border-radius: 20px;
+  background: rgb(243, 43, 43);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  margin: 10px;
+  
+}
+
+.remove_option2 {
+  padding-top: 1rem;
+  margin-left: 1rem;
+
+}
+
+.remove_btn2 {
+   padding: 10px;
+   border-radius: 20px;
+   background: rgb(243, 43, 43);
+   color: white;
+   border: none;
+   cursor: pointer;
+   font-weight: 700;
+   margin-left: 40px;
+}
+
+
+.correct {
+   width: 42%;
+   height: 49px;
+   border-radius: 17px;
+   margin: 20px;
+   border: 1px solid lightgray;
+}
+
+.correct_answer input {
+  padding: 10px;
+}
+
+.add_question {
+padding-bottom: 1rem;
+padding-left: 1rem;
+}
+

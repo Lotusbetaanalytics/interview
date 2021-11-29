@@ -1,0 +1,51 @@
+.sidebar_container {
+width:15%;
+ margin-top: 0;
+ height: 100vh;
+ padding-left: 10px;
+ float: left;
+ 
+}
+
+.sidebar_title {
+padding-top: 30px;
+color: rgb(83, 83, 170);
+}
+
+.sidebar_container a {
+ text-decoration: none;
+
+}
+
+.sidebar_icons {
+ flex-direction: row;
+ margin-top: 6rem;
+}
+
+.sidebar_icons ul{
+ padding:0;
+ margin:0;
+ list-style:none;
+ font-size: 16px;
+}
+
+.sidebar_icons ul li {
+ width: 100%;
+ padding: 0;
+ margin: 0;
+ height:4rem
+}
+
+.sidebar_icons ul li a {
+ text-decoration:none;
+ color: black;
+ padding-bottom: 12rem;
+}
+
+.sidebar_icons ul li a svg{
+margin-top:14px;
+margin-right: 2rem;
+color: black;
+}
+
+
