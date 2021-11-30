@@ -7,9 +7,6 @@ import StartScreen from "./screens/User/StartScreen";
 import TestScreen from "./screens/User/TestScreen";
 import SuccessScreen from "./screens/User/SuccessScreen";
 
-
-
-
 function App() {
   return (
     <Router>

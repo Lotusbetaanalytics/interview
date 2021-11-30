@@ -44,8 +44,9 @@ export const registerUser =
 
 export const loginUser = (email, password) => async (dispatch) => {
   try {
-    dispatch({ 
-      type: USER_LOGIN_REQUEST });
+    dispatch({
+      type: USER_LOGIN_REQUEST,
+    });
 
     const config = {
       headers: {
@@ -73,13 +74,12 @@ export const loginUser = (email, password) => async (dispatch) => {
   }
 };
 
-export const logOut =()=>(dispatch)=>{
-  localStorage.removeItem('userInfo');
+export const logOut = () => (dispatch) => {
+  localStorage.removeItem("userInfo");
   dispatch({
-    type: USER_LOGOUT
+    type: USER_LOGOUT,
   });
-  };
-
+};
 
 export const myDetails = () => async (dispatch, getState) => {
   try {
@@ -94,7 +94,7 @@ export const myDetails = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log(userInfo.token)
+    console.log(userInfo.token);
     const { data } = await axios.get("/api/v1/auth/account", config);
     dispatch({
       type: USER_DETAILS_SUCCESS,
