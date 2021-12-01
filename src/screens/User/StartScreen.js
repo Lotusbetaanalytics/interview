@@ -4,17 +4,24 @@ import Navigation from "../../components/Navigation";
 import AccountHeader from "../../components/UI/AccountHeader";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { myDetails } from "../../redux/actions/userActions";
+import { myDetails, logOut } from "../../redux/actions/userActions";
 
-const StartScreen = () => {
+const StartScreen = ({ history }) => {
   const dispatch = useDispatch();
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
 
   useEffect(() => {
     dispatch(myDetails());
-  }, [dispatch]);
-
-  const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
+    if (!user) {
+      setTimeout(() => {
+        history.push("/login");
+        dispatch(logOut);
+      }, [5000]);
+    }
+  }, [dispatch, history, user]);
+  console.log(user);
+  dispatch(logOut());
   return (
     <div>
       <Navigation />
@@ -22,12 +29,13 @@ const StartScreen = () => {
         <div className={`${styles.pagePadding} ${styles.border}`}>
           <AccountHeader instruction={`Welcome ${user && user.firstName}`}>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor <br /> incididunt labore  et dolore magna
-              nisi ut aliquip ex ea commodo  <br />consequat.
-              Duis aute irure aliqua. Ut enim ad minim veniam, quis nostrud exercitation  <br />ullamco laboris
-              dolor in reprehenderit in voluptate velit esse cillum
-              dolore eu
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor <br /> incididunt labore et dolore magna nisi ut
+              aliquip ex ea commodo <br />
+              consequat. Duis aute irure aliqua. Ut enim ad minim veniam, quis
+              nostrud exercitation <br />
+              ullamco laboris dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu
             </p>
           </AccountHeader>
           <br />

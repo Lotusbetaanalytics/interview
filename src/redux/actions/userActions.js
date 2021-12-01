@@ -13,7 +13,8 @@ import {
 } from "../constants/userConstants";
 
 export const registerUser =
-  (firstName, lastName, email, phone, password) => async (dispatch) => {
+  (firstName, lastName, email, phone, password, examType) =>
+  async (dispatch) => {
     try {
       dispatch({ type: USER_REGISTRATION_REQUEST });
 
@@ -24,7 +25,7 @@ export const registerUser =
       };
       const { data } = await axios.post(
         "/api/v1/candidate/",
-        { firstName, lastName, email, phone, password },
+        { firstName, lastName, email, phone, password, examType },
         config
       );
       dispatch({
@@ -32,6 +33,7 @@ export const registerUser =
         payload: data,
       });
     } catch (error) {
+      console.log(error);
       dispatch({
         type: USER_REGISTRATION_FAIL,
         payload:
@@ -67,8 +69,8 @@ export const loginUser = (email, password) => async (dispatch) => {
     dispatch({
       type: USER_LOGIN_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -94,7 +96,7 @@ export const myDetails = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    console.log(userInfo.token);
+
     const { data } = await axios.get("/api/v1/auth/account", config);
     dispatch({
       type: USER_DETAILS_SUCCESS,
@@ -107,6 +109,10 @@ export const myDetails = () => async (dispatch, getState) => {
         error.response && error.response.data.error
           ? error.response.data.error
           : error.message,
+    });
+    localStorage.removeItem("userInfo");
+    dispatch({
+      type: USER_LOGOUT,
     });
   }
 };

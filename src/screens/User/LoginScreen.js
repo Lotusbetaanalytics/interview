@@ -12,13 +12,10 @@ const LoginScreen = ({ history }) => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
-  
-
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(loginUser(email, password));
-    
-};
+  };
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
@@ -26,7 +23,7 @@ const LoginScreen = ({ history }) => {
     if (userInfo) {
       history.push("/start");
     }
-  }, [userInfo, history]);
+  }, [userInfo, history, dispatch]);
 
   return (
     <div>
@@ -70,8 +67,7 @@ const LoginScreen = ({ history }) => {
               </div>
               <div className={styles.inputContainer}>
                 <p className={styles.center}>
-                  Don't Have an account?{" "}
-                  <Link to="/signup">Sign In</Link>
+                  Don't Have an account? <Link to="/signup">Sign In</Link>
                 </p>
               </div>
             </form>

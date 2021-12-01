@@ -5,9 +5,9 @@ import {
   userRegisterReducer,
   userLoginReducer,
   userDetailsReducer,
-  
 } from "./reducers/userReducers";
-import { questionsReducer,scoreReducer } from "./reducers/questionReducer";
+import { questionsReducer, scoreReducer } from "./reducers/questionReducer";
+import { getTestReducer } from "./reducers/testReducer";
 
 const reducer = combineReducers({
   registration: userRegisterReducer,
@@ -15,6 +15,7 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   getquestion: questionsReducer,
   sendscore: scoreReducer,
+  getTest: getTestReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../components/Navigation";
 import AccountHeader from "../../components/UI/AccountHeader";
@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
 import { registerUser } from "../../redux/actions/userActions";
 import { USER_REGISTRATION_RESET } from "../../redux/constants/userConstants";
+import { getTestTyper } from "../../redux/actions/testAction";
 
 const RegisterScreen = ({ history }) => {
   const [firstName, setFirstname] = useState("");
@@ -15,6 +16,7 @@ const RegisterScreen = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [examType, setExamType] = useState("");
   const [msg, setMsg] = useState(false);
 
   const dispatch = useDispatch();
@@ -22,7 +24,9 @@ const RegisterScreen = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      dispatch(registerUser(firstName, lastName, email, phone, password));
+      dispatch(
+        registerUser(firstName, lastName, email, phone, password, examType)
+      );
     } else {
       setMsg(true);
     }
@@ -36,6 +40,12 @@ const RegisterScreen = ({ history }) => {
     dispatch({ type: USER_REGISTRATION_RESET });
   }
 
+  const getTest = useSelector((state) => state.getTest);
+  const { test } = getTest;
+
+  useEffect(() => {
+    dispatch(getTestTyper());
+  }, [dispatch]);
   return (
     <div>
       <Navigation />
@@ -121,13 +131,16 @@ const RegisterScreen = ({ history }) => {
                   />
                 </div>
                 <div className={styles.inputContainer}>
-                <select value="Radish">
-                  <label>Select Exam Type</label>
-                    <option value="none">none</option>
-                    <option value="Orange">Orange</option>
-                    <option value="Radish">Radish</option>
-                    <option value="Cherry">Cherry</option>
-                </select>
+                  <select onChange={(e) => setExamType(e.target.value)}>
+                    <label>Select Exam Type</label>
+                    <option>Select</option>
+                    {test &&
+                      test.map((item, i) => (
+                        <option value={item._id} key={i}>
+                          {item.title}
+                        </option>
+                      ))}
+                  </select>
                 </div>
               </div>
               <br />
