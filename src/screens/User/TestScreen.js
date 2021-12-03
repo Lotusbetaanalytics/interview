@@ -3,7 +3,7 @@ import Navigation from "../../components/Navigation";
 import Slider from "../../components/UI/Slider";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { postScore } from "../../redux/actions/questionAction";
+
 
 //import {data} from "../../redux/actions/questionAction";
 //import data from "../../components/testQuestions.json";
@@ -46,15 +46,11 @@ console.log(questions)
   const submitHandler = (e) => {
     e.preventDefault();
     const newIndex = index + 1;
-    const Newscores = score + 1;
-    if (res == answer){
-      setScore(Newscores)
-    }
+    
     if (!res) {
       alert("Please select an option");
     } else {
       if (newIndex >= questionLength)  {
-        dispatch(postScore(score));
         if (success) {
         setTimeout(() => history.push("/success"), [5000]);
         }
@@ -68,9 +64,6 @@ console.log(questions)
   const prevHandler = () => {
     setIndex(index - 1);
   };
-
-  
-
   const size = (index / questionLength) * 100 || 0;
   return (
     <div>

@@ -1,27 +1,25 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../components/Navigation";
 import AccountHeader from "../../components/UI/AccountHeader";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { myDetails, logOut } from "../../redux/actions/userActions";
 
-const StartScreen = ({ history }) => {
+const StartScreen = (history) => {
+
   const dispatch = useDispatch();
+
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
   useEffect(() => {
-    dispatch(myDetails());
-    if (!user) {
-      setTimeout(() => {
-        history.push("/login");
-        dispatch(logOut);
-      }, [5000]);
+    if (!userDetails) {
+      history.push("/login");
     }
-  }, [dispatch, history, user]);
-  console.log(user);
-  dispatch(logOut());
+  }, [userDetails, history, dispatch]);
+
+  //console.log(user)
+  
   return (
     <div>
       <Navigation />

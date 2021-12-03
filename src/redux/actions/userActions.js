@@ -109,10 +109,7 @@ export const myDetails = () => async (dispatch, getState) => {
         error.response && error.response.data.error
           ? error.response.data.error
           : error.message,
-    });
-    localStorage.removeItem("userInfo");
-    dispatch({
-      type: USER_LOGOUT,
-    });
+        });
+    
   }
 };

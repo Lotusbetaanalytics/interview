@@ -1,19 +1,24 @@
-import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import React, {useEffect} from 'react'
+import { Link,useHistory } from 'react-router-dom'
 import styles from './styles.module.css'
 import { useSelector, useDispatch } from "react-redux";
-import { logOut } from "../../redux/actions/userActions";
+import { logOut, myDetails } from "../../redux/actions/userActions";
 
 const Navigation = () => {
 
-    const dispatch = useDispatch();
 
     const history = useHistory();
+    const dispatch = useDispatch();
     const userDetails = useSelector((state) => state.userDetails);
     const { user } = userDetails;
 
+    useEffect(() => {
+        dispatch(myDetails())
+        
+      }, [myDetails, dispatch]);
+
+
     const logoutHandler = () => {
-        console.log("Yes")
         dispatch(logOut());
         history.push("/login");
     };

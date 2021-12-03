@@ -6,6 +6,8 @@ import RegisterScreen from "./screens/User/RegisterScreen";
 import StartScreen from "./screens/User/StartScreen";
 import TestScreen from "./screens/User/TestScreen";
 import SuccessScreen from "./screens/User/SuccessScreen";
+//import protectedRoute from "./components/protectedRoute";
+
 
 function App() {
   return (
