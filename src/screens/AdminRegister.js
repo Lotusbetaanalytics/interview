@@ -74,7 +74,7 @@ const AdminRegister = ({ history }) => {
               />
 
               <input
-                type="mobile"
+                type="phone"
                 onChange={(e) => setPhone(e.target.value)}
                 value={phone}
                 placeholder="Phone Number"

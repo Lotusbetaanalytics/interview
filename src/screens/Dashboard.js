@@ -31,7 +31,7 @@ const Dashboard = () => {
       <div className='container'>
         <div className='feed'>
           <div className='feed_user'>
-            <h2 className='feed_title'>Hello Fonsus 👍 👍 🥇</h2>
+            <h2 className='feed_title'>Hello Fonsus 👍👍🥇</h2>
             <br></br>
             <br></br>
             <span className='feed_subtitle'>

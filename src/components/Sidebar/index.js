@@ -2,7 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { MdSpaceDashboard } from 'react-icons/md'
 import { MdPerson } from 'react-icons/md'
-import { FaPiggyBank } from 'react-icons/fa'
+import {AiOutlineAudit} from 'react-icons/ai'
+import { FaPiggyBank, FaWpforms } from 'react-icons/fa'
 import { MdAdminPanelSettings } from 'react-icons/md'
 import { MdOutlineLogout } from 'react-icons/md'
 import './Sidebar.css'
@@ -38,12 +39,29 @@ function Sidebar() {
                 Candidates
               </Link>
             </li>
+
+
+            <li>
+              <Link to='/viewquestion'>
+                < FaWpforms/>
+                Exam
+              </Link>
+            </li>
+
             <li>
               <Link to='/questionbank'>
                 <FaPiggyBank />
                 Question Bank
               </Link>
             </li>
+
+            <li>
+              <Link to='/profile'>
+                < AiOutlineAudit/>
+                Audit Log
+              </Link>
+            </li>
+
             <li>
               <Link to='/adminlogin'>
                 <MdAdminPanelSettings />
@@ -51,6 +69,7 @@ function Sidebar() {
               </Link>
             </li>
             <li>
+              
               <Link to='/adminlogin' onClick={logoutHandler}>
                 <MdOutlineLogout />
                 Logout

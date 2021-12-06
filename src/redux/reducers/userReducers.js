@@ -15,6 +15,8 @@ import {
   USER_SECTION_SUCCESS,
 } from '../constants/userConstants'
 
+
+
 export const adminRegisterReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_REGISTRATION_REQUEST:
@@ -50,7 +52,7 @@ export const adminDetailsReducer = (state = {}, action) => {
     case USER_DETAILS_REQUEST:
       return { loading: true }
     case USER_DETAILS_SUCCESS:
-      return { loading: false, success: true, user: action.payload }
+      return { loading: false, success: true, userInfo: action.payload }
     case USER_DETAILS_FAIL:
       return { loading: false, error: action.payload }
     default:
@@ -70,3 +72,4 @@ export const userSectionsReducer = (state = {}, action) => {
       return state
   }
 }
+

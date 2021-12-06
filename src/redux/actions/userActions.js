@@ -27,7 +27,7 @@ export const registerAdmin =
       };
       const { data } = await axios.post(
         "/api/v1/admin/",
-        { firstName, lastName, email, phone, password },
+        { firstName, lastName, phone, email, password },
         config
       );
       dispatch({
@@ -94,19 +94,23 @@ export const myDetails = () => async (dispatch, getState) => {
       adminLogin: { userInfo },
     } = getState();
 
+    console.log(userInfo.data.firstName)
+    
     const config = {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-
-    const { data } = await axios.get("/api/v1/auth/admin/", config);
-    dispatch({
+    
+    const { data } = await axios.get("/api/v1/admin/self", config);
+    console.log(data)
+    dispatch({ 
       type: USER_DETAILS_SUCCESS,
-      payload: data,
+      payload: data
     });
-
+    
+    
     localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
@@ -116,6 +120,10 @@ export const myDetails = () => async (dispatch, getState) => {
           ? error.response.data.error
           : error.message,
     });
+
+    localStorage.removeItem('userInfo')
+    dispatch({ type: USER_LOGOUT,
+    })
   }
 };
 

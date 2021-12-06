@@ -7,13 +7,13 @@ const QustionTable = () => {
   return (
     <div className='question'>
       <QuestionNavbar />
-      <Link to='/questionbank'>
         <div className='goBack_btn'>
+      <Link to='/questionbank'>
           <button type='submit' className='btn'>
             Go Back
           </button>
-        </div>
       </Link>
+        </div>
 
       <div className='question_table'>
         <table>

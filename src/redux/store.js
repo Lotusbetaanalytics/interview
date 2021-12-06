@@ -8,11 +8,14 @@ import {
   adminRegisterReducer,
 } from "./reducers/userReducers";
 
+import {adminQuestionsReducer} from './reducers/questionReducers'
+
 const reducer = combineReducers({
   adminRegister: adminRegisterReducer,
   adminLogin: adminLoginReducer,
   adminDetails: adminDetailsReducer,
   userSections: userSectionsReducer,
+  adminQuestions: adminQuestionsReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

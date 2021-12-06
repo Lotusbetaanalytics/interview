@@ -20,7 +20,7 @@ function AdminLogin({ history }) {
 
   useEffect(() => {
     if (userInfo) {
-      history.push('/adminlogin')
+      history.push('/dashboard')
     }
   }, [userInfo, history])
 
@@ -31,13 +31,13 @@ function AdminLogin({ history }) {
       <div className='login-page'>
         <form onSubmit={sumbitHandler} className='login'>
           <div className='image-container'>
-            <img src={image} alt='admin img' />
+            <img src={image} alt='admin' />
           </div>
           <h2>Welcome to e-Interview!</h2>
           <h3>Admin Portal</h3>
           <div className='login-form-inputs'>
             <input
-              type='text'
+              type='email'
               onChange={(e) => {
                 setEmail(e.target.value)
               }}

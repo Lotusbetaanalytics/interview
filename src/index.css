@@ -22,7 +22,7 @@
   display: grid;
   grid-template-columns: 31% 31% 31%;
   grid-gap: 3%;
-  padding-top: 1rem;
+  padding-top: 2rem;
 }
 
 
@@ -71,12 +71,12 @@
 }
 
 .feed {
-  width: 97%;
+  width: 100%;
   height: 17rem;
   display: block;
   background-color: rgb(93, 83, 184);
   border-radius: 30px;
-  padding: 2.4rem;
+  padding: 3rem;
   overflow: hidden;
   color: white;
 }
@@ -88,7 +88,7 @@
 }
 
 .feed_img {
-  width: 20%;
+  width: 25%;
   height: 15rem;
   float: left;
 }
@@ -103,16 +103,31 @@
 
 }
 
-
 .btn {
   background: rgb(245, 197, 76);
   color: black;
   padding: 1rem 2.4rem;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.8rem;
   cursor: pointer;
   border: none;
   border-radius: 40px;
+}
+
+.name {
+  margin: 10px;
+}
+
+
+.name input {
+  padding: 0.5em;
+  width: 30%;
+  height: 50%;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 20px;
+  border-color: lightgray;
 }
 
 .goBack_btn {

@@ -5,8 +5,9 @@ import user1 from '../../assets/user1.jpg'
 import './Navbar.css'
 
 function Navbar({ title, name }) {
-  const adminRegister = useSelector((state) => state.adminRegister)
-  const { userInfo } = adminRegister
+  const adminDetails = useSelector((state) => state.adminDetails)
+  const { user } = adminDetails
+  
 
   return (
     <div className='navbar'>
@@ -15,11 +16,11 @@ function Navbar({ title, name }) {
         <img src={user1} alt='user' />
       </div>
       <div className='navbar_username'>
-        {userInfo ? (
-          <Link to='#'>{userInfo.firstName}</Link>
-        ) : (
-          <Link to='/adminLogin'></Link>
-        )}
+        {user && user ? <>
+          <Link to='#'>{user && user.data.firstName}</Link>
+         </>: <> 
+          <Link to='#'></Link>
+        </>}
         <h4>{name}</h4>
       </div>
     </div>

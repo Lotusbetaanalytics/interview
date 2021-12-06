@@ -1,31 +1,46 @@
 .questionbank_btn {
- padding-top: 2rem;
+ padding-top: 1rem;
 }
 
 .question_section {
  padding-top: .8rem;
 }
 
-.section {
- width: 42%;
- height: 49px;
- margin: 30px;
- border-radius: 17px;
- border: 1px solid lightgray;
+.sections {
+  display: flex;
+  padding-bottom: 4rem;
+  
+}
+
+.section_dropdown {
+  width: 40%;
+  padding: 10px;
+}
+
+.section_dropdown select {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+
+.exam_dropdown{
+  width: 40%;
+  padding: 10px;
+}
+
+.exam_dropdown select {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border-radius: 20px;
 }
 
 .question_section input {
  margin-left: 1rem;
  padding: 1rem;
 }
-
-.position {
- width: 42%;
- height: 49px;
- border-radius: 17px;
- margin: 20px;
- border: 1px solid lightgray;
- }
  
 
  .question_space {
