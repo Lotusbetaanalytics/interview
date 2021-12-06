@@ -4,19 +4,21 @@ import Navigation from "../../components/Navigation";
 import AccountHeader from "../../components/UI/AccountHeader";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import {  myDetails } from "../../redux/actions/userActions";
 
-const StartScreen = (history) => {
+const StartScreen = ({history}) => {
 
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
+  const userinfo = user&&user.firstName;
+  console.log(userinfo)
+
   useEffect(() => {
-    if (!userDetails) {
-      history.push("/login");
-    }
-  }, [userDetails, history, dispatch]);
+    dispatch(myDetails())
+  }, [myDetails, dispatch]);
 
   //console.log(user)
   

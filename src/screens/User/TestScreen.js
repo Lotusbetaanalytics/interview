@@ -113,4 +113,15 @@ console.log(questions)
   );
 };
 
+// get the current candidate // /auth/account or /candidate/self
+// get get candidates exam type // candidate.examType
+// get the test with the same id as exam type // /test/:test_id
+// ----------------------------------------------------------------------------------
+// get the sections in the test // /section/test/:test_id or /test/:test_id/sections
+// for each section get the questions and display them // /question/section/:section_id
+
+// or
+
+// get all the sections with their questions in the test as a list // /test/:test_id/questions
+
 export default TestScreen;
