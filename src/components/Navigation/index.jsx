@@ -15,7 +15,7 @@ const Navigation = () => {
     useEffect(() => {
         dispatch(myDetails())
         
-      }, [myDetails, dispatch]);
+      }, [dispatch]);
 
 
     const logoutHandler = () => {

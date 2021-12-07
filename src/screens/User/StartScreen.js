@@ -13,14 +13,12 @@ const StartScreen = ({history}) => {
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
-  const userinfo = user&&user.firstName;
+  const userinfo = user&&user.examType;
   console.log(userinfo)
 
   useEffect(() => {
     dispatch(myDetails())
-  }, [myDetails, dispatch]);
-
-  //console.log(user)
+  }, [dispatch]);
   
   return (
     <div>

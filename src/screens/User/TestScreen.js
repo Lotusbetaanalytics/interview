@@ -3,11 +3,10 @@ import Navigation from "../../components/Navigation";
 import Slider from "../../components/UI/Slider";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-
-
-//import {data} from "../../redux/actions/questionAction";
-//import data from "../../components/testQuestions.json";
 import { getTestquestion } from "../../redux/actions/questionAction";
+import {postResponse} from "../../redux/actions/responseAction";
+import {  myDetails } from "../../redux/actions/userActions";
+
 
 
 
@@ -15,39 +14,51 @@ const TestScreen = ({history}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
- dispatch(getTestquestion());
+ dispatch(getTestquestion(),myDetails());
   }, [dispatch]);
 
  const getquestion = useSelector((state) =>state.getquestion);
- const {questions}  = getquestion;
+ const {questions, success}  = getquestion;
 
- const sendscore = useSelector((state) => state.sendscore);
-  const { loading, error, success } = sendscore;
+ const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
 
+  const test = user&&user.examType;
+  const candidate = user&&user._id;
   
+  console.log(test)
+  console.log(candidate)
+
 
 console.log(questions)
 
 
   const [index, setIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [res, setRes] = useState("");
+  const [selected_answer, setSelected_answer] = useState("");
   const questionLength = questions && questions.length;
   // const questions = data.questions;
 
+  const section= questions && questions[index] && questions[index].section._id
+  console.log(section)
 
+  const question= questions &&  questions[index] && questions[index].question
+  console.log(question)
   const answer = questions &&  questions[index] && questions[index].correct_answers;
   const edex = index + 1;
+
   console.log(answer)
-  console.log(score)
-  console.log(res)
+  console.log(selected_answer)
   console.log(index)
 
   const submitHandler = (e) => {
     e.preventDefault();
     const newIndex = index + 1;
-    
-    if (!res) {
+    if (selected_answer) {
+        dispatch(
+          postResponse(candidate,test,section,question,selected_answer)
+        ); 
+    }
+    if (!selected_answer) {
       alert("Please select an option");
     } else {
       if (newIndex >= questionLength)  {
@@ -56,7 +67,7 @@ console.log(questions)
         }
       } else {
         setIndex(newIndex);
-        setRes("");
+        setSelected_answer("");
         e.target.reset();
       }
     }
@@ -72,7 +83,7 @@ console.log(questions)
         <div
           className={`${styles.pagePadding} ${styles.border} ${styles.removePadding}`}
         >
-      <h3>{questions && questions[index] && questions[index].section}</h3>
+      <h3>{questions && questions[index] && questions[index].section.title}</h3>
           <br />
           <Slider size={size} />
           <h2>{questions &&  questions[index] && questions[index].question}</h2>
@@ -85,7 +96,7 @@ console.log(questions)
                     name="radio"
                     type="radio"
                     value={item}
-                    onChange={(e) => setRes(e.target.value)}
+                    onChange={(e) => setSelected_answer(e.target.value)}
                   />
                   <label htmlFor={`radio${i}`}>{item}</label>
                 </div>
