@@ -15,14 +15,13 @@ function Navbar({ title, name }) {
       <div className='navbar_img'>
         <img src={user1} alt='user' />
       </div>
-      <div className='navbar_username'>
-        {user && user ? <>
-          <Link to='#'>{user && user.data.firstName}</Link>
+       <div className='navbar_username'>
+        {user && user ? <><h4>{name}</h4>
          </>: <> 
           <Link to='#'></Link>
         </>}
-        <h4>{name}</h4>
-      </div>
+        
+      </div> 
     </div>
   )
 }

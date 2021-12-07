@@ -6,6 +6,7 @@ import ViewQuestion from './screens/ViewQuestion'
 import Profile from './screens/Profile'
 import QuestionBank from './screens/QuestionBank'
 import AdminLogin from './screens/AdminLogin'
+import Test from './screens/Test'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/profile' exact component={Profile} />
         <Route path='/questionbank' exact component={QuestionBank} />
         <Route path='/viewquestion' exact component={ViewQuestion} />
+        <Route path='/test' exact component={Test} />
       </Switch>
     </Router>
   )

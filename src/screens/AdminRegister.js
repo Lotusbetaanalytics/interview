@@ -32,7 +32,7 @@ const AdminRegister = ({ history }) => {
   const { loading, error, success } = adminRegister;
 
   if (success) {
-    setTimeout(() => history.push("/adminlogin"), [4000]);
+    setTimeout(() => history.push("/adminlogin"), [3000]);
     dispatch({ type: USER_REGISTRATION_RESET });
   }
 
@@ -66,6 +66,13 @@ const AdminRegister = ({ history }) => {
                 placeholder="Last Name"
               />
 
+<input
+  type="phone"
+  onChange={(e) => setPhone(e.target.value)}
+  value={phone}
+  placeholder="Phone Number"
+/>
+
               <input
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
@@ -73,12 +80,6 @@ const AdminRegister = ({ history }) => {
                 placeholder="Email Address"
               />
 
-              <input
-                type="phone"
-                onChange={(e) => setPhone(e.target.value)}
-                value={phone}
-                placeholder="Phone Number"
-              />
 
               <input
                 type="password"

@@ -1,0 +1,19 @@
+.test_page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px;
+
+}
+
+.test_input {
+    width: 50%;
+    height: 90px;
+    padding: 10px;
+    border-radius: 20px;
+    border-color: lightgray;
+}
+
+.test_btn {
+    padding-left: 1rem;
+}

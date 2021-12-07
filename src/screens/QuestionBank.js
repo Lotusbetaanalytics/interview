@@ -16,12 +16,10 @@ function QuestionBank() {
     
     const handleChange = e => {
       setQuestion(e.target.value)
-      setCorrectAnswer(e.target.value)
-      setOptions(e.target.value)
+     
     }
     const submitHandler = (e) => {
         e.preventDefault();
-        
     };
 
 
@@ -137,7 +135,9 @@ const {questions} = adminQuestions
                         <div className="option_space">
                             <input
                                 type="text"
-                                onChange={handleChange}
+                                onChange={(e) => {
+                                    setOptions(e.target.value)
+                                }}
                                 vaule={options}
                                 placeholder="Options"
                                 name="text"
@@ -165,7 +165,9 @@ const {questions} = adminQuestions
                             type="text"
                             placeholder="Correct answer"
                             vaule={correctAnswer}
-                            onChange={handleChange}
+                            onChange={(e) => {
+                                setCorrectAnswer(e.target.value)
+                            }}
                             className="correct"
                         />
                     </div>{" "}

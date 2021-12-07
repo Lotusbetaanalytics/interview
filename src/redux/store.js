@@ -8,7 +8,7 @@ import {
   adminRegisterReducer,
 } from "./reducers/userReducers";
 
-import {adminQuestionsReducer} from './reducers/questionReducers'
+import {adminQuestionsReducer, questionOptionReducer, testSelectReducer} from './reducers/questionReducers'
 
 const reducer = combineReducers({
   adminRegister: adminRegisterReducer,
@@ -16,6 +16,8 @@ const reducer = combineReducers({
   adminDetails: adminDetailsReducer,
   userSections: userSectionsReducer,
   adminQuestions: adminQuestionsReducer,
+  questionOptions: questionOptionReducer,
+  testOptions: testSelectReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

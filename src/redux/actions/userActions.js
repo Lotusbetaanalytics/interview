@@ -16,7 +16,7 @@ import {
 } from "../constants/userConstants";
 
 export const registerAdmin =
-  (firstName, lastName, email, phone, password) => async (dispatch) => {
+  (firstName, lastName, phone, email, password) => async (dispatch) => {
     try {
       dispatch({ type: USER_REGISTRATION_REQUEST });
 
@@ -94,7 +94,7 @@ export const myDetails = () => async (dispatch, getState) => {
       adminLogin: { userInfo },
     } = getState();
 
-    console.log(userInfo.data.firstName)
+    console.log(userInfo.firstName)
     
     const config = {
       headers: {
@@ -104,14 +104,11 @@ export const myDetails = () => async (dispatch, getState) => {
     };
     
     const { data } = await axios.get("/api/v1/admin/self", config);
-    console.log(data)
     dispatch({ 
       type: USER_DETAILS_SUCCESS,
       payload: data
     });
     
-    
-    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_DETAILS_FAIL,
@@ -144,7 +141,6 @@ export const sectionUser = (section) => async (dispatch) => {
       payload: data,
     });
 
-    localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_SECTION_FAIL,
