@@ -9,8 +9,8 @@ import {postQuestion} from '../redux/actions/questionAction'
 function QuestionBank() {
     const dispatch = useDispatch()
     const [question, setQuestion] = useState("");
-    const [correctAnswer, setCorrectAnswer] = useState("")
-    const [options, setOptions] = useState([])
+    const [answers, setAnswers] = useState([])
+    const [correctAnswer, setCorrectAnswer] = useState([])
     const [section, setSection] = useState("");
     const [exam, setExam] = useState("");
     
@@ -20,6 +20,7 @@ function QuestionBank() {
     }
     const submitHandler = (e) => {
         e.preventDefault();
+        dispatch(postQuestion(question, answers, correctAnswer, section))
     };
 
 
@@ -136,10 +137,10 @@ const {questions} = adminQuestions
                             <input
                                 type="text"
                                 onChange={(e) => {
-                                    setOptions(e.target.value)
+                                    setAnswers(e.target.value)
                                 }}
-                                vaule={options}
-                                placeholder="Options"
+                                vaule={answers}
+                                placeholder="Answers"
                                 name="text"
                                 className="option"
                             />

@@ -8,7 +8,7 @@ import {
   adminRegisterReducer,
 } from "./reducers/userReducers";
 
-import {adminQuestionsReducer, questionOptionReducer, testSelectReducer} from './reducers/questionReducers'
+import {adminQuestionsReducer, testSelectReducer} from './reducers/questionReducers'
 
 const reducer = combineReducers({
   adminRegister: adminRegisterReducer,
@@ -16,7 +16,6 @@ const reducer = combineReducers({
   adminDetails: adminDetailsReducer,
   userSections: userSectionsReducer,
   adminQuestions: adminQuestionsReducer,
-  questionOptions: questionOptionReducer,
   testOptions: testSelectReducer,
 });
 
