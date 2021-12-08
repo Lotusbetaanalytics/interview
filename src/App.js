@@ -7,6 +7,7 @@ import Profile from './screens/Profile'
 import QuestionBank from './screens/QuestionBank'
 import AdminLogin from './screens/AdminLogin'
 import Test from './screens/Test'
+import Section from './screens/Section'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/questionbank' exact component={QuestionBank} />
         <Route path='/viewquestion' exact component={ViewQuestion} />
         <Route path='/test' exact component={Test} />
+        <Route path='/section' exact component={Section} />
       </Switch>
     </Router>
   )

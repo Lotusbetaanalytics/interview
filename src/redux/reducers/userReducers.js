@@ -65,7 +65,7 @@ export const userSectionsReducer = (state = {}, action) => {
     case USER_SECTION_REQUEST:
       return { loading: true }
     case USER_SECTION_SUCCESS:
-      return { loading: false, success: true, user: action.payload }
+      return { loading: false, success: true, section: action.payload }
     case USER_SECTION_FAIL:
       return { loading: false, error: action.payload }
     default:

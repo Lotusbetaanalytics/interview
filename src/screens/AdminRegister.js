@@ -66,12 +66,6 @@ const AdminRegister = ({ history }) => {
                 placeholder="Last Name"
               />
 
-<input
-  type="phone"
-  onChange={(e) => setPhone(e.target.value)}
-  value={phone}
-  placeholder="Phone Number"
-/>
 
               <input
                 type="email"
@@ -80,6 +74,12 @@ const AdminRegister = ({ history }) => {
                 placeholder="Email Address"
               />
 
+<input
+  type="phone"
+  onChange={(e) => setPhone(e.target.value)}
+  value={phone}
+  placeholder="Phone Number"
+/>
 
               <input
                 type="password"

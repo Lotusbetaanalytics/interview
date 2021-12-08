@@ -5,6 +5,8 @@ import Sidebar from "../components/Sidebar";
 import "./QuestionBank.css";
 import {useSelector, useDispatch} from "react-redux";
 import {postQuestion} from '../redux/actions/questionAction'
+import {getTest} from '../redux/actions/testActions'
+import {getExamSection} from '../redux/actions/sectionActions'
 
 function QuestionBank() {
     const dispatch = useDispatch()
@@ -13,24 +15,39 @@ function QuestionBank() {
     const [correctAnswer, setCorrectAnswer] = useState([])
     const [section, setSection] = useState("");
     const [exam, setExam] = useState("");
+    const [option, setOption] = useState("");
+
+    const addOption = () =>{
+        setAnswers([...answers, option])
+        console.log(answers)
+    }
     
     const handleChange = e => {
       setQuestion(e.target.value)
-     
     }
     const submitHandler = (e) => {
         e.preventDefault();
         dispatch(postQuestion(question, answers, correctAnswer, section))
     };
-
-
 const adminQuestions = useSelector((state) => state.adminQuestions)
 const {questions} = adminQuestions
 
+const allTest = useSelector((state) => state.allTest);
+const { test:tests} = allTest;
+
+const examSection = useSelector((state) => state.examSection);
+const { sections} = examSection;
 
     useEffect(() => {
-        dispatch(postQuestion())
-    }, [dispatch, questions])
+        dispatch(getTest())
+    }, [dispatch])
+
+
+
+    const getOptions = (event) => {   
+        const id = event.target.value
+        dispatch(getExamSection(id))
+    }
 
 
     return (
@@ -52,15 +69,22 @@ const {questions} = adminQuestions
                         </Link>{" "}
                     </div>
 
-                    <label className='name'>
-                        Name:
-                        <input type="text" placeholder="Test" name="Name" className='testname'/>
-                            </label>
-                        <input type="submit" value="Submit" className='btn'/>
 
                     <div className="question_section">
                         <div className="sections">
                             <div className="section_dropdown">
+                                <label>Test Name</label>
+                                <select
+                                    onChange={getOptions}
+                                >
+                                     <option>Select Test</option>
+                                {tests && tests.map((item,i) =>(
+                                    <option key={i} value={item._id}>{item.title}</option>
+                                ))}
+                                </select>{" "}
+                            </div>
+                            <div className="exam_dropdown">
+                            <label>Test Section</label>
                                 <select
                                     onChange={(e) =>
                                         setSection(
@@ -68,58 +92,10 @@ const {questions} = adminQuestions
                                         )
                                     }
                                 >
-                                    <option className="select">
-                                        Test Name....{" "}
-                                    </option>{" "}
-                                    <option value="testName1">
-                                        AZ - 900{" "}
-                                    </option>{" "}
-                                    <option value="testName2">
-                                        AZ - 200{" "}
-                                    </option>{" "}
-                                    <option value="testName3">
-                                        AZ - 100{" "}
-                                    </option>{" "}
-                                    <option value="testName4">
-                                        PL - 100{" "}
-                                    </option>{" "}
-                                    <option value="testName5">
-                                        PL - 200{" "}
-                                    </option>{" "}
-                                </select>{" "}
-                            </div>
-                            <div className="exam_dropdown">
-                                <select
-                                    onChange={(e) =>
-                                        setExam(
-                                            e.target.value
-                                        )
-                                    }
-                                >
-                                    <option>
-                                        Choose Exam.....{" "}
-                                    </option>{" "}
-                                    <option value="AZ-900">
-                                        Cloud Database{" "}
-                                    </option>{" "}
-                                    <option value="AZ-200">
-                                        Cloud Structure
-                                        Algorithms{" "}
-                                    </option>{" "}
-                                    <option value="AZ-100">
-                                        Microsoft Azure
-                                        Infrastructure and
-                                        Development{" "}
-                                    </option>{" "}
-                                    <option value="PL-100">
-                                        Power Platform App
-                                        Maker Associate{" "}
-                                    </option>{" "}
-                                    <option value="PL-200">
-                                        Microsoft Power
-                                        Platform Functional
-                                        Consultant{" "}
-                                    </option>{" "}
+                                     <option>Select Section</option>
+                                      {sections && sections.map((item,i) =>(
+                                    <option key={i} value={item._id}>{item.title}</option>
+                                ))}
                                 </select>{" "}
                             </div>{" "}
                         </div>
@@ -137,30 +113,27 @@ const {questions} = adminQuestions
                             <input
                                 type="text"
                                 onChange={(e) => {
-                                    setAnswers(e.target.value)
+                                    setOption(e.target.value)
                                 }}
-                                vaule={answers}
+                                value={option}
                                 placeholder="Answers"
                                 name="text"
                                 className="option"
                             />
-                            <button className="btn">
+                            <button className="btn" onClick={addOption} type="button">
                                 Add Option{" "}
                             </button>{" "}
                         </div>{" "}
                     </div>
-                    <div className="remove_option">
-                        Local Area Network{" "}
-                        <button className="remove_btn">
-                            Remove Option{" "}
-                        </button>{" "}
-                    </div>{" "}
-                    <div className="remove_option2">
-                        Last Air Network{" "}
-                        <button className="remove_btn2">
-                            Remove Option{" "}
-                        </button>{" "}
-                    </div>
+                 {answers.map((item,i)=> (
+ <div className="remove_option2" key={i}>
+ {item}
+ <button className="remove_btn2">
+     Remove Option{" "}
+ </button>
+</div>
+                 ))}
+                   
                     <div className="correct_answer">
                         <input
                             type="text"

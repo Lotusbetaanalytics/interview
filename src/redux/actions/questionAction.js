@@ -76,35 +76,4 @@ export const getQuestion =
 
     
 
-    export const testOptions =
-    (title, timer ) => async (dispatch) => {
-        try {
-            dispatch({ type: TEST_REQUEST });
-
-            const config = {
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            };
-
-            const { data } = await axios.post(
-                "/api/v1/test/",
-                { title, timer },
-                config
-            );
-
-            dispatch({
-                type: TEST_SUCCESS,
-                payload: data,
-            });
-        } catch (error) {
-            dispatch({
-                type: TEST_FAIL,
-                payload:
-                    error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
-                        : error.message,
-            });
-        }
-    };
+    

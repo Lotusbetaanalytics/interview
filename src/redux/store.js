@@ -9,6 +9,8 @@ import {
 } from "./reducers/userReducers";
 
 import {adminQuestionsReducer, testSelectReducer} from './reducers/questionReducers'
+import {createTestReducer, getTestReducer} from './reducers/testReducers'
+import { createSectionReducer, getSectionReducer,getSectionByIdReducer } from "./reducers/sectionReducers";
 
 const reducer = combineReducers({
   adminRegister: adminRegisterReducer,
@@ -17,6 +19,11 @@ const reducer = combineReducers({
   userSections: userSectionsReducer,
   adminQuestions: adminQuestionsReducer,
   testOptions: testSelectReducer,
+  newTest: createTestReducer,
+  allTest: getTestReducer,
+  newSection: createSectionReducer,
+  allSection: getSectionReducer,
+  examSection: getSectionByIdReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

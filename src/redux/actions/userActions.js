@@ -94,7 +94,6 @@ export const myDetails = () => async (dispatch, getState) => {
       adminLogin: { userInfo },
     } = getState();
 
-    console.log(userInfo.firstName)
     
     const config = {
       headers: {
