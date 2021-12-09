@@ -24,14 +24,18 @@ function Section({ history }) {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(createSection(title, timer,instruction,test));
+        dispatch(
+            createSection(title, timer, instruction, test)
+        );
     };
 
     const allTest = useSelector((state) => state.allTest);
-    const { test:tests} = allTest;
+    const { test: tests } = allTest;
 
-    const newSection = useSelector((state) => state.newSection);
-    const {loading, error, success} = newSection;
+    const newSection = useSelector(
+        (state) => state.newSection
+    );
+    const { loading, error, success } = newSection;
 
     const toast = useToast();
 
@@ -40,15 +44,15 @@ function Section({ history }) {
             title: "Notification",
             description: "Section created Successfully",
             status: "success",
-            duration: 9000,
+            duration: 6000,
             isClosable: true,
         });
         dispatch({ type: CREATE_SECTION_RESET });
     }
 
     useEffect(() => {
-        dispatch(getTest())
-    },[dispatch])
+        dispatch(getTest());
+    }, [dispatch]);
 
     return (
         <div className="admin_container">
@@ -69,40 +73,64 @@ function Section({ history }) {
             ) : (
                 <form onSubmit={submitHandler}>
                     <div className="test_page">
-                       
                         <div>
                             <label>Test</label>
-                            <select onChange={(e) => setTest(e.target.value)}>
+                            <select
+                                onChange={(e) =>
+                                    setTest(e.target.value)
+                                }
+                            >
                                 <option>Select Test</option>
-                                {tests && tests.map((item,i) =>(
-                                    <option key={i} value={item._id}>{item.title}</option>
-                                ))}
+                                {tests &&
+                                    tests.map((item, i) => (
+                                        <option
+                                            key={i}
+                                            value={item._id}
+                                        >
+                                            {item.title}
+                                        </option>
+                                    ))}
                             </select>
                         </div>
                         <div>
                             <label>Section Name</label>
-                        <input
-                            type="text"
-                            placeholder="Test"
-                            onChange={(e) =>
-                                setTitle(e.target.value)
-                            }
-                            value={title}
-                            className="test_input"
-                        /></div>
-                        <div>
-                        <label>Section Instruction</label>
-                        <input
-                            type="text" onChange={(e) => setInstruction(e.target.value)} value={instruction} className="test_input"
-                        />
+                            <input
+                                type="text"
+                                placeholder="Test"
+                                onChange={(e) =>
+                                    setTitle(e.target.value)
+                                }
+                                value={title}
+                                className="test_input"
+                            />
                         </div>
                         <div>
-                        <label>Time</label>
-                        <input
-                            type="number" onChange={(e) => setTimer(e.target.value)} value={timer} className="test_input"
-                        />
+                            <label>
+                                Section Instruction
+                            </label>
+                            <input
+                                type="text"
+                                onChange={(e) =>
+                                    setInstruction(
+                                        e.target.value
+                                    )
+                                }
+                                value={instruction}
+                                className="test_input"
+                            />
                         </div>
-                        
+                        <div>
+                            <label>Time</label>
+                            <input
+                                type="number"
+                                onChange={(e) =>
+                                    setTimer(e.target.value)
+                                }
+                                value={timer}
+                                className="test_input"
+                            />
+                        </div>
+
                         <div className="test_btn">
                             <button
                                 type="submit"

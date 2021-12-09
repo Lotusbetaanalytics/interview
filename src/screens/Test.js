@@ -39,44 +39,45 @@ function Test({ history }) {
     }
 
     return (
-        <div className="admin_container">
+        <div>
             <Sidebar />
-            <Navbar title="Test" />
-
-            {error && (
-                <Alert>
-                    <AlertIcon />
-                    {error}
-                </Alert>
-            )}
-            {loading ? (
-                <CircularProgress
-                    isIndeterminate
-                    color="green.300"
-                />
-            ) : (
-                <form onSubmit={submitHandler}>
-                    <div className="test_page">
-                        <input
-                            type="text"
-                            placeholder="Test"
-                            onChange={(e) =>
-                                setTitle(e.target.value)
-                            }
-                            value={title}
-                            className="test_input"
-                        />
-                        <div className="test_btn">
-                            <button
-                                type="submit"
-                                className="btn"
-                            >
-                                Add Test
-                            </button>
+            <div className="admin_container">
+                <Navbar title="Test" />
+                {error && (
+                    <Alert>
+                        <AlertIcon />
+                        {error}
+                    </Alert>
+                )}
+                {loading ? (
+                    <CircularProgress
+                        isIndeterminate
+                        color="green.300"
+                    />
+                ) : (
+                    <form onSubmit={submitHandler}>
+                        <div className="test_page">
+                            <input
+                                type="text"
+                                placeholder="Test"
+                                onChange={(e) =>
+                                    setTitle(e.target.value)
+                                }
+                                value={title}
+                                className="test_input"
+                            />
+                            <div className="test_btn">
+                                <button
+                                    type="submit"
+                                    className="btn"
+                                >
+                                    Add Test
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            )}
+                    </form>
+                )}
+            </div>
         </div>
     );
 }

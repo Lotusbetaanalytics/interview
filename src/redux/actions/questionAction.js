@@ -3,13 +3,11 @@ import {
     QUESTION_FAIL,
     QUESTION_SUCCESS,
     QUESTION_REQUEST,
-    TEST_FAIL,
-    TEST_SUCCESS,
-    TEST_REQUEST,
 } from "../constants/questionConstants";
 
 export const postQuestion =
-    (question, answers, correctAnswers, section) => async (dispatch) => {
+    (question, answers, correctAnswers, section) =>
+    async (dispatch) => {
         try {
             dispatch({ type: QUESTION_REQUEST });
 
@@ -21,7 +19,12 @@ export const postQuestion =
 
             const { data } = await axios.post(
                 "/api/v1/question/",
-                { question, answers, correctAnswers, section },
+                {
+                    question,
+                    answers,
+                    correctAnswers,
+                    section,
+                },
                 config
             );
             dispatch({
@@ -56,8 +59,8 @@ export const getQuestion =
             };
             const { data } = await axios.get(
                 "/api/v1/question",
-                config,
-                );
+                config
+            );
             dispatch({
                 type: QUESTION_SUCCESS,
                 payload: data,
@@ -73,7 +76,3 @@ export const getQuestion =
             });
         }
     };
-
-    
-
-    

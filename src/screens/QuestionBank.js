@@ -3,52 +3,62 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import "./QuestionBank.css";
-import {useSelector, useDispatch} from "react-redux";
-import {postQuestion} from '../redux/actions/questionAction'
-import {getTest} from '../redux/actions/testActions'
-import {getExamSection} from '../redux/actions/sectionActions'
+import { useSelector, useDispatch } from "react-redux";
+import { postQuestion } from "../redux/actions/questionAction";
+import { getTest } from "../redux/actions/testActions";
+import { getExamSection } from "../redux/actions/sectionActions";
 
 function QuestionBank() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const [question, setQuestion] = useState("");
-    const [answers, setAnswers] = useState([])
-    const [correctAnswer, setCorrectAnswer] = useState([])
+    const [answers, setAnswers] = useState([]);
+    const [correctAnswer, setCorrectAnswer] = useState([]);
     const [section, setSection] = useState("");
     const [exam, setExam] = useState("");
     const [option, setOption] = useState("");
 
-    const addOption = () =>{
-        setAnswers([...answers, option])
-        console.log(answers)
-    }
-    
-    const handleChange = e => {
-      setQuestion(e.target.value)
-    }
+    const addOption = () => {
+        setAnswers([...answers, option]);
+        console.log(answers);
+    };
+
+    const removeOption = () => {};
+
+    const handleChange = (e) => {
+        setQuestion(e.target.value);
+    };
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(postQuestion(question, answers, correctAnswer, section))
+        dispatch(
+            postQuestion(
+                question,
+                answers,
+                correctAnswer,
+                section
+            )
+        );
     };
-const adminQuestions = useSelector((state) => state.adminQuestions)
-const {questions} = adminQuestions
+    const adminQuestions = useSelector(
+        (state) => state.adminQuestions
+    );
+    const { questions } = adminQuestions;
 
-const allTest = useSelector((state) => state.allTest);
-const { test:tests} = allTest;
+    const allTest = useSelector((state) => state.allTest);
+    const { test: tests } = allTest;
 
-const examSection = useSelector((state) => state.examSection);
-const { sections} = examSection;
+    const examSection = useSelector(
+        (state) => state.examSection
+    );
+    const { sections } = examSection;
 
     useEffect(() => {
-        dispatch(getTest())
-    }, [dispatch])
+        dispatch(getTest());
+    }, [dispatch]);
 
-
-
-    const getOptions = (event) => {   
-        const id = event.target.value
-        dispatch(getExamSection(id))
-    }
-
+    const getOptions = (event) => {
+        const id = event.target.value;
+        dispatch(getExamSection(id));
+    };
 
     return (
         <div className="questionbank">
@@ -68,8 +78,6 @@ const { sections} = examSection;
                             </button>{" "}
                         </Link>{" "}
                     </div>
-
-
                     <div className="question_section">
                         <div className="sections">
                             <div className="section_dropdown">
@@ -77,14 +85,28 @@ const { sections} = examSection;
                                 <select
                                     onChange={getOptions}
                                 >
-                                     <option>Select Test</option>
-                                {tests && tests.map((item,i) =>(
-                                    <option key={i} value={item._id}>{item.title}</option>
-                                ))}
+                                    <option>
+                                        Select Test
+                                    </option>
+                                    {tests &&
+                                        tests.map(
+                                            (item, i) => (
+                                                <option
+                                                    key={i}
+                                                    value={
+                                                        item._id
+                                                    }
+                                                >
+                                                    {
+                                                        item.title
+                                                    }
+                                                </option>
+                                            )
+                                        )}
                                 </select>{" "}
                             </div>
                             <div className="exam_dropdown">
-                            <label>Test Section</label>
+                                <label>Test Section</label>
                                 <select
                                     onChange={(e) =>
                                         setSection(
@@ -92,10 +114,24 @@ const { sections} = examSection;
                                         )
                                     }
                                 >
-                                     <option>Select Section</option>
-                                      {sections && sections.map((item,i) =>(
-                                    <option key={i} value={item._id}>{item.title}</option>
-                                ))}
+                                    <option>
+                                        Select Section
+                                    </option>
+                                    {sections &&
+                                        sections.map(
+                                            (item, i) => (
+                                                <option
+                                                    key={i}
+                                                    value={
+                                                        item._id
+                                                    }
+                                                >
+                                                    {
+                                                        item.title
+                                                    }
+                                                </option>
+                                            )
+                                        )}
                                 </select>{" "}
                             </div>{" "}
                         </div>
@@ -113,34 +149,47 @@ const { sections} = examSection;
                             <input
                                 type="text"
                                 onChange={(e) => {
-                                    setOption(e.target.value)
+                                    setOption(
+                                        e.target.value
+                                    );
                                 }}
                                 value={option}
                                 placeholder="Answers"
                                 name="text"
                                 className="option"
                             />
-                            <button className="btn" onClick={addOption} type="button">
+                            <button
+                                className="btn"
+                                onClick={addOption}
+                                type="button"
+                            >
                                 Add Option{" "}
                             </button>{" "}
                         </div>{" "}
                     </div>
-                 {answers.map((item,i)=> (
- <div className="remove_option2" key={i}>
- {item}
- <button className="remove_btn2">
-     Remove Option{" "}
- </button>
-</div>
-                 ))}
-                   
+                    {answers.map((item, i) => (
+                        <div
+                            className="remove_option2"
+                            key={i}
+                        >
+                            {item}
+                            <button
+                                onClick={removeOption}
+                                className="remove_btn2"
+                            >
+                                Remove Option{" "}
+                            </button>
+                        </div>
+                    ))}
                     <div className="correct_answer">
                         <input
                             type="text"
                             placeholder="Correct answer"
                             vaule={correctAnswer}
                             onChange={(e) => {
-                                setCorrectAnswer(e.target.value)
+                                setCorrectAnswer(
+                                    e.target.value
+                                );
                             }}
                             className="correct"
                         />
