@@ -6,7 +6,7 @@ import {
     
   } from "../constants/responseConstant";
 export const postResponse =
-(candidate,test,section,question,selected_answer) =>
+(question,selected_answer) =>
 async (dispatch) => {
   try {
     dispatch({ type: RESPONSE_REQUEST });
@@ -18,7 +18,7 @@ async (dispatch) => {
     };
     const { data } = await axios.post(
       "/api/v1/candidate-response/",
-      { candidate,test,section,question,selected_answer },
+      { question,selected_answer },
       config
     );
     dispatch({

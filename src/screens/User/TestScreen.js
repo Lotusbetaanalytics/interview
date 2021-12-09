@@ -5,7 +5,8 @@ import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getTestquestion } from "../../redux/actions/questionAction";
 import {postResponse} from "../../redux/actions/responseAction";
-import {  myDetails } from "../../redux/actions/userActions";
+import { Alert, AlertIcon} from "@chakra-ui/react";
+import Timer from "../../components/timer";
 
 
 
@@ -14,23 +15,15 @@ const TestScreen = ({history}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
- dispatch(getTestquestion(),myDetails());
+ dispatch(getTestquestion());
   }, [dispatch]);
 
+
+  const Response = useSelector((state) => state.Response);
+  const { error, success } = Response;
+
  const getquestion = useSelector((state) =>state.getquestion);
- const {questions, success}  = getquestion;
-
- const userDetails = useSelector((state) => state.userDetails);
-  const { user } = userDetails;
-
-  const test = user&&user.examType;
-  const candidate = user&&user._id;
-  
-  console.log(test)
-  console.log(candidate)
-
-
-console.log(questions)
+ const {questions}  = getquestion;
 
 
   const [index, setIndex] = useState(0);
@@ -38,24 +31,25 @@ console.log(questions)
   const questionLength = questions && questions.length;
   // const questions = data.questions;
 
-  const section= questions && questions[index] && questions[index].section._id
-  console.log(section)
-
-  const question= questions &&  questions[index] && questions[index].question
+  const question= questions && questions[index] && questions[index].question
   console.log(question)
-  const answer = questions &&  questions[index] && questions[index].correct_answers;
+  const timer= questions && questions[index] && questions[index].section.timer
+  console.log(timer)
+
   const edex = index + 1;
 
-  console.log(answer)
-  console.log(selected_answer)
-  console.log(index)
+  
 
+  
   const submitHandler = (e) => {
     e.preventDefault();
     const newIndex = index + 1;
+    if (timer===0) {
+      setTimeout(() => history.push("/success"), [5000]); 
+    }
     if (selected_answer) {
         dispatch(
-          postResponse(candidate,test,section,question,selected_answer)
+          postResponse(question,selected_answer)
         ); 
     }
     if (!selected_answer) {
@@ -79,10 +73,17 @@ console.log(questions)
   return (
     <div>
       <Navigation />
+      {error && (
+            <Alert status="error">
+              <AlertIcon />
+              {error}
+            </Alert>
+          )}
        <div className={`${styles.pagePadding}`}>
         <div
           className={`${styles.pagePadding} ${styles.border} ${styles.removePadding}`}
         >
+        <Timer/>
       <h3>{questions && questions[index] && questions[index].section.title}</h3>
           <br />
           <Slider size={size} />

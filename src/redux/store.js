@@ -6,7 +6,7 @@ import {
   userLoginReducer,
   userDetailsReducer,
 } from "./reducers/userReducers";
-import { questionsReducer, scoreReducer } from "./reducers/questionReducer";
+import { questionsReducer } from "./reducers/questionReducer";
 import { getTestReducer } from "./reducers/testReducer";
 import { ResponseReducer } from "./reducers/responseReducer";
 
@@ -16,7 +16,7 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   getquestion: questionsReducer,
   getTest: getTestReducer,
-  postResponse : ResponseReducer
+  Response : ResponseReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
