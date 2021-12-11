@@ -3,10 +3,13 @@ import {
     QUESTION_FAIL,
     QUESTION_SUCCESS,
     QUESTION_REQUEST,
+    USER_GETALLQUESTIONS_REQUEST,
+    USER_GETALLQUESTIONS_SUCCESS,
+    USER_GETALLQUESTIONS_FAIL,
 } from "../constants/questionConstants";
 
 export const postQuestion =
-    (question, answers, correctAnswers, section) =>
+    (question, answers, correct_answers, section) =>
     async (dispatch) => {
         try {
             dispatch({ type: QUESTION_REQUEST });
@@ -22,7 +25,7 @@ export const postQuestion =
                 {
                     question,
                     answers,
-                    correctAnswers,
+                    correct_answers,
                     section,
                 },
                 config
@@ -68,6 +71,42 @@ export const getQuestion =
         } catch (error) {
             dispatch({
                 type: QUESTION_FAIL,
+                payload:
+                    error.response &&
+                    error.response.data.error
+                        ? error.response.data.error
+                        : error.message,
+            });
+        }
+    };
+
+export const getAllQuestions =
+    () => async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: USER_GETALLQUESTIONS_REQUEST,
+            });
+            const {
+                adminLogin: { userInfo },
+            } = getState();
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            };
+            const { data } = await axios.get(
+                "/api/v1/question",
+                config
+            );
+            dispatch({
+                type: USER_GETALLQUESTIONS_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: USER_GETALLQUESTIONS_FAIL,
                 payload:
                     error.response &&
                     error.response.data.error

@@ -12,17 +12,27 @@ function QuestionBank() {
     const dispatch = useDispatch();
     const [question, setQuestion] = useState("");
     const [answers, setAnswers] = useState([]);
-    const [correctAnswer, setCorrectAnswer] = useState([]);
+    const [correct_answers, setCorrectAnswer] = useState(
+        []
+    );
     const [section, setSection] = useState("");
     const [exam, setExam] = useState("");
     const [option, setOption] = useState("");
 
     const addOption = () => {
         setAnswers([...answers, option]);
-        console.log(answers);
     };
 
-    const removeOption = () => {};
+    const removeOption = ({ item }) => {
+        setAnswers(
+            answers.filter((option) => option.item !== item)
+        );
+    };
+    console.log(option);
+
+    const addAnswer = () => {
+        setCorrectAnswer([correct_answers]);
+    };
 
     const handleChange = (e) => {
         setQuestion(e.target.value);
@@ -33,7 +43,7 @@ function QuestionBank() {
             postQuestion(
                 question,
                 answers,
-                correctAnswer,
+                correct_answers,
                 section
             )
         );
@@ -155,7 +165,6 @@ function QuestionBank() {
                                 }}
                                 value={option}
                                 placeholder="Answers"
-                                name="text"
                                 className="option"
                             />
                             <button
@@ -174,7 +183,9 @@ function QuestionBank() {
                         >
                             {item}
                             <button
-                                onClick={removeOption}
+                                onClick={() =>
+                                    removeOption(option)
+                                }
                                 className="remove_btn2"
                             >
                                 Remove Option{" "}
@@ -185,7 +196,7 @@ function QuestionBank() {
                         <input
                             type="text"
                             placeholder="Correct answer"
-                            vaule={correctAnswer}
+                            vaule={correct_answers}
                             onChange={(e) => {
                                 setCorrectAnswer(
                                     e.target.value
@@ -193,6 +204,13 @@ function QuestionBank() {
                             }}
                             className="correct"
                         />
+                        <button
+                            onClick={addAnswer}
+                            type="button"
+                            className="btn"
+                        >
+                            Add Answer
+                        </button>
                     </div>{" "}
                     <div className="add_question">
                         <button
