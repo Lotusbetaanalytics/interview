@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navigation from "../../components/Navigation";
 import AccountHeader from "../../components/UI/AccountHeader";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
-import { loginUser } from "../../redux/actions/userActions";
+import { forgetpassword } from "../../redux/actions/userActions";
 
-const LoginScreen = ({ history }) => {
+
+const Forget = ({ history }) => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  
+  
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(loginUser(email, password));
+    dispatch(forgetpassword(email));
   };
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
+  const postforgetpassword = useSelector((state) => state.postforgetpassword);
+  const { loading, error, success } = postforgetpassword;
 
-  useEffect(() => {
-    if (userInfo) {
-      history.push("/start");
-    }
-  }, [userInfo, history, dispatch]);
+  if (success) {
+    setTimeout(() => history.push("/login"), [5000]);
+  }
+
+  
 
   return (
     <div>
@@ -39,6 +41,12 @@ const LoginScreen = ({ history }) => {
             {error}
           </Alert>
         )}
+        {success && (
+            <Alert status="success">
+              <AlertIcon />
+              Check your Email to Retrieve your password
+            </Alert>
+          )}
         {loading ? (
           <Center>
             <CircularProgress isIndeterminate color="purple.300" />
@@ -55,22 +63,13 @@ const LoginScreen = ({ history }) => {
                 />
               </div>
               <div className={styles.inputContainer}>
-                <input
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                  placeholder="Password"
-                />
-              </div>
-              <div className={styles.inputContainer}>
-                <input type="submit" value="Login" className="btn gold" />
+                <input type="submit" value="Send" className="btn gold" />
               </div>
               <div className={styles.inputContainer}>
                 <p className={styles.center}>
-                  Don't Have an account? <Link to="/signup">Sign Up</Link>  <span className={styles.inputContainer}><Link to="/forget">Forget password?</Link></span>
+                  Remember your password? <Link to="/login">Sign In</Link>
                 </p>
               </div>
-              
             </form>
           </div>
         )}
@@ -79,4 +78,4 @@ const LoginScreen = ({ history }) => {
   );
 };
 
-export default LoginScreen;
+export default Forget;

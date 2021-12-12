@@ -1,22 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins');
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins',
-    sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-.caption{
+.caption {
   display: flex;
   align-items: center;
   width: 50%;
 }
 
-
-
 .btn {
-  padding: .8rem 2.5rem;
+  padding: 0.8rem 2.5rem;
   border-radius: 50px;
   border: none;
   margin-right: 1rem;
@@ -29,7 +26,7 @@
 }
 
 .gold {
-  background: #FFD500;
+  background: #ffd500;
 }
 
 /* Custom Radio Btn */
@@ -58,8 +55,8 @@
   width: 100%;
   height: 10px;
   border-radius: 50%;
-  content: '';
-  background-color: #5759C6;
+  content: "";
+  background-color: #5759c6;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -72,7 +69,7 @@
 .inputGroup label:after {
   width: 32px;
   height: 32px;
-  content: '';
+  content: "";
   border: 2px solid #d1d7dc;
   background-color: #fff;
   background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
@@ -88,16 +85,16 @@
   transition: all 200ms ease-in;
 }
 
-.inputGroup input:checked~label {
+.inputGroup input:checked ~ label {
   color: #fff;
 }
 
-.inputGroup input:checked~label:before {
+.inputGroup input:checked ~ label:before {
   transform: translate(-50%, -50%) scale3d(56, 56, 1);
   opacity: 1;
 }
 
-.inputGroup input:checked~label:after {
+.inputGroup input:checked ~ label:after {
   background-color: white;
   border-color: gray;
 }
@@ -113,4 +110,14 @@
   transform: translateY(-50%);
   cursor: pointer;
   visibility: hidden;
+}
+.dropdown {
+  background-color: #5759c6;
+  width: 100%;
+}
+.scores {
+  display: flex;
+  justify-content: center;
+  background-color: blue;
+  align-items: center;
 }

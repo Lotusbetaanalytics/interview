@@ -10,6 +10,9 @@ import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
+  FORGET_PASSWORD_FAIL,
+  FORGET_PASSWORD_REQUEST,
+  FORGET_PASSWORD_SUCCESS,
 } from "../constants/userConstants";
 
 export const registerUser =
@@ -110,6 +113,37 @@ export const myDetails = () => async (dispatch, getState) => {
           ? error.response.data.error
           : error.message,
         });
-    
+  }
+};
+
+export const forgetpassword =
+(email) =>
+async (dispatch) => {
+  try {
+    dispatch({ type: FORGET_PASSWORD_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.post(
+      "/api/v1/auth/forgotPassword",
+      { email },
+      config
+    );
+    dispatch({
+      type: FORGET_PASSWORD_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: FORGET_PASSWORD_FAIL,
+      payload:
+        error.response && error.response.data.error
+          ? error.response.data.error
+          : error.message,
+    });
   }
 };

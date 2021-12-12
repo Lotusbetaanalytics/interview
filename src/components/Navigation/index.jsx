@@ -20,12 +20,12 @@ const Navigation = () => {
 
     const logoutHandler = () => {
         dispatch(logOut());
-        history.push("/login");
+        setTimeout(() => history.push("/login"), [1000]); 
     };
     return (
         <div className={styles.navigation}>
             <div className={styles.title}>
-                <h3>E-Interview</h3>
+            <Link to="/"><h3>E-Interview</h3></Link>
             </div>
             <div className={styles.btnContainer}>
                 {user && user ? <>

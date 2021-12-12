@@ -6,9 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTestquestion } from "../../redux/actions/questionAction";
 import {postResponse} from "../../redux/actions/responseAction";
 import { Alert, AlertIcon} from "@chakra-ui/react";
-import Timer from "../../components/timer";
-
-
 
 
 const TestScreen = ({history}) => {
@@ -18,35 +15,56 @@ const TestScreen = ({history}) => {
  dispatch(getTestquestion());
   }, [dispatch]);
 
-
   const Response = useSelector((state) => state.Response);
   const { error, success } = Response;
 
- const getquestion = useSelector((state) =>state.getquestion);
- const {questions}  = getquestion;
-
-
+  const getquestion = useSelector((state) =>state.getquestion);
+  const {questions}  = getquestion;
+ 
   const [index, setIndex] = useState(0);
+  const timer= questions && questions[index] && questions[index].section.timer
   const [selected_answer, setSelected_answer] = useState("");
   const questionLength = questions && questions.length;
+  let initialMinute = (timer)
+  let  initialSeconds = (timer)
+  let [ minutes, setMinutes ] = useState(initialMinute);
+  let [seconds, setSeconds ] =  useState(initialSeconds);
   // const questions = data.questions;
 
-  const question= questions && questions[index] && questions[index].question
-  console.log(question)
-  const timer= questions && questions[index] && questions[index].section.timer
+  const question= questions && questions[index] && questions[index]._id
+  
   console.log(timer)
+  
+  const lastpage = index + 1;
+  useEffect(()=>{
+  let myInterval = setInterval(() => {
+    if (seconds > 0) {
+        setSeconds(seconds - 1);
+    }
+    if (seconds === 0) {
+        if (minutes === 0) {
+            clearInterval(myInterval)
+        } else {
+            setMinutes(minutes - 1);
+            setSeconds(59);
+        }
+    } 
+  }, 1000)
+  return ()=> {
+    clearInterval(myInterval);
+  };
+  });   
 
-  const edex = index + 1;
-
+  if (minutes === 0 && seconds === 1) {
+    alert("time up")
+    setTimeout(() => history.push("/success"), [1000]); 
+  } 
   
 
-  
-  const submitHandler = (e) => {
+    const submitHandler = (e) => {
     e.preventDefault();
     const newIndex = index + 1;
-    if (timer===0) {
-      setTimeout(() => history.push("/success"), [5000]); 
-    }
+    
     if (selected_answer) {
         dispatch(
           postResponse(question,selected_answer)
@@ -66,9 +84,11 @@ const TestScreen = ({history}) => {
       }
     }
   };
+
   const prevHandler = () => {
     setIndex(index - 1);
   };
+
   const size = (index / questionLength) * 100 || 0;
   return (
     <div>
@@ -83,7 +103,12 @@ const TestScreen = ({history}) => {
         <div
           className={`${styles.pagePadding} ${styles.border} ${styles.removePadding}`}
         >
-        <Timer/>
+      <div className={styles.left}>
+        { minutes === 0 && seconds === 0
+            ? null
+            : <h1 className={styles.justifyCenter}> {minutes} : {seconds < 10 ?  `0${seconds}` : seconds}</h1> 
+        }
+        </div>
       <h3>{questions && questions[index] && questions[index].section.title}</h3>
           <br />
           <Slider size={size} />
@@ -112,7 +137,7 @@ const TestScreen = ({history}) => {
                 Back
               </button>
             )}
-            {edex === questionLength ? 
+            {lastpage === questionLength ? 
             <button type="submit" className="btn gold">
               submit
             </button>  :  <button type="submit" className="btn gold">
@@ -125,15 +150,5 @@ const TestScreen = ({history}) => {
   );
 };
 
-// get the current candidate // /auth/account or /candidate/self
-// get get candidates exam type // candidate.examType
-// get the test with the same id as exam type // /test/:test_id
-// ----------------------------------------------------------------------------------
-// get the sections in the test // /section/test/:test_id or /test/:test_id/sections
-// for each section get the questions and display them // /question/section/:section_id
-
-// or
-
-// get all the sections with their questions in the test as a list // /test/:test_id/questions
 
 export default TestScreen;
