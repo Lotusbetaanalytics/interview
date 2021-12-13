@@ -23,17 +23,18 @@ const TestScreen = ({history}) => {
  
   const [index, setIndex] = useState(0);
   const timer= questions && questions[index] && questions[index].section.timer
-  const [selected_answer, setSelected_answer] = useState("");
+  const [selected_answers, setSelected_answers] = useState("");
   const questionLength = questions && questions.length;
   let initialMinute = (timer)
   let  initialSeconds = (timer)
   let [ minutes, setMinutes ] = useState(initialMinute);
   let [seconds, setSeconds ] =  useState(initialSeconds);
-  // const questions = data.questions;
+  
 
   const question= questions && questions[index] && questions[index]._id
   
   console.log(timer)
+  console.log(selected_answers)
   
   const lastpage = index + 1;
   useEffect(()=>{
@@ -65,12 +66,12 @@ const TestScreen = ({history}) => {
     e.preventDefault();
     const newIndex = index + 1;
     
-    if (selected_answer) {
+    if (selected_answers) {
         dispatch(
-          postResponse(question,selected_answer)
+          postResponse(question,selected_answers)
         ); 
     }
-    if (!selected_answer) {
+    if (!selected_answers) {
       alert("Please select an option");
     } else {
       if (newIndex >= questionLength)  {
@@ -79,7 +80,7 @@ const TestScreen = ({history}) => {
         }
       } else {
         setIndex(newIndex);
-        setSelected_answer("");
+        setSelected_answers("");
         e.target.reset();
       }
     }
@@ -122,7 +123,7 @@ const TestScreen = ({history}) => {
                     name="radio"
                     type="radio"
                     value={item}
-                    onChange={(e) => setSelected_answer(e.target.value)}
+                    onChange={(e) => setSelected_answers(e.target.value)}
                   />
                   <label htmlFor={`radio${i}`}>{item}</label>
                 </div>

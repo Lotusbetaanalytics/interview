@@ -3,7 +3,7 @@ import Navigation from "../../components/Navigation";
 import styles from "./styles.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { getTestscore } from "../../redux/actions/testscoreAction";
-import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
+import { Alert, AlertIcon} from "@chakra-ui/react";
 
 
 const SuccessScreen = () => {
