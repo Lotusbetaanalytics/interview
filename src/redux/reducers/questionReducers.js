@@ -8,6 +8,9 @@ import {
     USER_GETALLQUESTIONS_REQUEST,
     USER_GETALLQUESTIONS_SUCCESS,
     USER_GETALLQUESTIONS_FAIL,
+    GET_QUESTION_BYID_REQUEST,
+    GET_QUESTION_BYID_SUCCESS,
+    GET_QUESTION_BYID_FAIL,
 } from "../constants/questionConstants";
 
 export const adminQuestionsReducer = (
@@ -54,19 +57,42 @@ export const testSelectReducer = (state = {}, action) => {
 };
 
 export const getAllQuestionsReducer = (
-    state = {},
+    state = { questions: [] },
     action
 ) => {
     switch (action.type) {
         case USER_GETALLQUESTIONS_REQUEST:
-            return { loading: true };
+            return { ...state, loading: true };
         case USER_GETALLQUESTIONS_SUCCESS:
             return {
                 loading: false,
                 success: true,
-                test: action.payload,
+                questions: action.payload,
             };
         case USER_GETALLQUESTIONS_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+
+export const getQuestionsByIdReducer = (
+    state = { questions: [] },
+    action
+) => {
+    switch (action.type) {
+        case GET_QUESTION_BYID_REQUEST:
+            return { ...state, loading: true };
+        case GET_QUESTION_BYID_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                questions: action.payload.data,
+            };
+        case GET_QUESTION_BYID_FAIL:
             return {
                 loading: false,
                 error: action.payload,

@@ -113,7 +113,7 @@ function QuestionBank() {
                                                 </option>
                                             )
                                         )}
-                                </select>{" "}
+                                </select>
                             </div>
                             <div className="exam_dropdown">
                                 <label>Test Section</label>

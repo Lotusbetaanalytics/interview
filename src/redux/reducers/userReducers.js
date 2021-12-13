@@ -13,6 +13,9 @@ import {
     USER_SECTION_FAIL,
     USER_SECTION_REQUEST,
     USER_SECTION_SUCCESS,
+    GETALLADMIN_FAIL,
+    GETALLADMIN_SUCCESS,
+    GETALLADMIN_REQUEST,
 } from "../constants/userConstants";
 
 export const adminRegisterReducer = (
@@ -89,6 +92,29 @@ export const userSectionsReducer = (state = {}, action) => {
                 section: action.payload,
             };
         case USER_SECTION_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+
+export const getAllAdminReducer = (
+    state = { admins: [] },
+    action
+) => {
+    switch (action.type) {
+        case GETALLADMIN_REQUEST:
+            return { ...state, loading: true };
+        case GETALLADMIN_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                admin: action.payload,
+            };
+        case GETALLADMIN_FAIL:
             return {
                 loading: false,
                 error: action.payload,

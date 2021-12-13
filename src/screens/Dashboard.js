@@ -12,6 +12,8 @@ import { MdCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { myDetails } from "../redux/actions/userActions";
+import { getAllAdmin } from "../redux/actions/userActions";
+import { getQuestionsId } from "../redux/actions/questionAction";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -20,10 +22,30 @@ const Dashboard = () => {
         dispatch(myDetails());
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(getQuestionsId());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getAllAdmin());
+    }, [dispatch]);
+
     const adminDetails = useSelector(
         (state) => state.adminDetails
     );
     const { user } = adminDetails;
+
+    const getQuestion = useSelector(
+        (state) => state.getQuestion
+    );
+    const { questions } = getQuestion;
+    console.log(questions);
+
+    const GetAllAdmin = useSelector(
+        (state) => state.GetAllAdmin
+    );
+    const { allAdmin } = GetAllAdmin;
+    console.log(allAdmin);
 
     return (
         <>
@@ -64,18 +86,18 @@ const Dashboard = () => {
                 </div>
 
                 <div className="cardGrid">
-                    <Link to="/totalquestions">
-                        <Infobox
-                            title="Questions"
-                            count="100"
-                            Icon={AiOutlineBars}
-                            color="Green"
-                        />
-                    </Link>
+                    <Infobox
+                        title="Questions"
+                        count={
+                            questions && questions.length
+                        }
+                        Icon={AiOutlineBars}
+                        color="Green"
+                    />
 
                     <Infobox
                         title="Admin"
-                        count="7"
+                        //count={admins}
                         Icon={RiAdminFill}
                         color="#7070db"
                     />

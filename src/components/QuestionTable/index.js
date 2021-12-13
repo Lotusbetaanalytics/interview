@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import QuestionNavbar from "../QuestionNavbar";
-import Axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getQuestionsId } from "../../redux/actions/questionAction";
 import "./QuestionTab.css";
 
 const QustionTable = () => {
     const [data, setData] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        Axios.get("/api/v1/question")
-            .then((res) => {
-                console.log(res.data);
-                setData(res.data);
-            })
-            .catch((err) => console.log(err));
-    }, []);
+        dispatch(getQuestionsId());
+    }, [dispatch]);
 
-    const arr = [data].map((item) => {
+    const getQuestion = useSelector(
+        (state) => state.getQuestion
+    );
+
+    const { questions } = getQuestion;
+
+    console.log(questions);
+
+    const arr = questions.map((item) => {
         return (
             <tbody>
                 <tr>
-                    <td>{item.id}</td>
+                    <td>{item._id}</td>
                     <td>{item.question}</td>
-                    <td>{item.section}</td>
+                    <td>{item.section.title}</td>
                     <td>
                         <button className="table_btn">
                             Edit
@@ -35,7 +40,7 @@ const QustionTable = () => {
             </tbody>
         );
     });
-    console.log(data);
+    console.log(questions);
     return (
         <div className="question">
             <QuestionNavbar />

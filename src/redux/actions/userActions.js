@@ -13,6 +13,9 @@ import {
     USER_SECTION_FAIL,
     USER_SECTION_REQUEST,
     USER_SECTION_SUCCESS,
+    GETALLADMIN_FAIL,
+    GETALLADMIN_SUCCESS,
+    GETALLADMIN_REQUEST,
 } from "../constants/userConstants";
 
 export const registerAdmin =
@@ -162,6 +165,43 @@ export const sectionUser =
         } catch (error) {
             dispatch({
                 type: USER_SECTION_FAIL,
+                payload:
+                    error.response &&
+                    error.response.data.error
+                        ? error.response.data.error
+                        : error.message,
+            });
+        }
+    };
+
+export const getAllAdmin =
+    () => async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: GETALLADMIN_REQUEST,
+            });
+            const {
+                adminLogin: { userInfo },
+            } = getState();
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            };
+            const { data } = await axios.get(
+                "/api/v1/admin/",
+                config
+            );
+            dispatch({
+                type: GETALLADMIN_SUCCESS,
+                payload: data,
+            });
+            console.log(data);
+        } catch (error) {
+            dispatch({
+                type: GETALLADMIN_FAIL,
                 payload:
                     error.response &&
                     error.response.data.error

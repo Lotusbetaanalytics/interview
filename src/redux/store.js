@@ -10,11 +10,13 @@ import {
     adminDetailsReducer,
     userSectionsReducer,
     adminRegisterReducer,
+    getAllAdminReducer,
 } from "./reducers/userReducers";
 
 import {
     adminQuestionsReducer,
     getAllQuestionsReducer,
+    getQuestionsByIdReducer,
     testSelectReducer,
 } from "./reducers/questionReducers";
 import {
@@ -40,6 +42,8 @@ const reducer = combineReducers({
     allSection: getSectionReducer,
     examSection: getSectionByIdReducer,
     getAllQuestions: getAllQuestionsReducer,
+    GetAllAdmin: getAllAdminReducer,
+    getQuestion: getQuestionsByIdReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

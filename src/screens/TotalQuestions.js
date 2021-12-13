@@ -9,6 +9,7 @@ function TotalQuestions() {
             const { data } = await axios.get(
                 "/api/v1/question"
             );
+            console.log(data);
             setAllQuestions(data);
         };
         fetchRequest();
