@@ -61,13 +61,11 @@ const Dashboard = () => {
         (state) => state.myAllAdmin
     );
     const { admin } = myAllAdmin;
-    console.log(admin);
 
     const totalCandidates = useSelector(
         (state) => state.totalCandidates
     );
     const { candidate } = totalCandidates;
-    console.log(candidate);
 
     const allCandidatePassed = useSelector(
         (state) => state.allCandidatePassed

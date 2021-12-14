@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import "./Test.css";
+import "./Section.css";
 
 import {
     useToast,
@@ -73,9 +73,10 @@ function Section({ history }) {
             ) : (
                 <form onSubmit={submitHandler}>
                     <div className="test_page">
-                        <div>
+                        <div className="sec_top">
                             <label>Test</label>
                             <select
+                                className="test_input2"
                                 onChange={(e) =>
                                     setTest(e.target.value)
                                 }
@@ -92,7 +93,7 @@ function Section({ history }) {
                                     ))}
                             </select>
                         </div>
-                        <div>
+                        <div className="section_name">
                             <label>Section Name</label>
                             <input
                                 type="text"
@@ -101,33 +102,35 @@ function Section({ history }) {
                                     setTitle(e.target.value)
                                 }
                                 value={title}
-                                className="test_input"
+                                className="test_input3"
                             />
                         </div>
-                        <div>
+                        <div className="section_intro">
                             <label>
                                 Section Instruction
                             </label>
                             <input
                                 type="text"
+                                placeholder="Instruction"
                                 onChange={(e) =>
                                     setInstruction(
                                         e.target.value
                                     )
                                 }
                                 value={instruction}
-                                className="test_input"
+                                className="test_input4"
                             />
                         </div>
-                        <div>
+                        <div className="section_timer">
                             <label>Time</label>
                             <input
                                 type="number"
+                                placeholder="Timer"
                                 onChange={(e) =>
                                     setTimer(e.target.value)
                                 }
                                 value={timer}
-                                className="test_input"
+                                className="test_input5"
                             />
                         </div>
 

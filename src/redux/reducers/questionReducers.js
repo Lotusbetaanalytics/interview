@@ -11,6 +11,10 @@ import {
     GET_QUESTION_BYID_REQUEST,
     GET_QUESTION_BYID_SUCCESS,
     GET_QUESTION_BYID_FAIL,
+    DELETE_QUESTION_BYID_REQUEST,
+    DELETE_QUESTION_BYID_SUCCESS,
+    DELETE_QUESTION_BYID_FAIL,
+    QUESTION_RESET,
 } from "../constants/questionConstants";
 
 export const adminQuestionsReducer = (
@@ -31,6 +35,8 @@ export const adminQuestionsReducer = (
                 loading: false,
                 error: action.payload,
             };
+        case QUESTION_RESET:
+            return {};
         default:
             return state;
     }
@@ -93,6 +99,29 @@ export const getQuestionsByIdReducer = (
                 questions: action.payload.data,
             };
         case GET_QUESTION_BYID_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+
+export const deleteQuestionByIdReducer = (
+    state = { questionsID: [] },
+    action
+) => {
+    switch (action.type) {
+        case DELETE_QUESTION_BYID_REQUEST:
+            return { ...state, loading: true };
+        case DELETE_QUESTION_BYID_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                questions: action.payload.data,
+            };
+        case DELETE_QUESTION_BYID_FAIL:
             return {
                 loading: false,
                 error: action.payload,

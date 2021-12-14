@@ -20,6 +20,7 @@ import {
     getAllQuestionsReducer,
     getQuestionsByIdReducer,
     testSelectReducer,
+    deleteQuestionByIdReducer,
 } from "./reducers/questionReducers";
 import {
     createTestReducer,
@@ -56,6 +57,7 @@ const reducer = combineReducers({
     getViewAdmins: getViewAdminsReducer,
     allCandidatePassed: candidatesPassReducer,
     allCandidateFailed: candidatesFailReducer,
+    deleteQuestion: deleteQuestionByIdReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -30,21 +30,6 @@ function Widgetfeed({ name }) {
     );
     const { candidates } = getCandidate;
 
-    const arr = candidates.map((item) => {
-        return (
-            <div className="user1_id">
-                <div className="user1_img">
-                    <img src={icon} alt="" />
-                </div>
-                <h4>{item.candidate.firstName}</h4>
-                <h6>{item.test.title}</h6>
-                <div className="user1_score">
-                    {item.score}
-                </div>
-            </div>
-        );
-    });
-
     return (
         <div className="widget">
             <div className="widget_container">
@@ -72,10 +57,33 @@ function Widgetfeed({ name }) {
                 <div className="widget_post">
                     <div className="widget_title">
                         <h4>Most Recent Test</h4>
-                        <div className="post_card">
-                            {arr}
-                        </div>
                     </div>
+
+                    {candidates &&
+                        candidates.map((item) => (
+                            <div className="post_card">
+                                <div className="user1_img">
+                                    <img
+                                        src={icon}
+                                        alt=""
+                                    />
+                                </div>
+                                <div className="user1_id">
+                                    <h4>
+                                        {
+                                            item.candidate
+                                                .firstName
+                                        }
+                                    </h4>
+                                    <h6>
+                                        {item.test.title}
+                                    </h6>
+                                </div>
+                                <div className="user1_score">
+                                    {item.score}
+                                </div>
+                            </div>
+                        ))}
                 </div>
             </div>
         </div>

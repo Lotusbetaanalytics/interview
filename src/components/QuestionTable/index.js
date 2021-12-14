@@ -4,11 +4,16 @@ import QuestionNavbar from "../QuestionNavbar";
 import { useDispatch, useSelector } from "react-redux";
 import { getQuestionsId } from "../../redux/actions/questionAction";
 import "./QuestionTab.css";
+// import { deleteQuestionId } from "../redux/actions/questionAction";
 
 const QustionTable = () => {
     const [data, setData] = useState([]);
     const [clear, setClear] = useState("");
     const dispatch = useDispatch();
+
+    const deletequestion = (e) => {
+        e.preventDefault();
+    };
 
     useEffect(() => {
         dispatch(getQuestionsId());
@@ -20,10 +25,10 @@ const QustionTable = () => {
 
     const { questions } = getQuestion;
 
-    const deletequestion = (e) => {
-        e.preventDefault();
-        setClear();
-    };
+    // const getquestionid = (event) => {
+    //     const id = event.target.value;
+    //     dispatch(deleteQuestionId(id));
+    // };
 
     const arr = questions.map((item) => {
         return (
@@ -31,18 +36,7 @@ const QustionTable = () => {
                 <tr>
                     <td>{item.question}</td>
                     <td>{item.section.title}</td>
-                    <td>
-                        <button className="table_btn">
-                            Edit
-                        </button>
-                        <button
-                            onClick={deletequestion}
-                            value={clear}
-                            className="table_btn2"
-                        >
-                            Delete
-                        </button>
-                    </td>
+                    <td></td>
                 </tr>
             </tbody>
         );
@@ -64,7 +58,6 @@ const QustionTable = () => {
                     <tr>
                         <th>Question</th>
                         <th>Section</th>
-                        <th>Action</th>
                     </tr>
                     {arr}
                 </table>

@@ -86,7 +86,7 @@ function Test({ history }) {
                                         type="submit"
                                         className="btn"
                                     >
-                                        View Section
+                                        Add Section
                                     </button>
                                 </Link>
                             </div>

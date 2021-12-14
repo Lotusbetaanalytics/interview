@@ -7,8 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { postQuestion } from "../redux/actions/questionAction";
 import { getTest } from "../redux/actions/testActions";
 import { getExamSection } from "../redux/actions/sectionActions";
-import { CREATE_TEST_RESET } from "../redux/constants/testConstants";
-import { toast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
+import { QUESTION_RESET } from "../redux/constants/questionConstants";
 
 function QuestionBank() {
     const dispatch = useDispatch();
@@ -24,12 +24,12 @@ function QuestionBank() {
         setAnswers([...answers, option]);
     };
 
-    const removeOption = ({ item }) => {
-        setAnswers(
-            answers.filter((option) => option.item !== item)
-        );
+    const removeOption = (i) => {
+        const index = answers.indexOf(i);
+        if (index > -1) {
+            answers.splice(index, 1);
+        }
     };
-    console.log(option);
 
     const addAnswer = () => {
         setCorrectAnswer([correct_answers]);
@@ -71,6 +71,8 @@ function QuestionBank() {
         dispatch(getExamSection(id));
     };
 
+    const toast = useToast();
+
     if (success) {
         toast({
             title: "Notification",
@@ -79,7 +81,7 @@ function QuestionBank() {
             duration: 9000,
             isClosable: true,
         });
-        dispatch({ type: CREATE_TEST_RESET });
+        dispatch({ type: QUESTION_RESET });
     }
 
     return (
@@ -196,7 +198,7 @@ function QuestionBank() {
                             {item}
                             <button
                                 onClick={() =>
-                                    removeOption(option)
+                                    removeOption(item)
                                 }
                                 className="remove_btn2"
                             >
@@ -216,13 +218,6 @@ function QuestionBank() {
                             }}
                             className="correct"
                         />
-                        <button
-                            onClick={addAnswer}
-                            type="button"
-                            className="btn"
-                        >
-                            Add Answer
-                        </button>
                     </div>{" "}
                     <div className="add_question">
                         <button

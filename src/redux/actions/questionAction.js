@@ -9,6 +9,9 @@ import {
     GET_QUESTION_BYID_REQUEST,
     GET_QUESTION_BYID_SUCCESS,
     GET_QUESTION_BYID_FAIL,
+    DELETE_QUESTION_BYID_REQUEST,
+    DELETE_QUESTION_BYID_SUCCESS,
+    DELETE_QUESTION_BYID_FAIL,
 } from "../constants/questionConstants";
 
 export const postQuestion =
@@ -146,6 +149,42 @@ export const getQuestionsId =
         } catch (error) {
             dispatch({
                 type: GET_QUESTION_BYID_FAIL,
+                payload:
+                    error.response &&
+                    error.response.data.error
+                        ? error.response.data.error
+                        : error.message,
+            });
+        }
+    };
+
+export const deleteQuestionId =
+    (id) => async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: DELETE_QUESTION_BYID_REQUEST,
+            });
+            const {
+                adminLogin: { userInfo },
+            } = getState();
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            };
+            const { data } = await axios.delete(
+                `/api/v1/question${id}`,
+                config
+            );
+            dispatch({
+                type: DELETE_QUESTION_BYID_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: DELETE_QUESTION_BYID_FAIL,
                 payload:
                     error.response &&
                     error.response.data.error
