@@ -6,6 +6,7 @@ import {
   userLoginReducer,
   userDetailsReducer,
   forgetPasswordReducer,
+  changePasswordReducer,
 } from "./reducers/userReducers";
 import { questionsReducer } from "./reducers/questionReducer";
 import { getTestReducer } from "./reducers/testReducer";
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   Response : ResponseReducer,
   Myscore : getTestscoreReducer,
   postforgetpassword: forgetPasswordReducer,
+  changepassword : changePasswordReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

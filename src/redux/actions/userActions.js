@@ -13,6 +13,9 @@ import {
   FORGET_PASSWORD_FAIL,
   FORGET_PASSWORD_REQUEST,
   FORGET_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAIL,
+  CHANGE_PASSWORD_REQUEST,
+  CHANGE_PASSWORD_SUCCESS,
 } from "../constants/userConstants";
 
 export const registerUser =
@@ -140,6 +143,38 @@ async (dispatch) => {
     console.log(error);
     dispatch({
       type: FORGET_PASSWORD_FAIL,
+      payload:
+        error.response && error.response.data.error
+          ? error.response.data.error
+          : error.message,
+    });
+  }
+};
+
+export const changePassword =
+(email) =>
+async (dispatch) => {
+  try {
+    dispatch({ type: CHANGE_PASSWORD_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.post(
+      "/api/v1/auth/resetPassword/:resettoken",
+      { email },
+      config
+    );
+    dispatch({
+      type: CHANGE_PASSWORD_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: CHANGE_PASSWORD_FAIL,
       payload:
         error.response && error.response.data.error
           ? error.response.data.error

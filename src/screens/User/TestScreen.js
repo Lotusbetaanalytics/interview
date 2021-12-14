@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getTestquestion } from "../../redux/actions/questionAction";
 import {postResponse} from "../../redux/actions/responseAction";
-import { Alert, AlertIcon} from "@chakra-ui/react";
+import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
 
 
 const TestScreen = ({history}) => {
@@ -16,13 +16,13 @@ const TestScreen = ({history}) => {
   }, [dispatch]);
 
   const Response = useSelector((state) => state.Response);
-  const { error, success } = Response;
+  const { loading, error, } = Response;
 
   const getquestion = useSelector((state) =>state.getquestion);
   const {questions}  = getquestion;
  
   const [index, setIndex] = useState(0);
-  const timer= questions && questions[index] && questions[index].section.timer
+  const timer= questions && questions[0] && questions[0].section.timer
   const [selected_answers, setSelected_answers] = useState("");
   const questionLength = questions && questions.length;
   let initialMinute = (timer)
@@ -67,17 +67,18 @@ const TestScreen = ({history}) => {
     const newIndex = index + 1;
     
     if (selected_answers) {
+      localStorage.setItem("selected_answers", '')
         dispatch(
           postResponse(question,selected_answers)
+          
+
         ); 
     }
     if (!selected_answers) {
       alert("Please select an option");
     } else {
       if (newIndex >= questionLength)  {
-        if (success) {
-        setTimeout(() => history.push("/success"), [5000]);
-        }
+        history.push("/success")
       } else {
         setIndex(newIndex);
         setSelected_answers("");
@@ -99,7 +100,12 @@ const TestScreen = ({history}) => {
               <AlertIcon />
               {error}
             </Alert>
-          )}
+        )}
+        {loading ? (
+          <Center>
+            <CircularProgress isIndeterminate color="purple.300" />
+          </Center>
+        ) : (  
        <div className={`${styles.pagePadding}`}>
         <div
           className={`${styles.pagePadding} ${styles.border} ${styles.removePadding}`}
@@ -147,7 +153,9 @@ const TestScreen = ({history}) => {
           </form>
         </div>
       </div> 
+        )}
     </div>
+
   );
 };
 
