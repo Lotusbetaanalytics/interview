@@ -7,6 +7,7 @@ import "./QuestionTab.css";
 
 const QustionTable = () => {
     const [data, setData] = useState([]);
+    const [clear, setClear] = useState("");
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -19,20 +20,26 @@ const QustionTable = () => {
 
     const { questions } = getQuestion;
 
-    console.log(questions);
+    const deletequestion = (e) => {
+        e.preventDefault();
+        setClear();
+    };
 
     const arr = questions.map((item) => {
         return (
             <tbody>
                 <tr>
-                    <td>{item._id}</td>
                     <td>{item.question}</td>
                     <td>{item.section.title}</td>
                     <td>
                         <button className="table_btn">
                             Edit
                         </button>
-                        <button className="table_btn2">
+                        <button
+                            onClick={deletequestion}
+                            value={clear}
+                            className="table_btn2"
+                        >
                             Delete
                         </button>
                     </td>
@@ -55,7 +62,6 @@ const QustionTable = () => {
             <div className="question_table">
                 <table>
                     <tr>
-                        <th>S/N</th>
                         <th>Question</th>
                         <th>Section</th>
                         <th>Action</th>

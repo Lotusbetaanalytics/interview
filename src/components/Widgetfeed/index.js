@@ -1,86 +1,85 @@
-import React from 'react'
-import user1 from '../../assets/user1.jpg'
-import icon from '../../assets/icon.jpg'
-import './Widget.css'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import user1 from "../../assets/user1.jpg";
+import icon from "../../assets/icon.jpg";
+import "./Widget.css";
+import { Link } from "react-router-dom";
+import {
+    getAllCandidatesdetails,
+    myDetails,
+} from "../../redux/actions/userActions";
 
-function Widgetfeed() {
-  return (
-    <div className='widget'>
-      <div className='widget_container'>
-        <div className='widget_img'>
-          <img src={user1} alt='' />
-          <h4>Fonsus Ali</h4>
-          <Link to='/adminregister'>
-            <div className='widgetadmin'>
-              <button className='widget_btn'>Admin</button>
+function Widgetfeed({ name }) {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(myDetails());
+    }, [dispatch]);
+
+    const adminDetails = useSelector(
+        (state) => state.adminDetails
+    );
+    const { user } = adminDetails;
+
+    useEffect(() => {
+        dispatch(getAllCandidatesdetails());
+    }, [dispatch]);
+
+    const getCandidate = useSelector(
+        (state) => state.getCandidate
+    );
+    const { candidates } = getCandidate;
+
+    const arr = candidates.map((item) => {
+        return (
+            <div className="user1_id">
+                <div className="user1_img">
+                    <img src={icon} alt="" />
+                </div>
+                <h4>{item.candidate.firstName}</h4>
+                <h6>{item.test.title}</h6>
+                <div className="user1_score">
+                    {item.score}
+                </div>
             </div>
-          </Link>
+        );
+    });
+
+    return (
+        <div className="widget">
+            <div className="widget_container">
+                <div className="widget_img">
+                    <img src={user1} alt="" />
+                    {user && user ? (
+                        <>
+                            <h4>{name}</h4>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="#"></Link>
+                        </>
+                    )}
+
+                    <Link to="/adminregister">
+                        <div className="widgetadmin">
+                            <button className="widget_btn">
+                                Admin
+                            </button>
+                        </div>
+                    </Link>
+                </div>
+
+                <div className="widget_post">
+                    <div className="widget_title">
+                        <h4>Most Recent Test</h4>
+                        <div className="post_card">
+                            {arr}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div className='widget_post'>
-          <div className='widget_title'>
-            <h4>Most Recent Test</h4>
-          </div>
-
-          <div className='post_card'>
-            <div className='user1_img'>
-              <img src={icon} alt='' />
-            </div>
-            <div className='user1_id'>
-              <h4>Osuji Ali</h4>
-              <h6>Non-Technical</h6>
-            </div>
-            <div className='user1_score'>60%</div>
-          </div>
-
-          <div className='post_card'>
-            <div className='user2_img'>
-              <img src={icon} alt='' />
-            </div>
-            <div className='user2_id'>
-              <h4>Frank Lampard</h4>
-              <h6>Technical</h6>
-            </div>
-            <div className='user2_score'>60%</div>
-          </div>
-
-          <div className='post_card'>
-            <div className='user3_img'>
-              <img src={icon} alt='' />
-            </div>
-            <div className='user3_id'>
-              <h4>John Doe</h4>
-              <h6>Technical</h6>
-            </div>
-            <div className='user3_score'>90%</div>
-          </div>
-
-          <div className='post_card'>
-            <div className='user4_img'>
-              <img src={icon} alt='' />
-            </div>
-            <div className='user4_id'>
-              <h4>Nwaeze Uche</h4>
-              <h6>Technical</h6>
-            </div>
-            <div className='user4_score'>83%</div>
-          </div>
-
-          <div className='post_card'>
-            <div className='user7_img'>
-              <img src={icon} alt='' />
-            </div>
-            <div className='user7_id'>
-              <h4>Jude Akinwale</h4>
-              <h6>Technical</h6>
-            </div>
-            <div className='user7_score'>61%</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+    );
 }
 
-export default Widgetfeed
+export default Widgetfeed;

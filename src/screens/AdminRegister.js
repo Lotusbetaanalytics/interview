@@ -71,7 +71,7 @@ const AdminRegister = ({ history }) => {
 
                 <div className="admin">
                     <div className="admin_btn">
-                        <Link to="/profile">
+                        <Link to="/viewadmin">
                             <button
                                 type="submit"
                                 className="btn"

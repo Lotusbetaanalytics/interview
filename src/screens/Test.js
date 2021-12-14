@@ -11,6 +11,7 @@ import {
     AlertIcon,
 } from "@chakra-ui/react";
 import { CREATE_TEST_RESET } from "../redux/constants/testConstants";
+import { Link } from "react-router-dom";
 
 function Test({ history }) {
     const [title, setTitle] = useState("");
@@ -19,6 +20,12 @@ function Test({ history }) {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        if (success) {
+            setTimeout(
+                () => history.push("/section"),
+                [5000]
+            );
+        }
         dispatch(createTest(title));
     };
 
@@ -66,6 +73,7 @@ function Test({ history }) {
                                 value={title}
                                 className="test_input"
                             />
+
                             <div className="test_btn">
                                 <button
                                     type="submit"
@@ -73,6 +81,14 @@ function Test({ history }) {
                                 >
                                     Add Test
                                 </button>
+                                <Link to="/section">
+                                    <button
+                                        type="submit"
+                                        className="btn"
+                                    >
+                                        View Section
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </form>

@@ -16,6 +16,12 @@ import {
     GETALLADMIN_FAIL,
     GETALLADMIN_SUCCESS,
     GETALLADMIN_REQUEST,
+    GETCANDIDATESDETAILS_FAIL,
+    GETCANDIDATESDETAILS_SUCCESS,
+    GETCANDIDATESDETAILS_REQUEST,
+    USER_VIEWADMIN_FAIL,
+    USER_VIEWADMIN_SUCCESS,
+    USER_VIEWADMIN_REQUEST,
 } from "../constants/userConstants";
 
 export const adminRegisterReducer = (
@@ -102,7 +108,7 @@ export const userSectionsReducer = (state = {}, action) => {
 };
 
 export const getAllAdminReducer = (
-    state = { admins: [] },
+    state = { admin: [] },
     action
 ) => {
     switch (action.type) {
@@ -112,9 +118,55 @@ export const getAllAdminReducer = (
             return {
                 loading: false,
                 success: true,
-                admin: action.payload,
+                admin: action.payload.data,
             };
         case GETALLADMIN_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+
+export const getCandidatesdetailsReducer = (
+    state = { candidates: [] },
+    action
+) => {
+    switch (action.type) {
+        case GETCANDIDATESDETAILS_REQUEST:
+            return { ...state, loading: true };
+        case GETCANDIDATESDETAILS_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                candidates: action.payload.data,
+            };
+        case GETCANDIDATESDETAILS_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+
+export const getViewAdminsReducer = (
+    state = { getadmin: [] },
+    action
+) => {
+    switch (action.type) {
+        case USER_VIEWADMIN_REQUEST:
+            return { ...state, loading: true };
+        case USER_VIEWADMIN_SUCCESS:
+            return {
+                loading: false,
+                success: true,
+                getadmin: action.payload.data,
+            };
+        case USER_VIEWADMIN_FAIL:
             return {
                 loading: false,
                 error: action.payload,

@@ -7,6 +7,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { postQuestion } from "../redux/actions/questionAction";
 import { getTest } from "../redux/actions/testActions";
 import { getExamSection } from "../redux/actions/sectionActions";
+import { CREATE_TEST_RESET } from "../redux/constants/testConstants";
+import { toast } from "@chakra-ui/react";
 
 function QuestionBank() {
     const dispatch = useDispatch();
@@ -16,7 +18,6 @@ function QuestionBank() {
         []
     );
     const [section, setSection] = useState("");
-    const [exam, setExam] = useState("");
     const [option, setOption] = useState("");
 
     const addOption = () => {
@@ -51,7 +52,7 @@ function QuestionBank() {
     const adminQuestions = useSelector(
         (state) => state.adminQuestions
     );
-    const { questions } = adminQuestions;
+    const { questions, success } = adminQuestions;
 
     const allTest = useSelector((state) => state.allTest);
     const { test: tests } = allTest;
@@ -69,6 +70,17 @@ function QuestionBank() {
         const id = event.target.value;
         dispatch(getExamSection(id));
     };
+
+    if (success) {
+        toast({
+            title: "Notification",
+            description: "Question created Successfully",
+            status: "success",
+            duration: 9000,
+            isClosable: true,
+        });
+        dispatch({ type: CREATE_TEST_RESET });
+    }
 
     return (
         <div className="questionbank">

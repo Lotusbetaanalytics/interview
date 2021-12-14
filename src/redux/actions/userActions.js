@@ -16,6 +16,12 @@ import {
     GETALLADMIN_FAIL,
     GETALLADMIN_SUCCESS,
     GETALLADMIN_REQUEST,
+    GETCANDIDATESDETAILS_FAIL,
+    GETCANDIDATESDETAILS_SUCCESS,
+    GETCANDIDATESDETAILS_REQUEST,
+    USER_VIEWADMIN_FAIL,
+    USER_VIEWADMIN_SUCCESS,
+    USER_VIEWADMIN_REQUEST,
 } from "../constants/userConstants";
 
 export const registerAdmin =
@@ -198,10 +204,85 @@ export const getAllAdmin =
                 type: GETALLADMIN_SUCCESS,
                 payload: data,
             });
-            console.log(data);
         } catch (error) {
             dispatch({
                 type: GETALLADMIN_FAIL,
+                payload:
+                    error.response &&
+                    error.response.data.error
+                        ? error.response.data.error
+                        : error.message,
+            });
+        }
+    };
+
+export const getAllCandidatesdetails =
+    () => async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: GETCANDIDATESDETAILS_REQUEST,
+            });
+            const {
+                adminLogin: { userInfo },
+            } = getState();
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            };
+            const { data } = await axios.get(
+                `/api/v1/test-score/`,
+                config
+            );
+            dispatch({
+                type: GETCANDIDATESDETAILS_SUCCESS,
+                payload: data,
+            });
+
+            console.log(data);
+        } catch (error) {
+            dispatch({
+                type: GETCANDIDATESDETAILS_FAIL,
+                payload:
+                    error.response &&
+                    error.response.data.error
+                        ? error.response.data.error
+                        : error.message,
+            });
+        }
+    };
+
+export const viewAllAdmindetails =
+    () => async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: USER_VIEWADMIN_REQUEST,
+            });
+            const {
+                adminLogin: { userInfo },
+            } = getState();
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            };
+            const { data } = await axios.get(
+                "/api/v1/admin/",
+                config
+            );
+            dispatch({
+                type: USER_VIEWADMIN_SUCCESS,
+                payload: data,
+            });
+
+            console.log(data);
+        } catch (error) {
+            dispatch({
+                type: USER_VIEWADMIN_FAIL,
                 payload:
                     error.response &&
                     error.response.data.error

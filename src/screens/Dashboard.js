@@ -14,6 +14,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { myDetails } from "../redux/actions/userActions";
 import { getAllAdmin } from "../redux/actions/userActions";
 import { getQuestionsId } from "../redux/actions/questionAction";
+import {
+    getCandidatesFail,
+    getCandidatesPass,
+    getTotalCandidates,
+} from "../redux/actions/candidateAction";
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -30,6 +35,18 @@ const Dashboard = () => {
         dispatch(getAllAdmin());
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(getTotalCandidates());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getCandidatesPass());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(getCandidatesFail());
+    }, [dispatch]);
+
     const adminDetails = useSelector(
         (state) => state.adminDetails
     );
@@ -39,13 +56,28 @@ const Dashboard = () => {
         (state) => state.getQuestion
     );
     const { questions } = getQuestion;
-    console.log(questions);
 
-    const GetAllAdmin = useSelector(
-        (state) => state.GetAllAdmin
+    const myAllAdmin = useSelector(
+        (state) => state.myAllAdmin
     );
-    const { allAdmin } = GetAllAdmin;
-    console.log(allAdmin);
+    const { admin } = myAllAdmin;
+    console.log(admin);
+
+    const totalCandidates = useSelector(
+        (state) => state.totalCandidates
+    );
+    const { candidate } = totalCandidates;
+    console.log(candidate);
+
+    const allCandidatePassed = useSelector(
+        (state) => state.allCandidatePassed
+    );
+    const { candidatepass } = allCandidatePassed;
+
+    const allCandidateFailed = useSelector(
+        (state) => state.allCandidateFailed
+    );
+    const { candidatefail } = allCandidateFailed;
 
     return (
         <>
@@ -61,7 +93,7 @@ const Dashboard = () => {
                         <h2 className="feed_title">
                             {`Hello ${
                                 user && user.firstName
-                            }`}{" "}
+                            }`}
                             👍👍🥇
                         </h2>
                         <br></br>
@@ -97,25 +129,33 @@ const Dashboard = () => {
 
                     <Infobox
                         title="Admin"
-                        //count={admins}
+                        count={admin && admin.length}
                         Icon={RiAdminFill}
                         color="#7070db"
                     />
                     <Infobox
                         title="Total Candidates"
-                        count="20"
+                        count={
+                            candidate && candidate.length
+                        }
                         Icon={FaUserGraduate}
                         color="cyan"
                     />
                     <Infobox
                         title="Candidates that Passed"
-                        count="8"
+                        count={
+                            candidatepass &&
+                            candidatepass.length
+                        }
                         Icon={BsCheckCircleFill}
                         color="#40ff00"
                     />
                     <Infobox
                         title="Candidates that Failed"
-                        count="12"
+                        count={
+                            candidatefail &&
+                            candidatefail.length
+                        }
                         Icon={MdCancel}
                         color="#d92626"
                     />

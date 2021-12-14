@@ -14,6 +14,7 @@ import Test from "./screens/Test";
 import Section from "./screens/Section";
 import TotalQuestions from "./screens/TotalQuestions";
 import Exams from "./screens/Exams";
+import ViewAdmin from "./screens/ViewAdmin";
 
 function App() {
     return (
@@ -68,6 +69,11 @@ function App() {
                     path="/exam"
                     exact
                     component={Exams}
+                />
+                <Route
+                    path="/viewadmin"
+                    exact
+                    component={ViewAdmin}
                 />
             </Switch>
         </Router>
