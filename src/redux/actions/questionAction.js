@@ -24,7 +24,6 @@ import {
           type: QUESTION_SUCCESS,
           payload: data,
         });
-        console.log(data)
 
       } catch (error) {
         dispatch({
@@ -34,7 +33,6 @@ import {
               ? error.response.data.error                                                                                              
               : error.message,
         });
-        console.log(error)
       }
     };
   

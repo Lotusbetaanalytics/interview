@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect }  from "react";
 import { Link } from "react-router-dom";
 import Navigation from "../../components/Navigation";
 import AccountHeader from "../../components/UI/AccountHeader";
 import styles from "./styles.module.css";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { myDetails } from "../../redux/actions/userActions";
 
 const StartScreen = ({history}) => {
 
-
+  const dispatch = useDispatch();
   const userDetails = useSelector((state) => state.userDetails);
   const { user } = userDetails;
 
-  
+
+  useEffect(() => {
+    dispatch(myDetails())
+    
+  }, [dispatch]);
+
   return (
     <div>
       <Navigation />

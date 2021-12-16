@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTestquestion } from "../../redux/actions/questionAction";
 import {postResponse} from "../../redux/actions/responseAction";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
+import { getTestTime } from "../../redux/actions/testscoreAction";
 
 
 const TestScreen = ({history}) => {
@@ -15,26 +16,37 @@ const TestScreen = ({history}) => {
  dispatch(getTestquestion());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getTestTime());
+     }, [dispatch]);
+
   const Response = useSelector((state) => state.Response);
   const { loading, error, } = Response;
 
   const getquestion = useSelector((state) =>state.getquestion);
   const {questions}  = getquestion;
+
+  const getTime = useSelector((state) =>state.getTime);
+  const {testTime}  = getTime;
+
+  const mytime = testTime
+
+  console.log(mytime)
+
  
   const [index, setIndex] = useState(0);
-  const timer= questions && questions[0] && questions[0].section.timer
   const [selected_answers, setSelected_answers] = useState("");
   const questionLength = questions && questions.length;
-  let initialMinute = (timer)
-  let  initialSeconds = (timer)
+  let initialMinute = (mytime)
+  let  initialSeconds = (mytime)
   let [ minutes, setMinutes ] = useState(initialMinute);
   let [seconds, setSeconds ] =  useState(initialSeconds);
   
 
   const question= questions && questions[index] && questions[index]._id
   
-  console.log(timer)
-  console.log(selected_answers)
+  
+  
   
   const lastpage = index + 1;
   useEffect(()=>{
@@ -70,9 +82,7 @@ const TestScreen = ({history}) => {
       localStorage.setItem("selected_answers", '')
         dispatch(
           postResponse(question,selected_answers)
-          
-
-        ); 
+          ); 
     }
     if (!selected_answers) {
       alert("Please select an option");
@@ -117,6 +127,7 @@ const TestScreen = ({history}) => {
         }
         </div>
       <h3>{questions && questions[index] && questions[index].section.title}</h3>
+      <p className={styles.justifyCenter}>{questions && questions[index] && questions[index].section.instruction}</p>
           <br />
           <Slider size={size} />
           <h2>{questions &&  questions[index] && questions[index].question}</h2>

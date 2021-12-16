@@ -7,11 +7,12 @@ import {
   userDetailsReducer,
   forgetPasswordReducer,
   changePasswordReducer,
+  
 } from "./reducers/userReducers";
 import { questionsReducer } from "./reducers/questionReducer";
 import { getTestReducer } from "./reducers/testReducer";
 import { ResponseReducer } from "./reducers/responseReducer";
-import { getTestscoreReducer } from "./reducers/testscoreReducer";
+import { getTestscoreReducer, getTestTimeReducer } from "./reducers/testscoreReducer";
 
 const reducer = combineReducers({
   registration: userRegisterReducer,
@@ -22,7 +23,8 @@ const reducer = combineReducers({
   Response : ResponseReducer,
   Myscore : getTestscoreReducer,
   postforgetpassword: forgetPasswordReducer,
-  changepassword : changePasswordReducer
+  changepassword : changePasswordReducer,
+  getTime : getTestTimeReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

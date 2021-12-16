@@ -3,6 +3,9 @@ import {
   TESTSCORE_SUCCESS,
   TESTSCORE_REQUEST,
   TESTSCORE_FAIL,
+  TEST_TIME_SUCCESS,
+  TEST_TIME_REQUEST,
+  TEST_TIME_FAIL,
 } from "../constants/testscoreConstants";
 
 export const getTestscore = () => async (dispatch) => {
@@ -20,10 +23,35 @@ export const getTestscore = () => async (dispatch) => {
       payload: data,
     });
 
-    console.log(data)
   } catch (error) {
     dispatch({
       type: TESTSCORE_FAIL,
+      payload:
+        error.response && error.response.data.error
+          ? error.response.data.error
+          : error.message,
+    });
+  }
+};
+
+export const getTestTime = () => async (dispatch) => {
+  try {
+    dispatch({ type: TEST_TIME_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.get("/api/v1/test/assigned", config);
+    dispatch({
+      type: TEST_TIME_SUCCESS,
+      payload: data,
+    });
+
+  } catch (error) {
+    dispatch({
+      type: TEST_TIME_FAIL,
       payload:
         error.response && error.response.data.error
           ? error.response.data.error

@@ -11,8 +11,7 @@ const SuccessScreen = () => {
 
   const Myscore = useSelector((state) => state.Myscore);
   const { testscore, error } = Myscore;
-  const score = testscore && testscore[0].score;
-  console.log(score)
+  const score = testscore;
   
   useEffect(() => {
     dispatch(getTestscore());
