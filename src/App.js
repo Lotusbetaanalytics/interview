@@ -12,9 +12,10 @@ import QuestionBank from "./screens/QuestionBank";
 import AdminLogin from "./screens/AdminLogin";
 import Test from "./screens/Test";
 import Section from "./screens/Section";
-import TotalQuestions from "./screens/TotalQuestions";
 import Exams from "./screens/Exams";
 import ViewAdmin from "./screens/ViewAdmin";
+import PasswordForgot from "./screens/PasswordForgot";
+import ResetPassword from "./screens/ResetPassword";
 
 function App() {
     return (
@@ -61,11 +62,6 @@ function App() {
                     component={Section}
                 />
                 <Route
-                    path="/totalquestions"
-                    exact
-                    component={TotalQuestions}
-                />
-                <Route
                     path="/exam"
                     exact
                     component={Exams}
@@ -74,6 +70,18 @@ function App() {
                     path="/viewadmin"
                     exact
                     component={ViewAdmin}
+                />
+
+                <Route
+                    path="/passwordforgot"
+                    exact
+                    component={PasswordForgot}
+                />
+
+                <Route
+                    path="/resetpassword"
+                    exact
+                    component={ResetPassword}
                 />
             </Switch>
         </Router>

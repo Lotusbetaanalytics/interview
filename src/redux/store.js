@@ -36,6 +36,10 @@ import {
     candidatesPassReducer,
     totalCandidatesReducer,
 } from "./reducers/candidateReducers";
+import {
+    forgetPasswordReducer,
+    resetPasswordReducer,
+} from "./reducers/forgetPasswordReducer";
 
 const reducer = combineReducers({
     adminRegister: adminRegisterReducer,
@@ -58,6 +62,8 @@ const reducer = combineReducers({
     allCandidatePassed: candidatesPassReducer,
     allCandidateFailed: candidatesFailReducer,
     deleteQuestion: deleteQuestionByIdReducer,
+    forgotPassword: forgetPasswordReducer,
+    resetPassword: resetPasswordReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

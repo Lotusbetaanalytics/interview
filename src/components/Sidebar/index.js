@@ -44,13 +44,6 @@ function Sidebar() {
                         </li>
 
                         <li>
-                            <Link to="/viewquestion">
-                                <FaWpforms />
-                                Exam
-                            </Link>
-                        </li>
-
-                        <li>
                             <Link to="/test">
                                 <FaFolderPlus />
                                 Add Test
@@ -65,7 +58,7 @@ function Sidebar() {
                         </li>
 
                         <li>
-                            <Link to="/adminlogin">
+                            <Link to="/adminregister">
                                 <MdAdminPanelSettings />
                                 Admin
                             </Link>

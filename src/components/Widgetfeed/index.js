@@ -45,7 +45,7 @@ function Widgetfeed({ name }) {
                         </>
                     )}
 
-                    <Link to="/adminregister">
+                    <Link to="/adminlogin">
                         <div className="widgetadmin">
                             <button className="widget_btn">
                                 Admin

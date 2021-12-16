@@ -72,7 +72,7 @@ function Section({ history }) {
                 />
             ) : (
                 <form onSubmit={submitHandler}>
-                    <div className="test_page">
+                    <div className="section_page">
                         <div className="sec_top">
                             <label>Test</label>
                             <select

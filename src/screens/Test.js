@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
+import jobexam from "../assets/jobexam.jpg";
 import "./Test.css";
 import { createTest } from "../redux/actions/testActions";
 import {
@@ -63,6 +64,9 @@ function Test({ history }) {
                     />
                 ) : (
                     <form onSubmit={submitHandler}>
+                        <div className="test_image">
+                            <img src={jobexam} alt="" />
+                        </div>
                         <div className="test_page">
                             <input
                                 type="text"
@@ -71,25 +75,25 @@ function Test({ history }) {
                                     setTitle(e.target.value)
                                 }
                                 value={title}
-                                className="test_input"
+                                className="test_inputs"
                             />
+                        </div>
 
-                            <div className="test_btn">
+                        <div className="test_btn">
+                            <button
+                                type="submit"
+                                className="btn"
+                            >
+                                Add Test
+                            </button>
+                            <Link to="/section">
                                 <button
                                     type="submit"
-                                    className="btn"
+                                    className="btn5"
                                 >
-                                    Add Test
+                                    Add Section
                                 </button>
-                                <Link to="/section">
-                                    <button
-                                        type="submit"
-                                        className="btn"
-                                    >
-                                        Add Section
-                                    </button>
-                                </Link>
-                            </div>
+                            </Link>
                         </div>
                     </form>
                 )}

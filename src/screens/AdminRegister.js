@@ -4,7 +4,13 @@ import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { registerAdmin } from "../redux/actions/userActions";
-import { useToast } from "@chakra-ui/react";
+import {
+    Alert,
+    AlertIcon,
+    Center,
+    CircularProgress,
+    useToast,
+} from "@chakra-ui/react";
 import { USER_REGISTRATION_RESET } from "../redux/constants/userConstants";
 
 const AdminRegister = ({ history }) => {
@@ -81,80 +87,106 @@ const AdminRegister = ({ history }) => {
                         </Link>
                     </div>
 
-                    <form onSubmit={submitHandler}>
-                        <div className="admin_form">
-                            <input
-                                type="text"
-                                onChange={(e) =>
-                                    setFirstName(
-                                        e.target.value
-                                    )
-                                }
-                                value={firstName}
-                                placeholder="First Name"
-                            />
+                    {error && (
+                        <Alert status="error">
+                            <AlertIcon />
+                            {error}
+                        </Alert>
+                    )}
 
-                            <input
-                                type="text"
-                                onChange={(e) =>
-                                    setLastName(
-                                        e.target.value
-                                    )
-                                }
-                                value={lastName}
-                                placeholder="Last Name"
-                            />
+                    {success && (
+                        <Alert status="success">
+                            <AlertIcon />
+                        </Alert>
+                    )}
 
-                            <input
-                                type="email"
-                                onChange={(e) =>
-                                    setEmail(e.target.value)
-                                }
-                                value={email}
-                                placeholder="Email Address"
+                    {loading ? (
+                        <Center>
+                            <CircularProgress
+                                isIndeterminate
+                                color="purple.300"
                             />
+                        </Center>
+                    ) : (
+                        <form onSubmit={submitHandler}>
+                            <div className="admin_form">
+                                <input
+                                    type="text"
+                                    onChange={(e) =>
+                                        setFirstName(
+                                            e.target.value
+                                        )
+                                    }
+                                    value={firstName}
+                                    placeholder="First Name"
+                                />
 
-                            <input
-                                type="phone"
-                                onChange={(e) =>
-                                    setPhone(e.target.value)
-                                }
-                                value={phone}
-                                placeholder="Phone Number"
-                            />
+                                <input
+                                    type="text"
+                                    onChange={(e) =>
+                                        setLastName(
+                                            e.target.value
+                                        )
+                                    }
+                                    value={lastName}
+                                    placeholder="Last Name"
+                                />
 
-                            <input
-                                type="password"
-                                onChange={(e) =>
-                                    setPassword(
-                                        e.target.value
-                                    )
-                                }
-                                value={password}
-                                placeholder="Password"
-                            />
+                                <input
+                                    type="email"
+                                    onChange={(e) =>
+                                        setEmail(
+                                            e.target.value
+                                        )
+                                    }
+                                    value={email}
+                                    placeholder="Email Address"
+                                />
 
-                            <input
-                                type="password"
-                                onChange={(e) =>
-                                    setConfirmPassword(
-                                        e.target.value
-                                    )
-                                }
-                                value={confirmPassword}
-                                placeholder="Confirm Password"
-                            />
-                        </div>
+                                <input
+                                    type="phone"
+                                    onChange={(e) =>
+                                        setPhone(
+                                            e.target.value
+                                        )
+                                    }
+                                    value={phone}
+                                    placeholder="Phone Number"
+                                />
 
-                        <div className="admin_btn">
-                            <button
-                                type="submit"
-                                className="btn"
-                            >
-                                Add Admin
-                            </button>
-                        </div>
-                    </form>
+                                <input
+                                    type="password"
+                                    onChange={(e) =>
+                                        setPassword(
+                                            e.target.value
+                                        )
+                                    }
+                                    value={password}
+                                    placeholder="Password"
+                                />
+
+                                <input
+                                    type="password"
+                                    onChange={(e) =>
+                                        setConfirmPassword(
+                                            e.target.value
+                                        )
+                                    }
+                                    value={confirmPassword}
+                                    placeholder="Confirm Password"
+                                />
+                            </div>
+
+                            <div className="admin_btn">
+                                <button
+                                    type="submit"
+                                    className="btn"
+                                >
+                                    Add Admin
+                                </button>
+                            </div>
+                        </form>
+                    )}
                 </div>
             </div>
         </div>
