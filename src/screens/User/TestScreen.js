@@ -123,14 +123,14 @@ const TestScreen = ({history}) => {
       <div className={styles.left}>
         { minutes === 0 && seconds === 0
             ? null
-            : <h1 className={styles.justifyCenter}> {minutes} : {seconds < 10 ?  `0${seconds}` : seconds}</h1> 
+            : <h1 className={styles.timer}> {minutes} : {seconds < 10 ?  `0${seconds}` : seconds}</h1> 
         }
         </div>
-      <h3>{questions && questions[index] && questions[index].section.title}</h3>
-      <p className={styles.justifyCenter}>{questions && questions[index] && questions[index].section.instruction}</p>
+      <div className={styles.section}>{questions && questions[index] && questions[index].section.title}</div>
+      <p2 className={styles.instruction}>{questions && questions[index] && questions[index].section.instruction}</p2>
           <br />
           <Slider size={size} />
-          <h2>{questions &&  questions[index] && questions[index].question}</h2>
+          <div className={styles.question}>{questions &&  questions[index] && questions[index].question}</div>
           <form onSubmit={submitHandler}>
             {questions && questions[index] && questions[index].answers.map((item, i) => (
               <div key={i}>
@@ -149,7 +149,7 @@ const TestScreen = ({history}) => {
             {index > 0 && (
               <button
                 type="button"
-                className={`btn ${styles.purple}`}
+                className={`btn ${styles.purple} ${styles.marginTop}`}
                 onClick={prevHandler}
               >
                 Back

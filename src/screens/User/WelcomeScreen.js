@@ -22,11 +22,13 @@ const WelcomeScreen = () => {
           </p>
           <br />
           <br />
+          <div className={styles.center}>
           <Link to="/login" className="btn gold">
             Get Started
           </Link>
+          </div>
         </div>
-        <div className={`${styles.card} ${styles.center}`}>
+        <div className={`${styles.card} ${styles.center} ${styles.display}`}>
           <img
             src="https://static.vecteezy.com/system/resources/previews/002/779/618/non_2x/concept-of-online-exam-on-internet-woman-sitting-near-online-form-survey-on-laptop-questionnaire-web-learning-electronic-voting-illustration-vector.jpg"
             alt="Exam"

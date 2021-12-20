@@ -28,8 +28,8 @@ const Navigation = () => {
             </div>
             <div className={styles.btnContainer}>
                 {user && user ? <>
-                    <h3>  candidate: {user && user.firstName}</h3>
-                    <Link to="/#" className="btn gold" onClick={logoutHandler} >Logout</Link>
+                    <h3 className={styles.paddingTop}>  candidate: {user && user.firstName}</h3>
+                    <Link to="/#" className="btn gold" onClick={logoutHandler} >Log out</Link>
                 </> : <>
                     <Link to="/login" className="btn white" >Sign in</Link>
                     <Link to="/signup" className="btn gold">Sign Up</Link>

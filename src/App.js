@@ -8,6 +8,7 @@ import TestScreen from "./screens/User/TestScreen";
 import SuccessScreen from "./screens/User/SuccessScreen";
 import Forget from "./screens/User/forget";
 import ChangePassword from "./screens/User/changePassword";
+import Sectionpage from "./screens/User/sectionpage";
 
 //import protectedRoute from "./components/protectedRoute";
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/test" exact component={TestScreen} />
         <Route path="/forget" exact component={Forget} />
         <Route path="/changePassword" exact component={ChangePassword} />
+        <Route path="/sectionpage" exact component={Sectionpage} />
         
       </Switch>
     </Router>
