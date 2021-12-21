@@ -21,7 +21,7 @@ const LoginScreen = ({ history }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/start");
+      setTimeout(() => history.push("/start"), [3000]);
     }
   }, [userInfo, history, dispatch]);
 

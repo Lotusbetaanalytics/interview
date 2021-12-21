@@ -5,6 +5,7 @@ import AccountHeader from "../../components/UI/AccountHeader";
 import styles from "./styles.module.css";
 import { useSelector,useDispatch } from "react-redux";
 import { myDetails } from "../../redux/actions/userActions";
+import { Alert } from "@chakra-ui/alert";
 
 const StartScreen = ({history}) => {
 
@@ -17,6 +18,11 @@ const StartScreen = ({history}) => {
     dispatch(myDetails())
     
   }, [dispatch]);
+
+  const clickHandler = () => {
+    alert("yes yes")
+    setTimeout(() => history.push("/test"), [3000]); 
+};
 
   return (
     <div>
@@ -37,7 +43,7 @@ const StartScreen = ({history}) => {
           <br />
           <br />
           <div className={styles.center}>
-            <Link to="/test" className="btn gold">
+            <Link to="/#" className="btn gold" onClick={clickHandler}>
               Start
             </Link>
           </div>

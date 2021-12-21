@@ -43,7 +43,10 @@ const TestScreen = ({history}) => {
   let [seconds, setSeconds ] =  useState(initialSeconds);
   
 
-  const question= questions && questions[index] && questions[index]._id
+  const question= questions && questions[index] && questions[index]
+
+
+  
   
   
   
@@ -68,8 +71,8 @@ const TestScreen = ({history}) => {
   };
   });   
 
-  if (minutes === 0 && seconds === 1) {
-    alert("time up")
+  if (minutes === 0 && seconds === 10) {
+    alert("You have less than 1 minute")
     setTimeout(() => history.push("/success"), [1000]); 
   } 
   
@@ -129,6 +132,7 @@ const TestScreen = ({history}) => {
       <div className={styles.section}>{questions && questions[index] && questions[index].section.title}</div>
       <p2 className={styles.instruction}>{questions && questions[index] && questions[index].section.instruction}</p2>
           <br />
+          <p2 className={styles.instruction}>{lastpage}  of  {questionLength}</p2>    
           <Slider size={size} />
           <div className={styles.question}>{questions &&  questions[index] && questions[index].question}</div>
           <form onSubmit={submitHandler}>
