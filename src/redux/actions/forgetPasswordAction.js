@@ -68,7 +68,6 @@ export const adminResetPassword =
                 type: ADMIN_RESETPASSWORD_SUCCESS,
                 payload: data,
             });
-            // console.log(data);
         } catch (error) {
             dispatch({
                 type: ADMIN_RESETPASSWORD_FAIL,

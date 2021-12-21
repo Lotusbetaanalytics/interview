@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
-import ProfileNavbar from "../components/ProfileNavbar";
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../components/Sidebar";
-import { getAllCandidatesdetails } from "../redux/actions/userActions";
+import {
+    getAllCandidatesdetails,
+    myDetails,
+} from "../redux/actions/userActions";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Profile() {
     const dispatch = useDispatch();
@@ -11,6 +14,15 @@ function Profile() {
     useEffect(() => {
         dispatch(getAllCandidatesdetails());
     }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(myDetails());
+    }, [dispatch]);
+
+    const adminDetails = useSelector(
+        (state) => state.adminDetails
+    );
+    const { user } = adminDetails;
 
     const getCandidate = useSelector(
         (state) => state.getCandidate
@@ -37,17 +49,22 @@ function Profile() {
                 </div>
                 <div className="admin_container">
                     <div className="question">
-                        <ProfileNavbar />
-                        <Link to="/dashboard">
-                            <div className="goBack_btn">
+                        <Navbar
+                            title="Candidate Profile"
+                            name={`${
+                                user && user.firstName
+                            }`}
+                        />
+                        <div className="goBack_btn">
+                            <Link to="/dashboard">
                                 <button
                                     type="submit"
                                     className="btn"
                                 >
                                     Go Back
                                 </button>
-                            </div>
-                        </Link>
+                            </Link>
+                        </div>
                         <div className="question_table">
                             <table>
                                 <tr>

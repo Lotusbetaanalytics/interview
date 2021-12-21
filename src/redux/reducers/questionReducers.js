@@ -109,7 +109,7 @@ export const getQuestionsByIdReducer = (
 };
 
 export const deleteQuestionByIdReducer = (
-    state = { questionsID: [] },
+    state = { deleteById: [] },
     action
 ) => {
     switch (action.type) {

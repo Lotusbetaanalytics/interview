@@ -16,7 +16,6 @@ function ViewAdmin() {
         (state) => state.getViewAdmins
     );
     const { getadmin } = getViewAdmins;
-    console.log(getadmin);
 
     const arr = getadmin.map((item) => {
         return (

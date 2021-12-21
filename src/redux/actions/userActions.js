@@ -50,7 +50,6 @@ export const registerAdmin =
                 type: USER_REGISTRATION_SUCCESS,
                 payload: data,
             });
-            // console.log(data);
             console.log(firstName);
         } catch (error) {
             dispatch({

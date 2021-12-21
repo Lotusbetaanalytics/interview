@@ -72,7 +72,6 @@ export const getCandidatesPass =
                 type: GET_CANDIDATESPASSED_SUCCESS,
                 payload: data,
             });
-            console.log(data);
         } catch (error) {
             dispatch({
                 type: GET_CANDIDATESPASSED_FAIL,

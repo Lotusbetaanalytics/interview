@@ -9,7 +9,7 @@ import {
     myDetails,
 } from "../../redux/actions/userActions";
 
-function Widgetfeed({ name }) {
+function Widgetfeed() {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -35,16 +35,7 @@ function Widgetfeed({ name }) {
             <div className="widget_container">
                 <div className="widget_img">
                     <img src={user1} alt="" />
-                    {user && user ? (
-                        <>
-                            <h4>{name}</h4>
-                        </>
-                    ) : (
-                        <>
-                            <Link to="#"></Link>
-                        </>
-                    )}
-
+                    {`${user && user.firstName}`}
                     <Link to="/adminlogin">
                         <div className="widgetadmin">
                             <button className="widget_btn">

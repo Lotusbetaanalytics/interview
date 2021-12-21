@@ -1,50 +1,72 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { myDetails } from "../../redux/actions/userActions";
 import { getQuestionsId } from "../../redux/actions/questionAction";
 import Navbar from "../../components/Navbar";
 import "./QuestionTab.css";
-// import { deleteQuestionId } from "../redux/actions/questionAction";
-
-const QustionTable = () => {
-    const [data, setData] = useState([]);
+const QuestionTable = () => {
     const dispatch = useDispatch();
 
     const deletequestion = (e) => {
         e.preventDefault();
     };
 
-    useEffect(() => {
-        dispatch(getQuestionsId());
-    }, [dispatch]);
+    const adminDetails = useSelector(
+        (state) => state.adminDetails
+    );
+    const { user } = adminDetails;
 
     const getQuestion = useSelector(
         (state) => state.getQuestion
     );
-
     const { questions } = getQuestion;
 
-    // const getquestionid = (event) => {
-    //     const id = event.target.value;
-    //     dispatch(deleteQuestionId(id));
+    // const handledelete = (item) => {
+    //     const index = questions.indexOf(item);
+    //     if (index > -1) {
+    //         questions.splice(index, 1);
+    //     }
+    //     console.log(item);
     // };
 
-    const arr = questions.map((item) => {
+    useEffect(() => {
+        dispatch(getQuestionsId());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(myDetails());
+    }, [dispatch]);
+
+    const arr = questions.map((item, i) => {
         return (
             <tbody>
-                <tr>
+                <tr key={i}>
                     <td>{item.question}</td>
                     <td>{item.section.title}</td>
-                    <td>{item.correct_answers}</td>
+                    <td>{item.section.instruction}</td>
+                    <td>{item.section.timer}</td>
+                    {/* <td>
+                        <button
+                            className="table_btn"
+                            onClick={() =>
+                                handledelete(item)
+                            }
+                        >
+                            Delete
+                        </button>
+                    </td> */}
                 </tr>
             </tbody>
         );
     });
-    console.log(questions);
 
     return (
         <div className="question">
-            <Navbar title="Questions" />
+            <Navbar
+                title="Questions"
+                name={`${user && user.firstName}`}
+            />
             <div className="goBack_btn">
                 <Link to="/questionbank">
                     <button type="submit" className="btn">
@@ -58,7 +80,8 @@ const QustionTable = () => {
                     <tr>
                         <th>Question</th>
                         <th>Section</th>
-                        <th>Correct Answer</th>
+                        <th>Instructions</th>
+                        <th>Timer (Mins)</th>
                     </tr>
                     {arr}
                 </table>
@@ -67,4 +90,4 @@ const QustionTable = () => {
     );
 };
 
-export default QustionTable;
+export default QuestionTable;

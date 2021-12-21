@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import "./QuestionBank.css";
+import { myDetails } from "../redux/actions/userActions";
 import { useSelector, useDispatch } from "react-redux";
 import { postQuestion } from "../redux/actions/questionAction";
 import { getTest } from "../redux/actions/testActions";
@@ -37,10 +38,6 @@ function QuestionBank() {
         }
     };
 
-    const addAnswer = () => {
-        setCorrectAnswer([correct_answers]);
-    };
-
     const handleChange = (e) => {
         setQuestion(e.target.value);
     };
@@ -69,8 +66,17 @@ function QuestionBank() {
     );
     const { sections } = examSection;
 
+    const adminDetails = useSelector(
+        (state) => state.adminDetails
+    );
+    const { user } = adminDetails;
+
     useEffect(() => {
         dispatch(getTest());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(myDetails());
     }, [dispatch]);
 
     const getOptions = (event) => {
@@ -85,7 +91,7 @@ function QuestionBank() {
             title: "Notification",
             description: "Question created Successfully",
             status: "success",
-            duration: 5000,
+            duration: 1000,
             isClosable: true,
         });
         dispatch({ type: QUESTION_RESET });
@@ -119,7 +125,12 @@ function QuestionBank() {
                     </Center>
                 ) : (
                     <form onSubmit={submitHandler}>
-                        <Navbar title="Question Bank" />
+                        <Navbar
+                            title="Question Bank"
+                            name={` ${
+                                user && user.firstName
+                            }`}
+                        />
                         <div
                             type="submit"
                             className="questionbank_btn"
@@ -258,16 +269,10 @@ function QuestionBank() {
                                     setCorrectAnswer(
                                         e.target.value
                                     );
-                                    <button
-                                        className="btn"
-                                        value={addAnswer}
-                                    >
-                                        Add Answer
-                                    </button>;
                                 }}
                                 className="correct"
                             />
-                        </div>{" "}
+                        </div>
                         <div className="add_question">
                             <button
                                 type="submit"

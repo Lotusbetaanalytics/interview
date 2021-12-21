@@ -12,10 +12,10 @@ import QuestionBank from "./screens/QuestionBank";
 import AdminLogin from "./screens/AdminLogin";
 import Test from "./screens/Test";
 import Section from "./screens/Section";
-import Exams from "./screens/Exams";
 import ViewAdmin from "./screens/ViewAdmin";
 import PasswordForgot from "./screens/PasswordForgot";
 import ResetPassword from "./screens/ResetPassword";
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
     return (
@@ -60,11 +60,6 @@ function App() {
                     path="/section"
                     exact
                     component={Section}
-                />
-                <Route
-                    path="/exam"
-                    exact
-                    component={Exams}
                 />
                 <Route
                     path="/viewadmin"

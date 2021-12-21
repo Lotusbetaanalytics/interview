@@ -2,11 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { MdSpaceDashboard } from "react-icons/md";
 import { MdPerson } from "react-icons/md";
-import {
-    FaFolderPlus,
-    FaPiggyBank,
-    FaWpforms,
-} from "react-icons/fa";
+import { FaFolderPlus, FaPiggyBank } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { MdOutlineLogout } from "react-icons/md";
 import "./Sidebar.css";
@@ -33,34 +29,34 @@ function Sidebar() {
                         <li>
                             <Link to="/dashboard">
                                 <MdSpaceDashboard />
-                                Dashboard
+                                <p>Dashboard</p>
                             </Link>
                         </li>
                         <li>
                             <Link to="/profile">
                                 <MdPerson />
-                                Candidates
+                                <p>Candidates</p>
                             </Link>
                         </li>
 
                         <li>
                             <Link to="/test">
                                 <FaFolderPlus />
-                                Add Test
+                                <p>Add Test</p>
                             </Link>
                         </li>
 
                         <li>
                             <Link to="/questionbank">
                                 <FaPiggyBank />
-                                Question Bank
+                                <p>Question Bank</p>
                             </Link>
                         </li>
 
                         <li>
                             <Link to="/adminregister">
                                 <MdAdminPanelSettings />
-                                Admin
+                                <p>Admin</p>
                             </Link>
                         </li>
                         <li>
@@ -69,7 +65,7 @@ function Sidebar() {
                                 onClick={logoutHandler}
                             >
                                 <MdOutlineLogout />
-                                Logout
+                                <p>Logout</p>
                             </Link>
                         </li>
                     </ul>

@@ -55,26 +55,28 @@ function Section({ history }) {
     }, [dispatch]);
 
     return (
-        <div className="admin_container">
+        <div>
             <Sidebar />
-            <Navbar title="Test" />
+            <div className="admin_container">
+                <Navbar title="Test" />
 
-            {error && (
-                <Alert>
-                    <AlertIcon />
-                    {error}
-                </Alert>
-            )}
-            {loading ? (
-                <CircularProgress
-                    isIndeterminate
-                    color="green.300"
-                />
-            ) : (
-                <form onSubmit={submitHandler}>
-                    <div className="section_page">
-                        <div className="sec_top">
-                            <label>Test</label>
+                {error && (
+                    <Alert>
+                        <AlertIcon />
+                        {error}
+                    </Alert>
+                )}
+                {loading ? (
+                    <CircularProgress
+                        isIndeterminate
+                        color="green.300"
+                    />
+                ) : (
+                    <form onSubmit={submitHandler}>
+                        <div className="section_page">
+                            <div className="sec_top">
+                                <label>Test</label>
+                            </div>
                             <select
                                 className="test_input2"
                                 onChange={(e) =>
@@ -92,59 +94,63 @@ function Section({ history }) {
                                         </option>
                                     ))}
                             </select>
-                        </div>
-                        <div className="section_name">
-                            <label>Section Name</label>
-                            <input
-                                type="text"
-                                placeholder="Test"
-                                onChange={(e) =>
-                                    setTitle(e.target.value)
-                                }
-                                value={title}
-                                className="test_input3"
-                            />
-                        </div>
-                        <div className="section_intro">
-                            <label>
-                                Section Instruction
-                            </label>
-                            <input
-                                type="text"
-                                placeholder="Instruction"
-                                onChange={(e) =>
-                                    setInstruction(
-                                        e.target.value
-                                    )
-                                }
-                                value={instruction}
-                                className="test_input4"
-                            />
-                        </div>
-                        <div className="section_timer">
-                            <label>Time</label>
-                            <input
-                                type="number"
-                                placeholder="Timer"
-                                onChange={(e) =>
-                                    setTimer(e.target.value)
-                                }
-                                value={timer}
-                                className="test_input5"
-                            />
-                        </div>
+                            <div className="sec_top">
+                                <label>Section Name</label>
+                                <input
+                                    type="text"
+                                    placeholder="Test"
+                                    onChange={(e) =>
+                                        setTitle(
+                                            e.target.value
+                                        )
+                                    }
+                                    value={title}
+                                    className="test_input3"
+                                />
+                            </div>
+                            <div className="sec_top">
+                                <label>
+                                    Section Instruction
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Instruction"
+                                    onChange={(e) =>
+                                        setInstruction(
+                                            e.target.value
+                                        )
+                                    }
+                                    value={instruction}
+                                    className="test_input4"
+                                />
+                            </div>
+                            <div className="sec_top">
+                                <label>Time</label>
+                                <input
+                                    type="number"
+                                    placeholder="Timer"
+                                    onChange={(e) =>
+                                        setTimer(
+                                            e.target.value
+                                        )
+                                    }
+                                    value={timer}
+                                    className="test_input5"
+                                />
+                            </div>
 
-                        <div className="test_btn">
-                            <button
-                                type="submit"
-                                className="btn"
-                            >
-                                Add Section
-                            </button>
+                            <div className="test_btn">
+                                <button
+                                    type="submit"
+                                    className="section_btn"
+                                >
+                                    Add Section
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            )}
+                    </form>
+                )}
+            </div>
         </div>
     );
 }
