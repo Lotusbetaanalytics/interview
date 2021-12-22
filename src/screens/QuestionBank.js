@@ -15,7 +15,7 @@ import {
     CircularProgress,
     useToast,
 } from "@chakra-ui/react";
-import { QUESTION_RESET } from "../redux/constants/questionConstants";
+import { QUESTIONS_RESET } from "../redux/constants/questionConstants";
 
 function QuestionBank() {
     const dispatch = useDispatch();
@@ -94,7 +94,7 @@ function QuestionBank() {
             duration: 1000,
             isClosable: true,
         });
-        dispatch({ type: QUESTION_RESET });
+        dispatch({ type: QUESTIONS_RESET });
     }
 
     return (

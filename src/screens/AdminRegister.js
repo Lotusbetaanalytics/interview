@@ -11,7 +11,7 @@ import {
     CircularProgress,
     useToast,
 } from "@chakra-ui/react";
-import { USER_REGISTRATION_RESET } from "../redux/constants/userConstants";
+import { USERS_REGISTRATION_RESET } from "../redux/constants/userConstants";
 
 const AdminRegister = ({ history }) => {
     const [firstName, setFirstName] = useState("");
@@ -66,7 +66,7 @@ const AdminRegister = ({ history }) => {
             () => history.push("/adminlogin"),
             [3000]
         );
-        dispatch({ type: USER_REGISTRATION_RESET });
+        dispatch({ type: USERS_REGISTRATION_RESET });
     }
 
     return (

@@ -7,7 +7,7 @@ import {
     ADMIN_RESETPASSWORD_FAIL,
 } from "../constants/adminForgetPassword";
 
-export const forgetPasswordReducer = (
+export const forgetPasswordReducers = (
     state = {},
     action
 ) => {
