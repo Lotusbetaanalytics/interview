@@ -26,7 +26,7 @@ export const createTestReducer = (state = {}, action) => {
     }
 };
 
-export const getTestReducer = (
+export const getTestReducers = (
     state = { test: [] },
     action
 ) => {
