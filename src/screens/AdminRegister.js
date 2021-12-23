@@ -59,7 +59,7 @@ const AdminRegister = ({ history }) => {
             description:
                 "Resigtration created Successfully",
             status: "success",
-            duration: 9000,
+            duration: 4000,
             isClosable: true,
         });
         setTimeout(

@@ -9,7 +9,7 @@ const ViewQuestion = () => {
             <div className="sidebar_view">
                 <Sidebar />
             </div>
-            <div className="admin_container">
+            <div className="viewQuestion_container">
                 <div className="question">
                     <QuestionTable />
                 </div>

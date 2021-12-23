@@ -11,7 +11,7 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import { MdCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { myDetails } from "../redux/actions/userActions";
+import { myAdminDetails } from "../redux/actions/userActions";
 import { getAllAdmin } from "../redux/actions/userActions";
 import { getQuestionsId } from "../redux/actions/questionAction";
 import {
@@ -24,7 +24,7 @@ const Dashboard = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(myDetails());
+        dispatch(myAdminDetails());
     }, [dispatch]);
 
     useEffect(() => {

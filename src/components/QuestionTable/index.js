@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { myDetails } from "../../redux/actions/userActions";
@@ -6,6 +6,7 @@ import { getQuestionsId } from "../../redux/actions/questionAction";
 import Navbar from "../../components/Navbar";
 import "./QuestionTab.css";
 const QuestionTable = () => {
+    const [questions] = useState([]);
     const dispatch = useDispatch();
 
     const deletequestion = (e) => {
@@ -20,14 +21,14 @@ const QuestionTable = () => {
     const getQuestion = useSelector(
         (state) => state.getQuestion
     );
-    const { questions } = getQuestion;
+    const { questions: question } = getQuestion;
 
     // const handledelete = (item) => {
-    //     const index = questions.indexOf(item);
+    //     const index = question.indexOf(item);
     //     if (index > -1) {
-    //         questions.splice(index, 1);
+    //         question.splice(index, 1);
     //     }
-    //     console.log(item);
+    //     console.log(questions.splice(item));
     // };
 
     useEffect(() => {
@@ -37,29 +38,6 @@ const QuestionTable = () => {
     useEffect(() => {
         dispatch(myDetails());
     }, [dispatch]);
-
-    const arr = questions.map((item, i) => {
-        return (
-            <tbody>
-                <tr key={i}>
-                    <td>{item.question}</td>
-                    <td>{item.section.title}</td>
-                    <td>{item.section.instruction}</td>
-                    <td>{item.section.timer}</td>
-                    {/* <td>
-                        <button
-                            className="table_btn"
-                            onClick={() =>
-                                handledelete(item)
-                            }
-                        >
-                            Delete
-                        </button>
-                    </td> */}
-                </tr>
-            </tbody>
-        );
-    });
 
     return (
         <div className="question">
@@ -83,7 +61,38 @@ const QuestionTable = () => {
                         <th>Instructions</th>
                         <th>Timer (Mins)</th>
                     </tr>
-                    {arr}
+                    {question &&
+                        question.map((item, i) => (
+                            <tbody>
+                                <tr key={i}>
+                                    <td>{item.question}</td>
+                                    <td>
+                                        {item.section.title}
+                                    </td>
+                                    <td>
+                                        {
+                                            item.section
+                                                .instruction
+                                        }
+                                    </td>
+                                    <td>
+                                        {item.section.timer}
+                                    </td>
+                                    {/* <td>
+                                        <button
+                                            className="table_btn"
+                                            onClick={() =>
+                                                handledelete(
+                                                    item
+                                                )
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                    </td> */}
+                                </tr>
+                            </tbody>
+                        ))}
                 </table>
             </div>
         </div>

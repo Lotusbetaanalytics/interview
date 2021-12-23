@@ -16,7 +16,7 @@
 }
 
 .test_btn {
-    margin-left: 32%;
+    margin-left: 28%;
     margin-top: 20px;
 }
 
@@ -42,5 +42,52 @@
     cursor: pointer;
     border: none;
     border-radius: 40px;
-    margin-left: 30px;
+    margin-left: 20px;
+}
+
+.btn2 {
+    background: rgb(245, 197, 76);
+    color: black;
+    padding: 1rem 2.4rem;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 40px;
+    margin-left: 20px;
+}
+
+@media (max-width: 599px) {
+    .test_inputs {
+        width: 70%;
+        height: 70px;
+        padding: 10px;
+        margin-right: 5%;
+        border-radius: 20px;
+        border-color: lightgray;
+        border: 1px solid lightgray;
+    }
+    .test_btn {
+        display: flex;
+        margin-left: 10%;
+        margin-top: 40px;
+    }
+
+    .test_image {
+        width: 60%;
+        justify-content: center;
+        align-items: center;
+        margin-left: 25%;
+        margin-top: 5%;
+    }
+
+    .admintest_container {
+        width: 100%;
+        height: 80vh;
+        display: block;
+        padding: 0.5rem 1rem;
+        float: left;
+        background: whitesmoke;
+        border-radius: 20px;
+    }
 }

@@ -59,7 +59,7 @@ function Test({ history }) {
     return (
         <div>
             <Sidebar />
-            <div className="admin_container">
+            <div className="admintest_container">
                 <Navbar
                     title="Test"
                     name={`${user && user.firstName}`}
@@ -95,7 +95,7 @@ function Test({ history }) {
                         <div className="test_btn">
                             <button
                                 type="submit"
-                                className="btn"
+                                className="btn2"
                             >
                                 Add Test
                             </button>

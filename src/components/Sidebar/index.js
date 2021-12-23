@@ -20,7 +20,7 @@ function Sidebar() {
             <div className="sidebar_container">
                 <Link>
                     <h4 className="sidebar_title">
-                        e-<strong>INTERVIEW</strong>
+                        <strong>E-INTERVIEW</strong>
                     </h4>
                 </Link>
 
@@ -40,7 +40,7 @@ function Sidebar() {
                         </li>
 
                         <li>
-                            <Link to="/test">
+                            <Link to="/adminTest">
                                 <FaFolderPlus />
                                 <p>Add Test</p>
                             </Link>

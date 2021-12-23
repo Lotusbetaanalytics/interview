@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import user1 from "../../assets/user1.jpg";
+import userAdmin from "../../assets/user1.jpg";
 import "./Navbar.css";
 
 function Navbar({ title, name }) {
@@ -14,7 +14,7 @@ function Navbar({ title, name }) {
         <div className="navbar">
             <h5>{title}</h5>
             <div className="navbar_img">
-                <img src={user1} alt="user" />
+                <img src={userAdmin} alt="user" />
             </div>
             <div className="navbar_username">
                 {user && user ? (
