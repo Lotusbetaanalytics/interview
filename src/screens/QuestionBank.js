@@ -91,7 +91,7 @@ function QuestionBank() {
             title: "Notification",
             description: "Question created Successfully",
             status: "success",
-            duration: 1000,
+            duration: 4000,
             isClosable: true,
         });
         dispatch({ type: QUESTIONS_RESET });

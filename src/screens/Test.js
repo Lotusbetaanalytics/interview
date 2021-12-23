@@ -59,7 +59,7 @@ function Test({ history }) {
     return (
         <div>
             <Sidebar />
-            <div className="admintest_container">
+            <div className="admin_container">
                 <Navbar
                     title="Test"
                     name={`${user && user.firstName}`}
