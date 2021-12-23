@@ -21,10 +21,10 @@
 }
 
 .widget_img img {
-    width: 68%;
+    width: 200px;
     margin-left: 45px;
     margin-bottom: 20px;
-    /* height: 160px; */
+    height: 200px;
     border-radius: 50%;
 }
 

@@ -60,6 +60,7 @@
         flex-direction: row;
         margin-top: 50px;
         background-color: whitesmoke;
+        margin-right: 0.6rem;
         border-radius: 10px;
     }
     .sidebar_icons ul {

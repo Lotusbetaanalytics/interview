@@ -102,7 +102,7 @@ function QuestionBank() {
             <div>
                 <Sidebar />
             </div>
-            <div className="admin_container">
+            <div className="question_container">
                 {error && (
                     <Alert status="error">
                         <AlertIcon />

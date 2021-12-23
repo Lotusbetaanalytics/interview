@@ -18,11 +18,11 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebar_container">
-                <Link>
-                    <h4 className="sidebar_title">
+                <h4 className="sidebar_title">
+                    <Link to="/">
                         <strong>E-INTERVIEW</strong>
-                    </h4>
-                </Link>
+                    </Link>
+                </h4>
 
                 <div className="sidebar_icons">
                     <ul>
