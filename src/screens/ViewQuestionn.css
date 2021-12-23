@@ -13,3 +13,14 @@
     float: left;
     background: whitesmoke;
 }
+
+@media (max-width: 599px) {
+    .viewQuestion_container {
+        width: 100%;
+        height: auto;
+        display: block;
+        padding: 0.5rem 1rem;
+        float: left;
+        background: whitesmoke;
+    }
+}

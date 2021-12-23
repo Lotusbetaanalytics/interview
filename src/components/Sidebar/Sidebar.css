@@ -47,6 +47,7 @@
 }
 
 /* phone-only */
+
 @media (max-width: 599px) {
     .sidebar_container {
         width: 100%;
