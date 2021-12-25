@@ -1,7 +1,7 @@
 import {
-    QUESTION_FAIL,
-    QUESTION_SUCCESS,
-    QUESTION_REQUEST,
+    QUESTIONS_FAIL,
+    QUESTIONS_SUCCESS,
+    QUESTIONS_REQUEST,
     TEST_FAIL,
     TEST_SUCCESS,
     TEST_REQUEST,
@@ -14,7 +14,7 @@ import {
     DELETE_QUESTION_BYID_REQUEST,
     DELETE_QUESTION_BYID_SUCCESS,
     DELETE_QUESTION_BYID_FAIL,
-    QUESTION_RESET,
+    QUESTIONS_RESET,
 } from "../constants/questionConstants";
 
 export const adminQuestionsReducer = (
@@ -22,20 +22,20 @@ export const adminQuestionsReducer = (
     action
 ) => {
     switch (action.type) {
-        case QUESTION_REQUEST:
+        case QUESTIONS_REQUEST:
             return { loading: true };
-        case QUESTION_SUCCESS:
+        case QUESTIONS_SUCCESS:
             return {
                 loading: false,
                 success: true,
                 question: action.payload,
             };
-        case QUESTION_FAIL:
+        case QUESTIONS_FAIL:
             return {
                 loading: false,
                 error: action.payload,
             };
-        case QUESTION_RESET:
+        case QUESTIONS_RESET:
             return {};
         default:
             return state;

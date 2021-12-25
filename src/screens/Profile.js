@@ -32,7 +32,7 @@ function Profile() {
     const arr = candidates.map((item) => {
         return (
             <tbody>
-                <tr>
+                <tr key={item._id}>
                     <td>{item.candidate.firstName}</td>
                     <td>{item.test.title}</td>
                     <td>{item.score}</td>

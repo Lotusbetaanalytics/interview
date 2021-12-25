@@ -23,13 +23,13 @@ const QuestionTable = () => {
     );
     const { questions: question } = getQuestion;
 
-    // const handledelete = (item) => {
-    //     const index = question.indexOf(item);
-    //     if (index > -1) {
-    //         question.splice(index, 1);
-    //     }
-    //     console.log(questions.splice(item));
-    // };
+    const handledelete = (_id) => {
+        const index = question.indexOf(_id);
+        if (index > -1) {
+            question.splice(index, 1);
+        }
+        console.log(question.splice(_id));
+    };
 
     useEffect(() => {
         dispatch(getQuestionsId());
@@ -62,9 +62,9 @@ const QuestionTable = () => {
                         <th>Timer (Mins)</th>
                     </tr>
                     {question &&
-                        question.map((item, i) => (
+                        question.map((item) => (
                             <tbody>
-                                <tr key={i}>
+                                <tr key={item._id}>
                                     <td>{item.question}</td>
                                     <td>
                                         {item.section.title}
@@ -78,18 +78,18 @@ const QuestionTable = () => {
                                     <td>
                                         {item.section.timer}
                                     </td>
-                                    {/* <td>
+                                    <td>
                                         <button
                                             className="table_btn"
                                             onClick={() =>
                                                 handledelete(
-                                                    item
+                                                    item._id
                                                 )
                                             }
                                         >
                                             Delete
                                         </button>
-                                    </td> */}
+                                    </td>
                                 </tr>
                             </tbody>
                         ))}
