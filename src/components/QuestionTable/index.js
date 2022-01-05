@@ -52,7 +52,6 @@ const QuestionTable = () => {
             dispatch(deleteQuestionId(_id));
             window.location.reload(false);
         }
-        console.log(_id);
     };
 
     return (
