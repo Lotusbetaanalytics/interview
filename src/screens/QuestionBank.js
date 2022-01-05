@@ -277,7 +277,7 @@ function QuestionBank() {
                                 type="submit"
                                 className="btn"
                             >
-                                Add Question{" "}
+                                Add Question
                             </button>
                         </div>
                     </form>
