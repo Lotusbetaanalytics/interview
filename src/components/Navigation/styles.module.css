@@ -52,13 +52,13 @@
         padding: 0.5rem 0.5rem;
     }
     .title {
-        width: 40%;
+        width: 50%;
         height: auto;
         display: flex;
         justify-content: flex-end;
     }
     .title h3 {
-        font-size: 1rem;
+        font-size: 0.8rem;
         margin-top: 1.5rem;
         margin-right: 4rem;
     }
