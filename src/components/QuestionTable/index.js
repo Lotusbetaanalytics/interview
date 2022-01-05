@@ -17,7 +17,7 @@ import {
 import Navbar from "../../components/Navbar";
 import "./QuestionTab.css";
 
-const QuestionTable = () => {
+const QuestionTable = ({ history }) => {
     const dispatch = useDispatch();
 
     const adminDetails = useSelector(
@@ -96,6 +96,7 @@ const QuestionTable = () => {
                             <th>Section</th>
                             <th>Instructions</th>
                             <th>Timer (Mins)</th>
+                            <th>Action</th>
                         </tr>
                         {question &&
                             question.map((item) => (
@@ -136,6 +137,14 @@ const QuestionTable = () => {
                                             >
                                                 Delete
                                             </button>
+                                            {/* <button
+                                                className="table_btn2"
+                                                onClick={() =>
+                                                    history.push(./editquestion)
+                                                }
+                                            >
+                                                Edit
+                                            </button> */}
                                         </td>
                                     </tr>
                                 </tbody>

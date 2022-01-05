@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import user1 from "../../assets/user1.jpg";
+import adminpic from "../../assets/adminpic.png";
 import icon from "../../assets/icon.jpg";
 import "./Widget.css";
 import { Link } from "react-router-dom";
@@ -34,7 +34,7 @@ function Widgetfeed() {
         <div className="widget">
             <div className="widget_container">
                 <div className="widget_img">
-                    <img src={user1} alt="" />
+                    <img src={adminpic} alt="" />
                     {`${user && user.firstName}`}
                     <Link to="/adminlogin">
                         <div className="widgetadmin">

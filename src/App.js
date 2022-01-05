@@ -23,6 +23,7 @@ import Section from "./screens/Section";
 import ViewAdmin from "./screens/ViewAdmin";
 import PasswordForgot from "./screens/PasswordForgot";
 import ResetPassword from "./screens/ResetPassword";
+import EditAdmin from "./screens/EditAdmin";
 
 //import protectedRoute from "./components/protectedRoute";
 
@@ -126,6 +127,12 @@ function App() {
                     path="/resetpassword"
                     exact
                     component={ResetPassword}
+                />
+
+                <Route
+                    path="/editquestion"
+                    exact
+                    component={EditAdmin}
                 />
             </Switch>
         </Router>
