@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { myDetails } from "../../redux/actions/userActions";
-import { getQuestionsId } from "../../redux/actions/questionAction";
+import {
+    deleteFromItem,
+    deleteQuestionId,
+    getQuestionsId,
+} from "../../redux/actions/questionAction";
 import Navbar from "../../components/Navbar";
 import "./QuestionTab.css";
 const QuestionTable = () => {
-    const [questions] = useState([]);
     const dispatch = useDispatch();
-
-    const deletequestion = (e) => {
-        e.preventDefault();
-    };
 
     const adminDetails = useSelector(
         (state) => state.adminDetails
@@ -23,13 +22,10 @@ const QuestionTable = () => {
     );
     const { questions: question } = getQuestion;
 
-    const handledelete = (_id) => {
-        const index = question.indexOf(_id);
-        if (index > -1) {
-            question.splice(index, 1);
-        }
-        console.log(question.splice(_id));
-    };
+    const deleteQuestion = useSelector(
+        (state) => state.deleteQuestion
+    );
+    const { success } = deleteQuestion;
 
     useEffect(() => {
         dispatch(getQuestionsId());
@@ -38,6 +34,20 @@ const QuestionTable = () => {
     useEffect(() => {
         dispatch(myDetails());
     }, [dispatch]);
+
+    const handlerDelete = (_id) => {
+        if (
+            window.confirm(
+                "Are you sure you want to delete this ?"
+            )
+        ) {
+            dispatch(deleteQuestionId(_id));
+            if (success) {
+                dispatch(getQuestionsId());
+            }
+        }
+        console.log(_id);
+    };
 
     return (
         <div className="question">
@@ -81,8 +91,9 @@ const QuestionTable = () => {
                                     <td>
                                         <button
                                             className="table_btn"
+                                            key={item._id}
                                             onClick={() =>
-                                                handledelete(
+                                                handlerDelete(
                                                     item._id
                                                 )
                                             }

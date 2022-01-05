@@ -19,11 +19,13 @@ import {
     USER_GETALLQUESTIONS_FAIL,
 } from "../constants/questionConstants";
 
-// import {
-//     DELETE_QUESTION_BYID_REQUEST,
-//     DELETE_QUESTION_BYID_SUCCESS,
-//     DELETE_QUESTION_BYID_FAIL,
-// } from "../constants/questionConstants";
+import { DELETE_QUESTION_BYID } from "../constants/questionConstants";
+
+import {
+    DELETE_QUESTION_BYID_REQUEST,
+    DELETE_QUESTION_BYID_SUCCESS,
+    DELETE_QUESTION_BYID_FAIL,
+} from "../constants/questionConstants";
 
 export const getTestquestion =
     () => async (dispatch, getState) => {
@@ -169,6 +171,14 @@ export const getAllQuestions =
         }
     };
 
+export const deleteFromItem =
+    (_id) => (dispatch, getState) => {
+        dispatch({
+            type: DELETE_QUESTION_BYID,
+            payload: _id,
+        });
+    };
+
 export const getQuestionsId =
     () => async (dispatch, getState) => {
         try {
@@ -204,38 +214,38 @@ export const getQuestionsId =
         }
     };
 
-// export const deleteQuestionId =
-//     (id) => async (dispatch, getState) => {
-//         try {
-//             dispatch({
-//                 type: DELETE_QUESTION_BYID_REQUEST,
-//             });
-//             const {
-//                 adminLogin: { userInfo },
-//             } = getState();
-//             const config = {
-//                 headers: {
-//                     "Content-Type": "application/json",
-//                     "Access-Control-Allow-Origin": "*",
-//                     Authorization: `Bearer ${userInfo.token}`,
-//                 },
-//             };
-//             const { data } = await axios.delete(
-//                 `/api/v1/question${id}`,
-//                 config
-//             );
-//             dispatch({
-//                 type: DELETE_QUESTION_BYID_SUCCESS,
-//                 payload: data,
-//             });
-//         } catch (error) {
-//             dispatch({
-//                 type: DELETE_QUESTION_BYID_FAIL,
-//                 payload:
-//                     error.response &&
-//                     error.response.data.error
-//                         ? error.response.data.error
-//                         : error.message,
-//             });
-//         }
-//     };
+export const deleteQuestionId =
+    (_id) => async (dispatch, getState) => {
+        try {
+            dispatch({
+                type: DELETE_QUESTION_BYID_REQUEST,
+            });
+            const {
+                adminLogin: { userInfo },
+            } = getState();
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*",
+                    Authorization: `Bearer ${userInfo.token}`,
+                },
+            };
+            const { questionId } = await axios.delete(
+                `/api/v1/question/${_id}`,
+                config
+            );
+            dispatch({
+                type: DELETE_QUESTION_BYID_SUCCESS,
+                payload: questionId,
+            });
+        } catch (error) {
+            dispatch({
+                type: DELETE_QUESTION_BYID_FAIL,
+                payload:
+                    error.response &&
+                    error.response.data.error
+                        ? error.response.data.error
+                        : error.message,
+            });
+        }
+    };

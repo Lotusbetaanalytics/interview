@@ -31,13 +31,6 @@ function QuestionBank() {
         setAnswers([...answers, option]);
     };
 
-    const removeOption = (i) => {
-        const index = answers.indexOf(i);
-        if (index > -1) {
-            answers.splice(index, 1);
-        }
-    };
-
     const handleChange = (e) => {
         setQuestion(e.target.value);
     };
@@ -55,8 +48,7 @@ function QuestionBank() {
     const adminQuestions = useSelector(
         (state) => state.adminQuestions
     );
-    const { questions, success, error, loading } =
-        adminQuestions;
+    const { success, error, loading } = adminQuestions;
 
     const allTest = useSelector((state) => state.allTest);
     const { test: tests } = allTest;
@@ -96,6 +88,13 @@ function QuestionBank() {
         });
         dispatch({ type: QUESTIONS_RESET });
     }
+
+    const removeOption = (i) => {
+        const index = answers.indexOf(i);
+        if (index > -1) {
+            answers.splice(index, 1);
+        }
+    };
 
     return (
         <div className="questionbank">
@@ -240,9 +239,9 @@ function QuestionBank() {
                                     onClick={addOption}
                                     type="button"
                                 >
-                                    Add Option{" "}
-                                </button>{" "}
-                            </div>{" "}
+                                    Add Option
+                                </button>
+                            </div>
                         </div>
                         {answers.map((item, i) => (
                             <div
@@ -256,7 +255,7 @@ function QuestionBank() {
                                     }
                                     className="remove_btn2"
                                 >
-                                    Remove Option{" "}
+                                    Remove Option
                                 </button>
                             </div>
                         ))}

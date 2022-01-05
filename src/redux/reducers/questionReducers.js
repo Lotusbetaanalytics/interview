@@ -15,6 +15,7 @@ import {
     DELETE_QUESTION_BYID_SUCCESS,
     DELETE_QUESTION_BYID_FAIL,
     QUESTIONS_RESET,
+    DELETE_QUESTION_BYID,
 } from "../constants/questionConstants";
 
 export const adminQuestionsReducer = (
@@ -103,23 +104,36 @@ export const getQuestionsByIdReducer = (
                 loading: false,
                 error: action.payload,
             };
+        case DELETE_QUESTION_BYID:
+            return {
+                ...state,
+                questions: state.questions.filter(
+                    (x) => x._id !== action.payload
+                ),
+            };
         default:
             return state;
     }
 };
 
 export const deleteQuestionByIdReducer = (
-    state = { deleteById: [] },
+    state = { questions: [] },
     action
 ) => {
     switch (action.type) {
         case DELETE_QUESTION_BYID_REQUEST:
-            return { ...state, loading: true };
+            return {
+                ...state,
+                questions: state.questions.filter(
+                    (x) => x._id !== action.payload
+                ),
+                loading: true,
+            };
         case DELETE_QUESTION_BYID_SUCCESS:
             return {
                 loading: false,
                 success: true,
-                questions: action.payload.data,
+                deleteQuestion: action.payload,
             };
         case DELETE_QUESTION_BYID_FAIL:
             return {
