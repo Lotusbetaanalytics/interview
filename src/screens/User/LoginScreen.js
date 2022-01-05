@@ -25,15 +25,14 @@ const LoginScreen = ({ history }) => {
         (state) => state.userLogin
     );
     const { loading, error, userInfo } = userLogin;
+    
+    console.log(userInfo)
 
     useEffect(() => {
         if (userInfo) {
-            setTimeout(
-                () => history.push("/start"),
-                [3000]
-            );
+             history.push("/start")
         }
-    }, [userInfo, history, dispatch]);
+    }, [userInfo,history]);
 
     return (
         <div>
