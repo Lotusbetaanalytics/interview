@@ -239,8 +239,8 @@ export const editQuestion =
         },
       };
 
-      const { data } = await axios.post(
-        "/api/v1/question/",
+      const { data } = await axios.put(
+        `/api/v1/question/${_id}`,
         {
           question,
           answers,
