@@ -163,6 +163,54 @@ select {
     padding-top: 10px;
   }
 
+  p {
+    font-size: 0.8rem;
+  }
+  .pagePadding {
+    padding: 2rem 3rem;
+  }
+  .formGrid {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+  .form {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding: 3rem 0;
+  }
+  .section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .instruction {
+    font-size: 9px;
+  }
+  .marginTop {
+    margin-top: 30px;
+    margin-right: 40%;
+  }
+  .timer {
+    margin: auto;
+    display: flex;
+    margin-bottom: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    font-size: smaller;
+    font-weight: normal;
+  }
+  .question {
+    font-size: 12px;
+  }
+  .display {
+    display: none;
+  }
   .customPadding {
     padding-top: 0.5rem;
   }

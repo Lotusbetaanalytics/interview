@@ -43,7 +43,7 @@
 }
 /* phone-only */
 @media (max-width: 599px) {
-  .navigation {
+  .navigation_ {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -51,24 +51,24 @@
     height: 5rem;
     padding: 0.5rem 0.5rem;
   }
-  .title {
+  .title_ {
     width: 50%;
     height: auto;
     display: flex;
     justify-content: flex-end;
   }
-  .title h3 {
+  .title_ h3 {
     font-size: 0.8rem;
     margin-top: 1.5rem;
     margin-right: 4rem;
   }
-  .btnContainer {
+  .btnContainer_ {
     display: flex;
     flex-direction: row;
     padding-top: 1rem;
     width: 60%;
   }
-  .paddingTop {
+  .paddingTop_ {
     margin-bottom: 5px;
     padding-top: 10px;
     width: auto;
