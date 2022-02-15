@@ -40,8 +40,8 @@ export const createSection =
                 type: CREATE_SECTION_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
         }
@@ -74,8 +74,8 @@ export const getSection =
                 type: GET_SECTION_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
         }
@@ -108,8 +108,8 @@ export const getExamSection =
                 type: GET_SECTION_BYID_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
         }

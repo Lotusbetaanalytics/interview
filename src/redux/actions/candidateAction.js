@@ -41,8 +41,8 @@ export const getTotalCandidates =
                 type: GET_TOTALCANDIDATES_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
         }
@@ -77,8 +77,8 @@ export const getCandidatesPass =
                 type: GET_CANDIDATESPASSED_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
         }
@@ -114,8 +114,8 @@ export const getCandidatesFail =
                 type: GET_CANDIDATESFAILED_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
         }

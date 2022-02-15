@@ -52,8 +52,8 @@ export const getTestquestion = () => async (dispatch, getState) => {
     dispatch({
       type: QUESTION_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -89,8 +89,8 @@ export const postQuestion =
       dispatch({
         type: QUESTIONS_FAIL,
         payload:
-          error.response && error.response.data.error
-            ? error.response.data.error
+          error.response && error.response.data.message
+            ? error.response.data.message
             : error.message,
       });
     }
@@ -118,8 +118,8 @@ export const getQuestion = () => async (dispatch, getState) => {
     dispatch({
       type: QUESTIONS_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -150,8 +150,8 @@ export const getAllQuestions = () => async (dispatch, getState) => {
     dispatch({
       type: USER_GETALLQUESTIONS_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -187,8 +187,8 @@ export const getQuestionsId = () => async (dispatch, getState) => {
     dispatch({
       type: GET_QUESTION_BYID_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -221,8 +221,8 @@ export const deleteQuestionId = (_id) => async (dispatch, getState) => {
     dispatch({
       type: DELETE_QUESTION_BYID_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -257,8 +257,8 @@ export const editQuestion =
       dispatch({
         type: EDIT_QUESTION_BYID_FAIL,
         payload:
-          error.response && error.response.data.error
-            ? error.response.data.error
+          error.response && error.response.data.message
+            ? error.response.data.message
             : error.message,
       });
     }

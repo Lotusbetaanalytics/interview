@@ -38,8 +38,8 @@ export const adminForgotPassword =
                 type: ADMIN_FORGETPASSWORD_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
         }
@@ -73,8 +73,8 @@ export const adminResetPassword =
                 type: ADMIN_RESETPASSWORD_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
         }
