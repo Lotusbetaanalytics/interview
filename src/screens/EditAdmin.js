@@ -1,40 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import "./EditAdmin.css";
+import { editQuestionId } from "../redux/actions/questionAction";
 
 function EditAdmin() {
-    const [editQuestion, setEditQuestion] = useState("");
+  const [editQuestion, setEditQuestion] = useState("");
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  console.log(id);
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-    };
+  const submitHandler = (e) => {
+    e.preventDefault();
+  };
 
-    return (
-        <div>
-            <Navbar title="Edit Question" />
-            <div>
-                <Sidebar />
-            </div>
+  useEffect(() => {
+    dispatch(editQuestionId(id));
+  }, [id, dispatch]);
 
-            <div className="admin_container">
-                <form onSubmit={submitHandler}>
-                    <input
-                        type="text"
-                        className="test_input"
-                        placeholder="Question"
-                    />
+  return (
+    <div>
+      <Navbar title="Edit Question" />
+      <div>
+        <Sidebar />
+      </div>
 
-                    <button
-                        className="btn"
-                        onClick={submitHandler}
-                    >
-                        Update
-                    </button>
-                </form>
-            </div>
-        </div>
-    );
+      <div className="admin_container">
+        <form onSubmit={submitHandler}>
+          <input
+            type="text"
+            value={editQuestion}
+            className="test_input"
+            placeholder="Question"
+          />
+
+          <button className="btn" type="submit">
+            Update
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
 
 export default EditAdmin;

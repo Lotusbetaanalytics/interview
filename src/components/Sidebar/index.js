@@ -10,69 +10,103 @@ import { Link } from "react-router-dom";
 import { adminLogout } from "../../redux/actions/userActions";
 
 function Sidebar() {
-    const dispatch = useDispatch();
-    const logoutHandler = () => {
-        dispatch(adminLogout());
-    };
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(adminLogout());
+  };
 
-    return (
-        <div className="sidebar">
-            <div className="sidebar_container">
-                <h4 className="sidebar_title">
-                    <Link to="/">
-                        <strong>E-INTERVIEW</strong>
-                    </Link>
-                </h4>
+  return (
+    <div className="sidebar">
+      <div className="sidebar_container">
+        <h4 className="sidebar_title">
+          <Link to="/">
+            <strong>E-INTERVIEW</strong>
+          </Link>
+        </h4>
 
-                <div className="sidebar_icons">
-                    <ul>
-                        <li>
-                            <Link to="/dashboard">
-                                <MdSpaceDashboard />
-                                <p>Dashboard</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/profile">
-                                <MdPerson />
-                                <p>Candidates</p>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link to="/adminTest">
-                                <FaFolderPlus />
-                                <p>Add Test</p>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link to="/questionbank">
-                                <FaPiggyBank />
-                                <p>Question Bank</p>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link to="/adminregister">
-                                <MdAdminPanelSettings />
-                                <p>Admin</p>
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to="/adminlogin"
-                                onClick={logoutHandler}
-                            >
-                                <MdOutlineLogout />
-                                <p>Logout</p>
-                            </Link>
-                        </li>
-                    </ul>
+        <div className="sidebar_icons">
+          <ul>
+            <li>
+              <Link to="/dashboard">
+                <div className="icon_container">
+                  <div className="icon">
+                    <MdSpaceDashboard />
+                  </div>
+                  <div className="icon_name">
+                    <p>Dashboard</p>
+                  </div>
                 </div>
-            </div>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/profile">
+                <div className="icon_container">
+                  <div className="icon">
+                    <MdPerson />
+                  </div>
+                  <div className="icon_name">
+                    <p>Exam Candidates</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/adminTest">
+                <div className="icon_container">
+                  <div className="icon">
+                    <FaFolderPlus />
+                  </div>
+                  <div className="icon_name">
+                    <p>Add Test</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/questionbank">
+                <div className="icon_container">
+                  <div className="icon">
+                    <FaPiggyBank />
+                  </div>
+                  <div className="icon_name">
+                    <p>Question Bank</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/adminregister">
+                <div className="icon_container">
+                  <div className="icon">
+                    <MdAdminPanelSettings />
+                  </div>
+                  <div className="icon_name">
+                    <p>Admin</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link to="/adminlogin" onClick={logoutHandler}>
+                <div className="icon_container">
+                  <div className="icon">
+                    <MdOutlineLogout />
+                  </div>
+                  <div className="icon_name">
+                    <p>Logout</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+          </ul>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 export default Sidebar;

@@ -81,19 +81,25 @@
 }
 
 .remove_option2 {
-    padding-top: 1rem;
     margin-left: 1rem;
 }
 
 .remove_btn2 {
     padding: 10px;
+    margin-bottom: 13px;
+    width: 13%;
     border-radius: 20px;
     background: rgb(243, 43, 43);
     color: white;
     border: none;
     cursor: pointer;
-    font-weight: 700;
-    margin-left: 40px;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.remove_op {
+    margin-left: 10px;
+    font-size: 20px;
 }
 
 .correct {

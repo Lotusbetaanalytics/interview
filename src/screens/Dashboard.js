@@ -66,6 +66,7 @@ const Dashboard = () => {
         (state) => state.totalCandidates
     );
     const { candidate } = totalCandidates;
+    console.log(candidate);
 
     const allCandidatePassed = useSelector(
         (state) => state.allCandidatePassed
@@ -132,7 +133,7 @@ const Dashboard = () => {
                         color="#7070db"
                     />
                     <Infobox
-                        title="Total Candidates"
+                        title="Registered Candidates"
                         count={
                             candidate && candidate.length
                         }
