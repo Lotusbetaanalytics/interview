@@ -228,8 +228,8 @@ export const deleteQuestionId = (_id) => async (dispatch, getState) => {
   }
 };
 
-export const editQuestion =
-  (question, answers, correct_answers, section) => async (dispatch) => {
+export const editQuestion = 
+  (question, answers, correct_answers, section,_id) => async (dispatch) => {
     try {
       dispatch({ type:EDIT_QUESTION_BYID_REQUEST });
 

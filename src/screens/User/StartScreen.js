@@ -8,14 +8,17 @@ import { myDetails } from "../../redux/actions/userActions";
 
 const StartScreen = ({ history }) => {
     const dispatch = useDispatch();
-    const userDetails = useSelector(
-        (state) => state.userDetails
-    );
-    const { user } = userDetails;
+    // const userDetails = useSelector(
+    //     (state) => state.userDetails
+    // );
+    const user = JSON.parse(localStorage.getItem("userInfo"))
 
     useEffect(() => {
+        if (!user){
+            history.push("/login")
+        }
         dispatch(myDetails());
-    }, [dispatch]);
+    }, [user,history,dispatch]);
 
     const clickHandler = () => {
         setTimeout(() => history.push("/test"), [3000]);
