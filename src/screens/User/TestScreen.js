@@ -29,10 +29,7 @@ const TestScreen = ({history}) => {
   const getTime = useSelector((state) =>state.getTime);
   const {testTime}  = getTime;
 
-  const mytime = testTime
-
-  console.log(mytime)
-
+  const mytime = testTime;
  
   const [index, setIndex] = useState(0);
   const [selected_answers, setSelected_answers] = useState("");
@@ -45,12 +42,6 @@ const TestScreen = ({history}) => {
 
   const question= questions && questions[index] && questions[index]
 
-
-  
-  
-  
-  
-  
   const lastpage = index + 1;
   useEffect(()=>{
   let myInterval = setInterval(() => {
@@ -75,8 +66,6 @@ const TestScreen = ({history}) => {
     alert("You have less than 1 minute")
     setTimeout(() => history.push("/success"), [1000]); 
   } 
-  
-
     const submitHandler = (e) => {
     e.preventDefault();
     const newIndex = index + 1;

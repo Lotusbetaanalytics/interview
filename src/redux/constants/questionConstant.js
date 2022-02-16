@@ -5,3 +5,7 @@ export const QUESTION_FAIL = "QUESTION_FAIL";
 export const SCORE_REQUEST = "SCORE_REQUEST";
 export const SCORE_SUCCESS = "SCORE_SUCCESS";
 export const SCORE_FAIL = "SCORE_FAIL";
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb072d7a8c0d9462ce6cc73311c7195bd372f26a
