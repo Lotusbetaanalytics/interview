@@ -27,7 +27,7 @@ import {
         return { 
           ...state,loading: true };
       case TEST_TIME_SUCCESS:
-        return { loading: false, success: true, testTime: action.payload.data.timer}; 
+        return { loading: false, success: true, testTime: action.payload}; 
       case TEST_TIME_FAIL:
         return { loading: false, error: action.payload };
       default:

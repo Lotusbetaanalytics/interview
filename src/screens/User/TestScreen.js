@@ -16,6 +16,7 @@ const TestScreen = ({history}) => {
  dispatch(getTestquestion());
   }, [dispatch]);
 
+  const mytime = JSON.parse(localStorage.getItem("timer"))
   useEffect(() => {
     dispatch(getTestTime());
      }, [dispatch]);
@@ -26,10 +27,9 @@ const TestScreen = ({history}) => {
   const getquestion = useSelector((state) =>state.getquestion);
   const {questions}  = getquestion;
 
-  const getTime = useSelector((state) =>state.getTime);
-  const {testTime}  = getTime;
+  // const getTime = useSelector((state) =>state.getTime);
+  
 
-  const mytime = testTime;
  
   const [index, setIndex] = useState(0);
   const [selected_answers, setSelected_answers] = useState("");
@@ -63,7 +63,7 @@ const TestScreen = ({history}) => {
   });   
 
   if (minutes === 0 && seconds === 10) {
-    alert("You have less than 1 minute")
+    alert("You have less than 10 seconds")
     setTimeout(() => history.push("/success"), [1000]); 
   } 
     const submitHandler = (e) => {

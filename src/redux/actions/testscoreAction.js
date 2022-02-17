@@ -44,17 +44,24 @@ export const getTestTime = () => async (dispatch) => {
       },
     };
     const { data } = await axios.get("/api/v1/test/assigned", config);
+    
     dispatch({
       type: TEST_TIME_SUCCESS,
-      payload: data,
+      payload: data.data.timer,
     });
+    localStorage.setItem(
+      "timer",
+      JSON.stringify(data.data.timer)
+  );
+    
+    console.log(data)
 
   } catch (error) {
     dispatch({
       type: TEST_TIME_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
