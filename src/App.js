@@ -20,7 +20,6 @@ import ViewAdmin from "./screens/ViewAdmin";
 import PasswordForgot from "./screens/PasswordForgot";
 import ResetPassword from "./screens/ResetPassword";
 import EditAdmin from "./screens/EditAdmin";
-import ViewCandidate from "./screens/ViewCandidate";
 
 //import protectedRoute from "./components/protectedRoute";
 
@@ -50,8 +49,7 @@ function App() {
 
         <Route path="/resetpassword" exact component={ResetPassword} />
 
-        <Route path="/editquestion/:id" exact component={EditAdmin} />
-        <Route path="/viewcandidate" exact component={ViewCandidate} />
+        <Route path="/editquestion" exact component={EditAdmin} />
       </Switch>
     </Router>
   );

@@ -16,38 +16,25 @@ import {
   DELETE_QUESTION_BYID_FAIL,
   QUESTIONS_RESET,
   DELETE_QUESTION_BYID,
-<<<<<<< HEAD
   EDITQUESTION_BYID_REQUEST,
   EDITQUESTION_BYID_SUCCESS,
   EDITQUESTION_BYID_FAIL,
-=======
-  EDIT_QUESTION_BYID_REQUEST,
-  EDIT_QUESTION_BYID_SUCCESS,
-  EDIT_QUESTION_BYID_FAIL,
->>>>>>> cb072d7a8c0d9462ce6cc73311c7195bd372f26a
+  GET_EACHQUESTION_BYID_REQUEST,
+  GET_EACHQUESTION_BYID_FAIL,
+  GET_EACHQUESTION_BYID_SUCCESS,
 } from "../constants/questionConstants";
 
 export const adminQuestionsReducer = (state = {}, action) => {
   switch (action.type) {
-<<<<<<< HEAD
     case QUESTIONS_REQUEST:
       return { loading: true };
     case QUESTIONS_SUCCESS:
-=======
-    case EDIT_QUESTION_BYID_REQUEST:
-      return { loading: true };
-    case EDIT_QUESTION_BYID_SUCCESS:
->>>>>>> cb072d7a8c0d9462ce6cc73311c7195bd372f26a
       return {
         loading: false,
         success: true,
         question: action.payload,
       };
-<<<<<<< HEAD
     case QUESTIONS_FAIL:
-=======
-    case EDIT_QUESTION_BYID_FAIL:
->>>>>>> cb072d7a8c0d9462ce6cc73311c7195bd372f26a
       return {
         loading: false,
         error: action.payload,
@@ -124,6 +111,29 @@ export const getQuestionsByIdReducer = (state = { questions: [] }, action) => {
   }
 };
 
+export const getEacgQuestionByIdReducer = (
+  state = { editIdquestions: [] },
+  action
+) => {
+  switch (action.type) {
+    case GET_EACHQUESTION_BYID_REQUEST:
+      return { ...state, loading: true };
+    case GET_EACHQUESTION_BYID_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        editIdquestions: action.payload.data,
+      };
+    case GET_EACHQUESTION_BYID_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 export const deleteQuestionByIdReducer = (
   state = { questions: [] },
   action
@@ -149,7 +159,6 @@ export const deleteQuestionByIdReducer = (
     default:
       return state;
   }
-<<<<<<< HEAD
 };
 
 export const editQuestionByIdReducer = (state = { questions: [] }, action) => {
@@ -164,7 +173,7 @@ export const editQuestionByIdReducer = (state = { questions: [] }, action) => {
       return {
         loading: false,
         success: true,
-        deleteQuestion: action.payload,
+        editQuestion: action.payload,
       };
     case EDITQUESTION_BYID_FAIL:
       return {
@@ -174,28 +183,26 @@ export const editQuestionByIdReducer = (state = { questions: [] }, action) => {
     default:
       return state;
   }
-=======
->>>>>>> cb072d7a8c0d9462ce6cc73311c7195bd372f26a
 };
 
-export const editQuestionsReducer = (state = {}, action) => {
-    switch (action.type) {
-      case EDIT_QUESTION_BYID_REQUEST:
-        return { loading: true };
-      case EDIT_QUESTION_BYID_SUCCESS:
-        return {
-          loading: false,
-          success: true,
-          question: action.payload,
-        };
-      case EDIT_QUESTION_BYID_FAIL:
-        return {
-          loading: false,
-          error: action.payload,
-        };
-      case QUESTIONS_RESET:
-        return {};
-      default:
-        return state;
-    }
-  };
+// export const editQuestionsReducer = (state = {}, action) => {
+//     switch (action.type) {
+//       case EDIT_QUESTION_BYID_REQUEST:
+//         return { loading: true };
+//       case EDIT_QUESTION_BYID_SUCCESS:
+//         return {
+//           loading: false,
+//           success: true,
+//           question: action.payload,
+//         };
+//       case EDIT_QUESTION_BYID_FAIL:
+//         return {
+//           loading: false,
+//           error: action.payload,
+//         };
+//       case QUESTIONS_RESET:
+//         return {};
+//       default:
+//         return state;
+//     }
+//   };
