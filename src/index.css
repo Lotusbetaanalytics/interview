@@ -259,12 +259,14 @@
 
 .feed_img {
   width: 25%;
-  height: 15rem;
+  height: 10rem;
   float: left;
 }
 
 .feed_img img {
   width: 100%;
+  height: 250px;
+  border-radius: 50%;
 }
 
 .feed_btn {

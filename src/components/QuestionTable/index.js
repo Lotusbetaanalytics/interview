@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { myDetails } from "../../redux/actions/userActions";
 import {
-  deleteFromItem,
   deleteQuestionId,
   getQuestionsId,
 } from "../../redux/actions/questionAction";
 import {
-  useToast,
   CircularProgress,
   Alert,
   AlertIcon,

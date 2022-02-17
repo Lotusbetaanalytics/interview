@@ -1,42 +1,62 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import "./EditAdmin.css";
-import { editQuestionId } from "../redux/actions/questionAction";
+import {
+  editQuestionId,
+  getEachQuestionById,
+} from "../redux/actions/questionAction";
 
 function EditAdmin() {
-  const [editQuestion, setEditQuestion] = useState("");
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
+  useEffect(() => {
+    dispatch(getEachQuestionById(id, setEditQuestion, onChangeHandler));
+    // dispatch(editQuestionId(id, setEditQuestion));
+  }, [id, dispatch]);
+  // const question = JSON.parse(localStorage.getItem("question"));
+  const [editQuestion, setEditQuestion] = useState("");
+
+  // const { editIdQuestions } = useSelector((state) => state);
+  // console.log(editIdQuestions.editIdquestions);
+
+  const history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
+    // const data={question:editQuestion}
+    dispatch(editQuestionId(id, { question: editQuestion }, history));
   };
 
-  useEffect(() => {
-    dispatch(editQuestionId(id));
-  }, [id, dispatch]);
+  const onChangeHandler = (e) => {
+    setEditQuestion(e.target.value);
+  };
+
+  //   const allCandidatePassed = useSelector(
+  //     (state) => state.allCandidatePassed
+  // );
+  // const { candidatepass } = allCandidatePassed;
 
   return (
     <div>
-      <Navbar title="Edit Question" />
       <div>
         <Sidebar />
       </div>
-
       <div className="admin_container">
+        <Navbar title="Edit Question" />
         <form onSubmit={submitHandler}>
-          <input
-            type="text"
-            value={editQuestion}
-            className="test_input"
-            placeholder="Question"
-          />
-
-          <button className="btn" type="submit">
+          <div className="editform_conatiner">
+            <input
+              type="text"
+              value={editQuestion}
+              onChange={onChangeHandler}
+              className="test_input"
+              placeholder="Question"
+            />
+          </div>
+          <button className="edit_btn" type="submit">
             Update
           </button>
         </form>

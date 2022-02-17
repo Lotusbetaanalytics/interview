@@ -51,7 +51,7 @@ function App() {
         <Route path="/resetpassword" exact component={ResetPassword} />
 
         <Route path="/editquestion/:id" exact component={EditAdmin} />
-        <Route path="/viewcandidate" exact component={ViewCandidate} />
+        <Route path="/viewcandidate/:id" exact component={ViewCandidate} />
       </Switch>
     </Router>
   );

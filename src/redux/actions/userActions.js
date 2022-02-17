@@ -308,6 +308,7 @@ export const myAdminDetails = () => async (dispatch, getState) => {
       type: USERS_DETAILS_SUCCESS,
       payload: data,
     });
+    localStorage.setItem("userDetails", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USERS_DETAILS_FAIL,
@@ -374,7 +375,7 @@ export const getAllAdmin = () => async (dispatch, getState) => {
       type: GETALLADMIN_FAIL,
       payload:
         error.response && error.response.data.error
-          ? error.response.data.error
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -400,8 +401,6 @@ export const getAllCandidatesdetails = () => async (dispatch, getState) => {
       type: GETCANDIDATESDETAILS_SUCCESS,
       payload: data,
     });
-
-    console.log(data);
   } catch (error) {
     dispatch({
       type: GETCANDIDATESDETAILS_FAIL,
@@ -413,7 +412,7 @@ export const getAllCandidatesdetails = () => async (dispatch, getState) => {
   }
 };
 
-export const allCandidatesDetails = (id) => async (dispatch, getState) => {
+export const allCandidatesDetails = () => async (dispatch, getState) => {
   try {
     dispatch({
       type: GETALL_CANDIDATES_DETAILS_REQUEST,
@@ -428,18 +427,19 @@ export const allCandidatesDetails = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/v1/test-score/${id}`, config);
+    const { data } = await axios.get(`/api/v1/test-score/self`, config);
     dispatch({
       type: GETALL_CANDIDATES_DETAILS_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("candidates", JSON.stringify(data));
+    localStorage.setItem("getCandidates", JSON.stringify(data));
+    console.log(data);
   } catch (error) {
     dispatch({
       type: GETALL_CANDIDATES_DETAILS_FAIL,
       payload:
         error.response && error.response.data.error
-          ? error.response.data.error
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -472,7 +472,7 @@ export const viewAllAdmindetails = () => async (dispatch, getState) => {
       type: USER_VIEWADMIN_FAIL,
       payload:
         error.response && error.response.data.error
-          ? error.response.data.error
+          ? error.response.data.message
           : error.message,
     });
   }

@@ -18,6 +18,7 @@ function QuestionBank() {
   const [correct_answers, setCorrectAnswer] = useState("");
   const [section, setSection] = useState("");
   const [option, setOption] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const addOption = () => {
     setAnswers([...answers, option]);
@@ -32,6 +33,7 @@ function QuestionBank() {
   };
   const adminQuestions = useSelector((state) => state.adminQuestions);
   const { success, error, loading } = adminQuestions;
+  console.log(success);
 
   const allTest = useSelector((state) => state.allTest);
   const { test: tests } = allTest;
@@ -56,6 +58,11 @@ function QuestionBank() {
   };
 
   if (success) {
+    setShowSuccess(true);
+    // <Alert status="success">
+    //   <AlertIcon />
+    //   Question Added Successfully
+    // </Alert>;
     dispatch({ type: QUESTIONS_RESET });
   }
 
@@ -85,10 +92,10 @@ function QuestionBank() {
             {error}
           </Alert>
         )}
-        {success && (
+        {showSuccess && (
           <Alert status="success">
             <AlertIcon />
-            Question Submitted Successfully
+            Question Added Successfully
           </Alert>
         )}
 
