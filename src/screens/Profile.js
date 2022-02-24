@@ -45,6 +45,13 @@ function Profile() {
   //   }
   //   console.log(id);
   // };
+  const submitHandler = (id) => {
+    if (id) {
+    } else {
+      dispatch(allCandidatesDetails(id));
+    }
+    console.log(id);
+  };
 
   useEffect(() => {
     dispatch(getAllCandidatesdetails());
