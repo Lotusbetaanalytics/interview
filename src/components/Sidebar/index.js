@@ -92,12 +92,14 @@ function Sidebar() {
             </li>
             <li>
               <Link to="/adminlogin" onClick={logoutHandler}>
-                <div className="icon_container">
-                  <div className="icon">
-                    <MdOutlineLogout />
-                  </div>
-                  <div className="icon_name">
-                    <p>Logout</p>
+                <div className="logout">
+                  <div className="icon_container">
+                    <div className="icon">
+                      <MdOutlineLogout />
+                    </div>
+                    <div className="icon_name">
+                      <p>Logout</p>
+                    </div>
                   </div>
                 </div>
               </Link>

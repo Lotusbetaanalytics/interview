@@ -6,20 +6,45 @@ import {
   allCandidatesDetails,
   myDetails,
 } from "../redux/actions/userActions";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { deleteQuestionId } from "../redux/actions/questionAction";
 import Navbar from "../components/Navbar";
-import { Table, Tbody, Td, Th, Tr, Button } from "@chakra-ui/react";
+import {
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Tr,
+  Button,
+  CircularProgress,
+  Center,
+  AlertIcon,
+  Alert,
+} from "@chakra-ui/react";
 
 function Profile() {
   const dispatch = useDispatch();
   // let navigate = useNavigate();
 
-  const submitHandler = (id) => {
-    if (id) {
-    } else {
-      dispatch(allCandidatesDetails(id));
-    }
-  };
+  // const handlerDelete = (_id) => {
+  //   if (window.confirm("Are you sure you want to delete this ?")) {
+  //     dispatch(deleteQuestionId(_id));
+  //     window.location.reload(false);
+  //   }
+  //   console.log(deleteQuestionId);
+  //   console.log(_id);
+  // };
+
+  const deleteQuestion = useSelector((state) => state.deleteQuestion);
+  const { success, loading, error } = deleteQuestion;
+
+  // const submitHandler = (id) => {
+  //   if (id) {
+  //   } else {
+  //     dispatch(allCandidatesDetails(id));
+  //   }
+  //   console.log(id);
+  // };
 
   useEffect(() => {
     dispatch(getAllCandidatesdetails());
@@ -34,33 +59,6 @@ function Profile() {
 
   const getCandidate = useSelector((state) => state.getCandidate);
   const { candidates } = getCandidate;
-
-  const arr = candidates.map((item) => {
-    return (
-      <Tbody>
-        <Tr key={item._id}>
-          <Td>{item.candidate.firstName}</Td>
-          <Td>{item.candidate.lastName}</Td>
-          <Td>{item.test.title}</Td>
-          <Td>{item.score}</Td>
-          <Td>
-            <Button
-              className="chakar_btn"
-              colorScheme="teal"
-              borderRadius="10"
-              type="submit"
-              onClick={() => submitHandler(item._id)}
-            >
-              View More
-            </Button>
-            <Button className="chakar_btn" colorScheme="red" borderRadius="10">
-              Delete
-            </Button>
-          </Td>
-        </Tr>
-      </Tbody>
-    );
-  });
 
   return (
     <div>
@@ -81,18 +79,69 @@ function Profile() {
                 </button>
               </Link>
             </div>
-            <div className="question_table">
-              <Table varient="striped" colorScheme="teal" size="sm">
-                <Tr>
-                  <Th>First Name</Th>
-                  <Th>Last Name</Th>
-                  <Th>Test</Th>
-                  <Th>Score</Th>
-                  <Th>Action</Th>
-                </Tr>
-                {arr}
-              </Table>
-            </div>
+            {error && (
+              <Alert status="error">
+                <AlertIcon />
+                {error}
+              </Alert>
+            )}
+            {success && (
+              <Alert status="success">
+                <AlertIcon />
+                Delete Successfully
+              </Alert>
+            )}
+
+            {loading ? (
+              <Center>
+                <CircularProgress isIndeterminate color="purple.300" />
+              </Center>
+            ) : (
+              <div className="question_table">
+                <Table varient="striped" colorScheme="gray" size="md">
+                  <Tr>
+                    <Th>First Name</Th>
+                    <Th>Last Name</Th>
+                    <Th>Test</Th>
+                    <Th>Score</Th>
+                    <Th>Action</Th>
+                  </Tr>
+                  {candidates &&
+                    candidates.map((item) => (
+                      <Tbody>
+                        <Tr key={item._id}>
+                          <Td>{item.candidate.firstName}</Td>
+                          <Td>{item.candidate.lastName}</Td>
+                          <Td>{item.test.title}</Td>
+                          <Td>{item.score}</Td>
+                          <Td>
+                            <Button
+                              className="chakar_btn"
+                              colorScheme="teal"
+                              borderRadius="10"
+                              type="submit"
+                            >
+                              <Link to={`/viewcandidate/${item._id}`}>
+                                View More
+                              </Link>
+                            </Button>
+                            {/* <Button
+                              className="chakar_btn"
+                              colorScheme="red"
+                              borderRadius="10"
+                              key={item._id}
+                              onClick={() => handlerDelete(item._id)}
+                            >
+                              Delete
+                            </Button> */}
+                          </Td>
+                        </Tr>
+                      </Tbody>
+                    ))}
+                  {/* {arr} */}
+                </Table>
+              </div>
+            )}
           </div>
         </div>
       </div>

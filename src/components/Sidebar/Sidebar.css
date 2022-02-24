@@ -35,15 +35,19 @@
   height: 4rem;
 }
 .icon_container {
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: red;
 }
 .icon_name {
   display: flex;
   width: 100%;
   margin-top: 3px;
+}
+
+.logout {
+  margin-top: 300px;
 }
 .icon_name p {
   display: flex;

@@ -33,6 +33,7 @@ import {
   testSelectReducer,
   deleteQuestionByIdReducer,
   editQuestionByIdReducer,
+  getEacgQuestionByIdReducer,
 } from "./reducers/questionReducers";
 import { createTestReducer, getTestReducers } from "./reducers/testReducers";
 import {
@@ -86,20 +87,25 @@ const reducer = combineReducers({
   editQuestion: editQuestionByIdReducer,
   forgotPassword: forgetPasswordReducers,
   resetPassword: resetPasswordReducer,
+  editIdQuestions: getEacgQuestionByIdReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
-const candidateInfoFromStorage = localStorage.getItem("candidates")
-  ? JSON.parse(localStorage.getItem("candidates"))
-  : null;
+// const userDetailsInfoFromStorage = localStorage.getItem("userDetails")
+// ? JSON.parse(localStorage.getItem("userDetails"))
+// : null;
+
+// const candidateInfoFromStorage = localStorage.getItem("candidates")
+//   ? JSON.parse(localStorage.getItem("candidates"))
+//   : null;
 
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
   adminLogin: { userInfo: userInfoFromStorage },
-  getAllCandidate: { candidates: candidateInfoFromStorage },
+  // getAllCandidate: { candidates: candidateInfoFromStorage },
 };
 
 const middleware = [thunk];
