@@ -2,7 +2,7 @@
   background-color: #640ad2;
   display: flex;
   justify-content: space-between;
-  height: 50px;
+  height: 55px;
   flex-direction: row;
   width: 100%;
 }
@@ -13,7 +13,7 @@
   color: white;
   font-size: 19px;
   margin: auto;
-  padding-top: 0.6rem;
+  padding-top: 3rem;
   margin-left: 25px;
 }
 

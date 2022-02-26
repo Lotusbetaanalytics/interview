@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import "./EditAdmin.css";
 import {
@@ -14,30 +14,19 @@ function EditAdmin() {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getEachQuestionById(id, setEditQuestion, onChangeHandler));
-    // dispatch(editQuestionId(id, setEditQuestion));
   }, [id, dispatch]);
-  // const question = JSON.parse(localStorage.getItem("question"));
   const [editQuestion, setEditQuestion] = useState("");
-
-  // const { editIdQuestions } = useSelector((state) => state);
-  // console.log(editIdQuestions.editIdquestions);
 
   const history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    // const data={question:editQuestion}
     dispatch(editQuestionId(id, { question: editQuestion }, history));
   };
 
   const onChangeHandler = (e) => {
     setEditQuestion(e.target.value);
   };
-
-  //   const allCandidatePassed = useSelector(
-  //     (state) => state.allCandidatePassed
-  // );
-  // const { candidatepass } = allCandidatePassed;
 
   return (
     <div>

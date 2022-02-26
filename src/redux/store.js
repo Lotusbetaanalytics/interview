@@ -34,6 +34,7 @@ import {
   deleteQuestionByIdReducer,
   editQuestionByIdReducer,
   getEacgQuestionByIdReducer,
+  deleteCandidateByIdReducer,
 } from "./reducers/questionReducers";
 import { createTestReducer, getTestReducers } from "./reducers/testReducers";
 import {
@@ -84,6 +85,7 @@ const reducer = combineReducers({
   allCandidatePassed: candidatesPassReducer,
   allCandidateFailed: candidatesFailReducer,
   deleteQuestion: deleteQuestionByIdReducer,
+  deleteCandidate: deleteCandidateByIdReducer,
   editQuestion: editQuestionByIdReducer,
   forgotPassword: forgetPasswordReducers,
   resetPassword: resetPasswordReducer,

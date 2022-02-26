@@ -30,6 +30,7 @@ function QuestionBank() {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(postQuestion(question, answers, correct_answers, section));
+    dispatch({ type: QUESTIONS_RESET });
   };
   const adminQuestions = useSelector((state) => state.adminQuestions);
   const { success, error, loading } = adminQuestions;
@@ -56,6 +57,10 @@ function QuestionBank() {
     const id = event.target.value;
     dispatch(getExamSection(id));
   };
+
+  if (success) {
+    window.location.reload(false);
+  }
 
   if (success) {
     setShowSuccess(true);

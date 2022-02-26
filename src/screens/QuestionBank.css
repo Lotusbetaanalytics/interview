@@ -11,6 +11,14 @@
   padding-bottom: 4rem;
 }
 
+.section_page label {
+  font-size: 20px;
+}
+
+.section_dropdown select {
+  padding: 15px 20px;
+}
+
 .section_dropdown {
   width: 40%;
   padding: 10px;
@@ -43,15 +51,22 @@
 .question_space {
   width: 78%;
   height: 100px;
-  border-radius: 17px;
+  border-radius: 10px;
   margin-bottom: 20px;
   margin-left: 13px;
   border: 1px solid lightgray;
 }
 
+.questionbank_space textarea {
+  padding: 15px 20px;
+  border-radius: 30px;
+  border: 1px solid lightgray;
+  outline: none;
+}
+
 .question_container {
   width: 85%;
-  height: 160vh;
+  height: 125vh;
   display: block;
   padding: 0.5rem 1rem;
   float: left;
@@ -72,7 +87,7 @@
 
 .remove_btn {
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   background: rgb(243, 43, 43);
   color: white;
   border: none;
@@ -86,7 +101,7 @@
 }
 
 .remove_btn2 {
-  padding: 10px;
+  padding: 10px 40px;
   margin-bottom: 13px;
   width: 13%;
   border-radius: 20px;
@@ -113,11 +128,20 @@
 
 .correct_answer input {
   padding: 10px;
+  outline: none;
+}
+
+.option_space input {
+  outline: none;
 }
 
 .add_question {
   padding-bottom: 1rem;
   padding-left: 1rem;
+}
+
+.add_question input {
+  outline: none;
 }
 
 @media (max-width: 599px) {

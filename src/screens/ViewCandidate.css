@@ -27,3 +27,15 @@
   background-color: white;
   border-radius: 10px;
 }
+
+.candidateBtn {
+  background: rgb(245, 197, 76);
+  color: black;
+  padding: 1rem 2.4rem;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 40px;
+  margin-left: 10px;
+}

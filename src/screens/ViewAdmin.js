@@ -43,7 +43,7 @@ function ViewAdmin() {
           </div>
         </Link>
         <div className="question_table">
-          <Table varient="striped" colorScheme="teal" size="sm">
+          <Table varient="striped" colorScheme="gray" size="md">
             <Tr>
               <Th>Name</Th>
               <Th>Email</Th>

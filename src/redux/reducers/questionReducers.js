@@ -11,6 +11,9 @@ import {
   GET_QUESTION_BYID_REQUEST,
   GET_QUESTION_BYID_SUCCESS,
   GET_QUESTION_BYID_FAIL,
+  DELETE_CANDIDATE_BYID_REQUEST,
+  DELETE_CANDIDATE_BYID_SUCCESS,
+  DELETE_CANDIDATE_BYID_FAIL,
   DELETE_QUESTION_BYID_REQUEST,
   DELETE_QUESTION_BYID_SUCCESS,
   DELETE_QUESTION_BYID_FAIL,
@@ -176,6 +179,33 @@ export const editQuestionByIdReducer = (state = { questions: [] }, action) => {
         editQuestion: action.payload,
       };
     case EDITQUESTION_BYID_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const deleteCandidateByIdReducer = (
+  state = { candidateId: [] },
+  action
+) => {
+  switch (action.type) {
+    case DELETE_CANDIDATE_BYID_REQUEST:
+      return {
+        ...state,
+        candidateId: state.candidateId.filter((x) => x._id !== action.payload),
+        loading: true,
+      };
+    case DELETE_CANDIDATE_BYID_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        deleteAllCandidate: action.payload.data,
+      };
+    case DELETE_CANDIDATE_BYID_FAIL:
       return {
         loading: false,
         error: action.payload,

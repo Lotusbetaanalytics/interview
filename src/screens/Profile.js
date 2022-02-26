@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../components/Sidebar";
 import {
   getAllCandidatesdetails,
-  allCandidatesDetails,
   myDetails,
 } from "../redux/actions/userActions";
 import { Link } from "react-router-dom";
-import { deleteQuestionId } from "../redux/actions/questionAction";
+import { deleteViewCandidateId } from "../redux/actions/questionAction";
 import Navbar from "../components/Navbar";
 import {
   Table,
@@ -26,25 +25,26 @@ function Profile() {
   const dispatch = useDispatch();
   // let navigate = useNavigate();
 
-  // const handlerDelete = (_id) => {
-  //   if (window.confirm("Are you sure you want to delete this ?")) {
-  //     dispatch(deleteQuestionId(_id));
-  //     window.location.reload(false);
-  //   }
-  //   console.log(deleteQuestionId);
-  //   console.log(_id);
-  // };
-
-  const deleteQuestion = useSelector((state) => state.deleteQuestion);
-  const { success, loading, error } = deleteQuestion;
-
-  const submitHandler = (id) => {
-    if (id) {
-    } else {
-      dispatch(allCandidatesDetails(id));
+  const handlerDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this ?")) {
+      dispatch(deleteViewCandidateId(id));
+      window.location.reload(false);
     }
     console.log(id);
   };
+  const deleteCandidate = useSelector((state) => state.deleteCandidate);
+  const { success, loading, error } = deleteCandidate;
+
+  // const deleteQuestion = useSelector((state) => state.deleteQuestion);
+  // const { success, loading, error } = deleteQuestion;
+
+  // const submitHandler = (id) => {
+  //   if (id) {
+  //   } else {
+  //     dispatch(allCandidatesDetails(id));
+  //   }
+  //   console.log(id);
+  // };
 
   useEffect(() => {
     dispatch(getAllCandidatesdetails());
@@ -69,7 +69,7 @@ function Profile() {
         <div className="admin_container">
           <div className="question">
             <Navbar
-              title="Candidate Profile"
+              title="Exam Candidate Profile"
               name={`${user && user.firstName}`}
             />
             <div className="goBack_btn">
@@ -125,7 +125,7 @@ function Profile() {
                                 View More
                               </Link>
                             </Button>
-                            {/* <Button
+                            <Button
                               className="chakar_btn"
                               colorScheme="red"
                               borderRadius="10"
@@ -133,7 +133,7 @@ function Profile() {
                               onClick={() => handlerDelete(item._id)}
                             >
                               Delete
-                            </Button> */}
+                            </Button>
                           </Td>
                         </Tr>
                       </Tbody>

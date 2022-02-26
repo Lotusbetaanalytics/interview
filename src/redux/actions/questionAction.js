@@ -28,6 +28,9 @@ import {
   DELETE_QUESTION_BYID_REQUEST,
   DELETE_QUESTION_BYID_SUCCESS,
   DELETE_QUESTION_BYID_FAIL,
+  DELETE_CANDIDATE_BYID_REQUEST,
+  DELETE_CANDIDATE_BYID_SUCCESS,
+  DELETE_CANDIDATE_BYID_FAIL,
   EDITQUESTION_BYID_SUCCESS,
   EDITQUESTION_BYID_REQUEST,
   EDITQUESTION_BYID_FAIL,
@@ -55,8 +58,8 @@ export const getTestquestion = () => async (dispatch, getState) => {
     dispatch({
       type: QUESTION_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -92,8 +95,8 @@ export const postQuestion =
       dispatch({
         type: QUESTIONS_FAIL,
         payload:
-          error.response && error.response.data.error
-            ? error.response.data.error
+          error.response && error.response.data.message
+            ? error.response.data.message
             : error.message,
       });
     }
@@ -121,8 +124,8 @@ export const getQuestion = () => async (dispatch, getState) => {
     dispatch({
       type: QUESTIONS_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -153,15 +156,15 @@ export const getAllQuestions = () => async (dispatch, getState) => {
     dispatch({
       type: USER_GETALLQUESTIONS_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
 };
 
 export const getEachQuestionById =
-  (_id, setEditQuestion, onChangeHandler) => async (dispatch, getState) => {
+  (_id, setEditQuestion) => async (dispatch, getState) => {
     try {
       dispatch({
         type: GET_EACHQUESTION_BYID_REQUEST,
@@ -190,8 +193,8 @@ export const getEachQuestionById =
       dispatch({
         type: GET_EACHQUESTION_BYID_FAIL,
         payload:
-          error.response && error.response.data.error
-            ? error.response.data.error
+          error.response && error.response.data.message
+            ? error.response.data.message
             : error.message,
       });
     }
@@ -227,8 +230,8 @@ export const getQuestionsId = () => async (dispatch, getState) => {
     dispatch({
       type: GET_QUESTION_BYID_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -262,8 +265,8 @@ export const deleteQuestionId = (_id) => async (dispatch, getState) => {
     dispatch({
       type: DELETE_QUESTION_BYID_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -297,9 +300,42 @@ export const editQuestionId =
       dispatch({
         type: EDITQUESTION_BYID_FAIL,
         payload:
-          error.response && error.response.data.error
-            ? error.response.data.error
+          error.response && error.response.data.message
+            ? error.response.data.message
             : error.message,
       });
     }
   };
+
+export const deleteViewCandidateId = (_id) => async (dispatch, getState) => {
+  console.log(_id);
+  try {
+    dispatch({
+      type: DELETE_CANDIDATE_BYID_REQUEST,
+    });
+    const {
+      adminLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { data } = await axios.delete(`/api/v1/test-score/${_id}`, config);
+    dispatch({
+      type: DELETE_CANDIDATE_BYID_SUCCESS,
+      payload: data,
+    });
+    console.log(data);
+  } catch (error) {
+    dispatch({
+      type: DELETE_CANDIDATE_BYID_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

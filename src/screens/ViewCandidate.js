@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { getAllCandidatesdetails } from "../redux/actions/userActions";
@@ -7,44 +8,42 @@ import "./ViewCandidate.css";
 
 function ViewCandidate({ match }) {
   const dispatch = useDispatch();
-  const [candidateDetails, setCandidateDetails] = useState("");
-  const [firstName, setFirstName] = useState("");
 
   const id = match.params.id;
-  // const [lastName, setLastName] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  // const [testTitle, setTestTitle] = useState("");
-  // const [testTimer, setTestTimer] = useState("");
-  // const [testScore, setTestScore] = useState("");
 
-  const user = JSON.parse(localStorage.getItem("getcandidates"));
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setlastName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [testTimer, setTestTimer] = useState("");
+  // const [testTitle, setTestTitle] = useState("");
+  // const [score, setScore] = useState("");
+
+  // const user = JSON.parse(localStorage.getItem("getcandidates"));
   // const candidateDetails = user.firstName;
   // console.log(candidateDetails);
 
-  // useEffect(() => {
-  //   if (user) {
-  //   } else {
-  //     setFirstName(user);
-  //   }
-  // }, [user]);
-  // console.log(user);
-
+  const candidatesDetails = JSON.parse(localStorage.getItem("candidateUser"));
+  console.log(candidatesDetails.data.firstName);
   useEffect(() => {
     dispatch(getAllCandidatesdetails());
   }, [dispatch]);
 
-  const candidatesDetails = JSON.parse(localStorage.getItem("candidates"));
-  // const candidatesall =
-
   const getCandidate = useSelector((state) => state.getCandidate);
   const { candidates = [] } = getCandidate;
   const data = candidates.filter((x) => x._id === id);
+
+  console.log(data);
 
   return (
     <div>
       <Sidebar />
       <div className="candidate_container">
         <Navbar title="View Candidates Details" />
+        <div>
+          <Link to="/profile">
+            <button class="candidateBtn">Go Back</button>
+          </Link>
+        </div>
         <div className="viewcandidate">
           <div className="gridBox">
             <div className="eachGridBox">
