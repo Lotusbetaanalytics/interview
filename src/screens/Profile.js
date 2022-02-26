@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "../components/Sidebar";
 import {
   getAllCandidatesdetails,
-  allCandidatesDetails,
+  // allCandidatesDetails,
   myDetails,
 } from "../redux/actions/userActions";
 import { Link } from "react-router-dom";
-import { deleteQuestionId } from "../redux/actions/questionAction";
+// import { deleteQuestionId } from "../redux/actions/questionAction";
 import Navbar from "../components/Navbar";
 import {
   Table,
@@ -45,13 +45,13 @@ function Profile() {
   //   }
   //   console.log(id);
   // };
-  const submitHandler = (id) => {
-    if (id) {
-    } else {
-      dispatch(allCandidatesDetails(id));
-    }
-    console.log(id);
-  };
+  // const submitHandler = (id) => {
+  //   if (id) {
+  //   } else {
+  //     dispatch(allCandidatesDetails(id));
+  //   }
+  //   console.log(id);
+  // };
 
   useEffect(() => {
     dispatch(getAllCandidatesdetails());

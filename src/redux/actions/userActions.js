@@ -113,20 +113,26 @@ export const loginUser =
                 "userInfo",
                 JSON.stringify(data)
             );
+            
         } catch (error) {
             dispatch({
                 type: USER_LOGIN_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.message
-                        ? error.response.data.message
+                    error.response.message
+                        ? error.response.message
                         : error.message,
             });
+            console.log(`error.message: ${error.message}`)
+            console.log(error.data)
+            console.log(error)
         }
     };
 
 export const logOut = () => (dispatch) => {
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("candidateDetail");
+    localStorage.removeItem("timer");
     dispatch({
         type: USER_LOGOUT,
     });
@@ -155,6 +161,10 @@ export const myDetails =
                 type: USER_DETAILS_SUCCESS,
                 payload: data,
             });
+            localStorage.setItem(
+                "candidateDetail",
+                JSON.stringify(data)
+            );
         } catch (error) {
             dispatch({
                 type: USER_DETAILS_FAIL,

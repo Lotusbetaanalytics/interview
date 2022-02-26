@@ -7,12 +7,28 @@ import { getTestquestion } from "../../redux/actions/questionAction";
 import {postResponse} from "../../redux/actions/responseAction";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
 import { getTestTime } from "../../redux/actions/testscoreAction";
+import { myDetails } from "../../redux/actions/userActions";
 
 
 const TestScreen = ({history}) => {
   const dispatch = useDispatch();
+  const myDetail = JSON.parse(localStorage.getItem("candidateDetail"))
+  const user = myDetail
+
+  // useEffect(() => {
+  //   if (!user){
+  //     history.push("/login")
+  //     }
+  //    dispatch(myDetails());
+  // }, [user,history,dispatch]);
 
   useEffect(() => {
+    if (!user){
+      history.push("/login")
+     }
+  }, [user,history,dispatch]);
+
+  useEffect(() => {  
  dispatch(getTestquestion());
   }, [dispatch]);
 
@@ -71,7 +87,7 @@ const TestScreen = ({history}) => {
     const newIndex = index + 1;
     
     if (selected_answers) {
-      localStorage.setItem("selected_answers", '')
+      localStorage.setItem("selected_answer", JSON.stringify(selected_answers))
         dispatch(
           postResponse(question,selected_answers)
           ); 

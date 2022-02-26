@@ -3,24 +3,29 @@ import { Link } from "react-router-dom";
 import Navigation from "../../components/Navigation";
 import AccountHeader from "../../components/UI/AccountHeader";
 import styles from "./styles.module.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { myDetails } from "../../redux/actions/userActions";
+import { getTestTime } from "../../redux/actions/testscoreAction";
 
 const StartScreen = ({ history }) => {
     const dispatch = useDispatch();
     // const userDetails = useSelector(
     //     (state) => state.userDetails
     // );
-    const user = JSON.parse(localStorage.getItem("userInfo"))
-
+    const myDetail = JSON.parse(localStorage.getItem("candidateDetail"))
+    const user = myDetail
+    console.log(user);
+    
     useEffect(() => {
         if (!user){
-            history.push("/login")
-        }
+         history.push("/login")
+         }
         dispatch(myDetails());
     }, [user,history,dispatch]);
 
+
     const clickHandler = () => {
+        dispatch(getTestTime())
         setTimeout(() => history.push("/test"), [3000]);
     };
 
@@ -33,7 +38,7 @@ const StartScreen = ({ history }) => {
                 >
                     <AccountHeader
                         instruction={`Welcome ${
-                            user && user.firstName
+                            user && user.data.firstName
                         }`}
                     >
                         <p>

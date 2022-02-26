@@ -18,7 +18,7 @@ import {
     getAllAdminReducer,
     getCandidatesdetailsReducer,
     getViewAdminsReducer,
-    getallCandidatesdetailsReducer,
+    // getallCandidatesdetailsReducer,
 } from "./reducers/userReducers";
 import { questionsReducer } from "./reducers/questionReducer";
 import { getTestReducer } from "./reducers/testReducer";
