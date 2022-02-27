@@ -33,7 +33,6 @@ function QuestionBank() {
   };
   const adminQuestions = useSelector((state) => state.adminQuestions);
   const { success, error, loading } = adminQuestions;
-  console.log(success);
 
   const allTest = useSelector((state) => state.allTest);
   const { test: tests } = allTest;

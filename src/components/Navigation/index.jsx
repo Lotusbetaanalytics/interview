@@ -7,20 +7,21 @@ import { logOut, myDetails } from "../../redux/actions/userActions";
 const Navigation = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-//   const userDetails = useSelector((state) => state.userDetails);
-//   const { user } = userDetails;
-
-  useEffect(() => {
-    dispatch(myDetails());
-  }, [dispatch]);
+  // const userDetails = useSelector(
+  //   (state) => state.userDetails);
+  //   const user = userDetails
+  // useEffect(() => {
+  //   dispatch(myDetails());
+  // }, [dispatch]);
 
   const myDetail = JSON.parse(localStorage.getItem("candidateDetail"))
-    const user = myDetail
+   const user = myDetail
 
   const logoutHandler = () => {
     dispatch(logOut());
     setTimeout(() => history.push("/login"), [1000]);
   };
+
   return (
     <div className={styles.navigation}>
       <div className={styles.title}>

@@ -5,26 +5,35 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
-import { loginUser } from "../../redux/actions/userActions";
+import { loginUser, myDetails} from "../../redux/actions/userActions";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
-const LoginScreen = ({ history }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const LoginScreen = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [msg,setMsg] = useState(false)
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(loginUser(email, password));
-    // dispatch(myDetails)
+    dispatch(loginUser(email, password,history));
+    dispatch(myDetails())
   };
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, userInfo } = userLogin;
 
-  useEffect(() => {
-    if (userInfo) {
-      setTimeout(() => history.push("/start"), [300]);
-    }
-  }, [userInfo, history, dispatch]);
+ const userLogin = useSelector((state) => state.userLogin);
+ const { loading, error,success, userInfo } = userLogin;
+   console.log(userInfo)
+
+// if (success){
+//     setMsg(true)
+
+//  }
+
+ useEffect(() => {
+ if (userInfo) {
+  setTimeout(() => {(history.push("/start"))}, 3000);
+  }}, [userInfo, history,dispatch]);
 
   return (
     <div>
@@ -40,9 +49,15 @@ const LoginScreen = ({ history }) => {
             {error}
           </Alert>
         )}
+         {msg && (
+            <Alert status="success">
+            <AlertIcon />
+             login Successfully
+            </Alert>
+            )}
         {loading ? (
           <Center>
-            <CircularProgress isIndeterminate color="purple.300" />
+            <CircularProgress isIndeterminate color="purple.500" />
           </Center>
         ) : (
           <div className={styles.form}>

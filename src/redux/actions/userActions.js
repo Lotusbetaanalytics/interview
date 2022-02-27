@@ -113,19 +113,17 @@ export const loginUser =
                 "userInfo",
                 JSON.stringify(data)
             );
+              
             
         } catch (error) {
             dispatch({
                 type: USER_LOGIN_FAIL,
                 payload:
                     error.response &&
-                    error.response.message
-                        ? error.response.message
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
-            console.log(`error.message: ${error.message}`)
-            console.log(error.data)
-            console.log(error)
         }
     };
 
