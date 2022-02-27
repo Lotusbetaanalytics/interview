@@ -43,6 +43,7 @@ import {
   getSectionByIdReducer,
 } from "./reducers/sectionReducers";
 import {
+  candidateByIdDeleteReducer,
   candidatesFailReducer,
   candidatesPassReducer,
   totalCandidatesReducer,
@@ -86,6 +87,7 @@ const reducer = combineReducers({
   allCandidateFailed: candidatesFailReducer,
   deleteQuestion: deleteQuestionByIdReducer,
   deleteCandidate: deleteCandidateByIdReducer,
+  deleteCandidateById: candidateByIdDeleteReducer,
   editQuestion: editQuestionByIdReducer,
   forgotPassword: forgetPasswordReducers,
   resetPassword: resetPasswordReducer,

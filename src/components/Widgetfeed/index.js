@@ -26,6 +26,8 @@ function Widgetfeed() {
   const getCandidate = useSelector((state) => state.getCandidate);
   const { candidates } = getCandidate;
 
+  console.log(candidates);
+
   return (
     <div className="widget">
       <div className="widget_container">
@@ -53,7 +55,7 @@ function Widgetfeed() {
                   <img src={icon} alt="" />
                 </div>
                 <div className="user1_id">
-                  <h4>{item.candidate.firstName}</h4>
+                  <h3>{item.candidate.firstName}</h3>
                   <h6>{item.test.title}</h6>
                 </div>
                 <div className="user1_score">{item.score}</div>

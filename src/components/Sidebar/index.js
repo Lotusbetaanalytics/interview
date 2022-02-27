@@ -5,6 +5,7 @@ import { MdPerson } from "react-icons/md";
 import { FaFolderPlus, FaPiggyBank } from "react-icons/fa";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { MdOutlineLogout } from "react-icons/md";
+import { IoIosPeople } from "react-icons/io";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import { adminLogout } from "../../redux/actions/userActions";
@@ -60,6 +61,19 @@ function Sidebar() {
                   </div>
                   <div className="icon_name">
                     <p>Add Test</p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/allcandidate">
+                <div className="icon_container">
+                  <div className="icon">
+                    <IoIosPeople />
+                  </div>
+                  <div className="icon_name">
+                    <p>All Candidates</p>
                   </div>
                 </div>
               </Link>
