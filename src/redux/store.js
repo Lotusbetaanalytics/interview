@@ -98,18 +98,9 @@ const userInfoFromStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
-// const userDetailsInfoFromStorage = localStorage.getItem("userDetails")
-// ? JSON.parse(localStorage.getItem("userDetails"))
-// : null;
-
-// const candidateInfoFromStorage = localStorage.getItem("candidates")
-//   ? JSON.parse(localStorage.getItem("candidates"))
-//   : null;
-
 const initialState = {
   userLogin: { userInfo: userInfoFromStorage },
   adminLogin: { userInfo: userInfoFromStorage },
-  // getAllCandidate: { candidates: candidateInfoFromStorage },
 };
 
 const middleware = [thunk];

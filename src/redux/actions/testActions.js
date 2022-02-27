@@ -36,8 +36,8 @@ export const createTest =
                 type: CREATE_TEST_FAIL,
                 payload:
                     error.response &&
-                    error.response.data.error
-                        ? error.response.data.error
+                    error.response.data.message
+                        ? error.response.data.message
                         : error.message,
             });
         }
@@ -68,8 +68,8 @@ export const getTest = () => async (dispatch, getState) => {
         dispatch({
             type: GET_TEST_FAIL,
             payload:
-                error.response && error.response.data.error
-                    ? error.response.data.error
+                error.response && error.response.data.message
+                    ? error.response.data.message
                     : error.message,
         });
     }

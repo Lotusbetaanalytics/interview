@@ -39,9 +39,6 @@ import {
   USER_VIEWADMIN_FAIL,
   USER_VIEWADMIN_SUCCESS,
   USER_VIEWADMIN_REQUEST,
-  GETALL_CANDIDATES_DETAILS_REQUEST,
-  GETALL_CANDIDATES_DETAILS_SUCCESS,
-  GETALL_CANDIDATES_DETAILS_FAIL,
 } from "../constants/userConstants";
 
 export const registerUser =
@@ -76,8 +73,8 @@ export const registerUser =
       dispatch({
         type: USER_REGISTRATION_FAIL,
         payload:
-          error.response && error.response.data.error
-            ? error.response.data.error
+          error.response && error.response.data.message
+            ? error.response.data.message
             : error.message,
       });
     }
@@ -117,6 +114,8 @@ export const loginUser = (email, password) => async (dispatch) => {
 
 export const logOut = () => (dispatch) => {
   localStorage.removeItem("userInfo");
+  localStorage.removeItem("candidateDetail");
+  localStorage.removeItem("timer");
   dispatch({
     type: USER_LOGOUT,
   });
@@ -141,12 +140,13 @@ export const myDetails = () => async (dispatch, getState) => {
       type: USER_DETAILS_SUCCESS,
       payload: data,
     });
+    localStorage.setItem("candidateDetail", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USER_DETAILS_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -175,8 +175,8 @@ export const forgetpassword = (email) => async (dispatch) => {
     dispatch({
       type: FORGET_PASSWORD_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -205,8 +205,8 @@ export const changePassword = (email) => async (dispatch) => {
     dispatch({
       type: CHANGE_PASSWORD_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -242,8 +242,8 @@ export const registerAdmin =
       dispatch({
         type: USERS_REGISTRATION_FAIL,
         payload:
-          error.response && error.response.data.error
-            ? error.response.data.error
+          error.response && error.response.data.message
+            ? error.response.data.message
             : error.message,
       });
     }
@@ -275,8 +275,8 @@ export const loginAdmin = (email, password) => async (dispatch) => {
     dispatch({
       type: USERS_LOGIN_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -308,14 +308,12 @@ export const myAdminDetails = () => async (dispatch, getState) => {
       type: USERS_DETAILS_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("userDetails", JSON.stringify(data));
-    console.log(data);
   } catch (error) {
     dispatch({
       type: USERS_DETAILS_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
 
@@ -344,8 +342,8 @@ export const sectionUser = (section) => async (dispatch) => {
     dispatch({
       type: USER_SECTION_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
+        error.response && error.response.data.message
+          ? error.response.data.message
           : error.message,
     });
   }
@@ -375,7 +373,7 @@ export const getAllAdmin = () => async (dispatch, getState) => {
     dispatch({
       type: GETALLADMIN_FAIL,
       payload:
-        error.response && error.response.data.error
+        error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
     });
@@ -402,46 +400,13 @@ export const getAllCandidatesdetails = () => async (dispatch, getState) => {
       type: GETCANDIDATESDETAILS_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("candidateUser", JSON.stringify(data));
+
     console.log(data);
   } catch (error) {
     dispatch({
       type: GETCANDIDATESDETAILS_FAIL,
       payload:
-        error.response && error.response.data.error
-          ? error.response.data.error
-          : error.message,
-    });
-  }
-};
-
-export const allCandidatesDetails = () => async (dispatch, getState) => {
-  try {
-    dispatch({
-      type: GETALL_CANDIDATES_DETAILS_REQUEST,
-    });
-    const {
-      adminLogin: { userInfo },
-    } = getState();
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-    const { data } = await axios.get(`/api/v1/test-score/self`, config);
-    dispatch({
-      type: GETALL_CANDIDATES_DETAILS_SUCCESS,
-      payload: data,
-    });
-    localStorage.setItem("getCandidates", JSON.stringify(data));
-    console.log(data);
-  } catch (error) {
-    dispatch({
-      type: GETALL_CANDIDATES_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.error
+        error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
     });
@@ -474,9 +439,116 @@ export const viewAllAdmindetails = () => async (dispatch, getState) => {
     dispatch({
       type: USER_VIEWADMIN_FAIL,
       payload:
-        error.response && error.response.data.error
+        error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
     });
   }
 };
+// export const viewAllAdmindetails =
+// () => async (dispatch, getState) => {
+//     try {
+//         dispatch({
+//             type: USER_VIEWADMIN_REQUEST,
+//         });
+//         const {
+//             adminLogin: { userInfo },
+//         } = getState();
+//         const config = {
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Access-Control-Allow-Origin": "*",
+//                 Authorization: `Bearer ${userInfo.token}`,
+//             },
+//         };
+//         const { data } = await axios.get(
+//             "/api/v1/admin/",
+//             config
+//         );
+//         dispatch({
+//             type: USER_VIEWADMIN_SUCCESS,
+//             payload: data,
+//         });
+
+//         console.log(data);
+//     } catch (error) {
+//         dispatch({
+//             type: USER_VIEWADMIN_FAIL,
+//             payload:
+//                 error.response &&
+//                 error.response.data.message
+//                     ? error.response.data.message
+//                     : error.message,
+//         });
+//     }
+// };
+// export const viewAllAdmindetails =
+// () => async (dispatch, getState) => {
+//     try {
+//         dispatch({
+//             type: USER_VIEWADMIN_REQUEST,
+//         });
+//         const {
+//             adminLogin: { userInfo },
+//         } = getState();
+//         const config = {
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "Access-Control-Allow-Origin": "*",
+//                 Authorization: `Bearer ${userInfo.token}`,
+//             },
+//         };
+//         const { data } = await axios.get(
+//             "/api/v1/admin/",
+//             config
+//         );
+//         dispatch({
+//             type: USER_VIEWADMIN_SUCCESS,
+//             payload: data,
+//         });
+
+//         console.log(data);
+//     } catch (error) {
+//         dispatch({
+//             type: USER_VIEWADMIN_FAIL,
+//             payload:
+//                 error.response &&
+//                 error.response.data.message
+//                     ? error.response.data.message
+//                     : error.message,
+//         });
+//     }
+// };
+
+// export const allCandidatesDetails = () => async (dispatch, getState) => {
+//     try {
+//       dispatch({
+//         type: GETALL_CANDIDATES_DETAILS_REQUEST,
+//       });
+//       const {
+//         adminLogin: { userInfo },
+//       } = getState();
+//       const config = {
+//         headers: {
+//           "Content-Type": "application/json",
+//           "Access-Control-Allow-Origin": "*",
+//           Authorization: `Bearer ${userInfo.token}`,
+//         },
+//       };
+//       const { data } = await axios.get(`/api/v1/test-score/self`, config);
+//       dispatch({
+//         type: GETALL_CANDIDATES_DETAILS_SUCCESS,
+//         payload: data,
+//       });
+//       localStorage.setItem("getCandidates", JSON.stringify(data));
+//       console.log(data);
+//     } catch (error) {
+//       dispatch({
+//         type: GETALL_CANDIDATES_DETAILS_FAIL,
+//         payload:
+//           error.response && error.response.data.error
+//             ? error.response.data.message
+//             : error.message,
+//       });
+//     }
+//   };

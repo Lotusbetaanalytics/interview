@@ -35,7 +35,7 @@ export const getTestTimeReducer = (state = { testTime: 0 }, action) => {
         loading: true,
       };
     case TEST_TIME_SUCCESS:
-      return { loading: false, success: true, testTime: action.payloads };
+      return { loading: false, success: true, testTime: action.payload };
     case TEST_TIME_FAIL:
       return { loading: false, error: action.payload };
     default:

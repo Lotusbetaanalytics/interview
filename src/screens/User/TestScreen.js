@@ -7,16 +7,31 @@ import { getTestquestion } from "../../redux/actions/questionAction";
 import { postResponse } from "../../redux/actions/responseAction";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
 import { getTestTime } from "../../redux/actions/testscoreAction";
+import { myDetails } from "../../redux/actions/userActions";
 
 const TestScreen = ({ history }) => {
   const dispatch = useDispatch();
+  const myDetail = JSON.parse(localStorage.getItem("candidateDetail"));
+  const user = myDetail;
+
+  // useEffect(() => {
+  //   if (!user){
+  //     history.push("/login")
+  //     }
+  //    dispatch(myDetails());
+  // }, [user,history,dispatch]);
+
+  useEffect(() => {
+    if (!user) {
+      history.push("/login");
+    }
+  }, [user, history, dispatch]);
 
   useEffect(() => {
     dispatch(getTestquestion());
   }, [dispatch]);
 
   const mytime = JSON.parse(localStorage.getItem("timer"));
-
   useEffect(() => {
     dispatch(getTestTime());
   }, [dispatch]);
@@ -31,6 +46,8 @@ const TestScreen = ({ history }) => {
   // const mytime = JSON.parse(localStorage.getItem('Timer')
   // const getTime = useSelector((state) =>state.getTime);
   // const {testTime}  = getTime;
+
+  // const getTime = useSelector((state) =>state.getTime);
 
   const [index, setIndex] = useState(0);
   const [selected_answers, setSelected_answers] = useState("");
@@ -63,7 +80,7 @@ const TestScreen = ({ history }) => {
   });
 
   if (minutes === 0 && seconds === 10) {
-    alert("You have less than 1 minute");
+    alert("You have less than 10 seconds");
     setTimeout(() => history.push("/success"), [1000]);
   }
   const submitHandler = (e) => {
@@ -71,7 +88,7 @@ const TestScreen = ({ history }) => {
     const newIndex = index + 1;
 
     if (selected_answers) {
-      localStorage.setItem("selected_answers", "");
+      localStorage.setItem("selected_answer", JSON.stringify(selected_answers));
       dispatch(postResponse(question, selected_answers));
     }
     if (!selected_answers) {
