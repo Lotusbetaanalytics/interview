@@ -7,19 +7,12 @@ import { getTestquestion } from "../../redux/actions/questionAction";
 import { postResponse } from "../../redux/actions/responseAction";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
 import { getTestTime } from "../../redux/actions/testscoreAction";
-import { myDetails } from "../../redux/actions/userActions";
 
 const TestScreen = ({ history }) => {
   const dispatch = useDispatch();
   const myDetail = JSON.parse(localStorage.getItem("candidateDetail"));
   const user = myDetail;
 
-  // useEffect(() => {
-  //   if (!user){
-  //     history.push("/login")
-  //     }
-  //    dispatch(myDetails());
-  // }, [user,history,dispatch]);
 
   useEffect(() => {
     if (!user) {
@@ -27,27 +20,46 @@ const TestScreen = ({ history }) => {
     }
   }, [user, history, dispatch]);
 
+
+  useEffect(() => {
+    dispatch (getTestTime()) 
+  }, [dispatch]);
+
   useEffect(() => {
     dispatch(getTestquestion());
+    
   }, [dispatch]);
 
   const mytime = JSON.parse(localStorage.getItem("timer"));
-  useEffect(() => {
-    dispatch(getTestTime());
-  }, [dispatch]);
-
   console.log(mytime);
+
+  // let currentTime = new Date().toLocaleTimeString();
+  // console.log(currentTime)
+
+  // localStorage.setItem("myCurrentTimeOut",JSON.stringify(currentTime))
+  // const curentFromStore = JSON.parse(localStorage.getItem('myTimeOut'))
+  // console.log(curentFromStore)
+
+  // const timeOutTime = new Date(curentFromStore + mytime *60*1000).toLocaleTimeString();
+  // console.log(timeOutTime)
+
+  
+
+  // localStorage.setItem("myTimeOut",JSON.stringify(timeOutTime))
+  // const timeOutfromStore = JSON.parse(localStorage.getItem('myTimeOut'))
+
+  // console.log(timeOutfromStore)
+
+  // const userTimeOut = new Date(currentTime + mytime * 60 * 1000).toLocaleTimeString();
+  // console.log(userTimeOut)
+
 
   const Response = useSelector((state) => state.Response);
   const { loading, error } = Response;
 
   const getquestion = useSelector((state) => state.getquestion);
   const { questions } = getquestion;
-  // const mytime = JSON.parse(localStorage.getItem('Timer')
-  // const getTime = useSelector((state) =>state.getTime);
-  // const {testTime}  = getTime;
 
-  // const getTime = useSelector((state) =>state.getTime);
 
   const [index, setIndex] = useState(0);
   const [selected_answers, setSelected_answers] = useState("");
@@ -79,7 +91,7 @@ const TestScreen = ({ history }) => {
     };
   });
 
-  if (minutes === 0 && seconds === 10) {
+  if (minutes == 0 && seconds == 10) {
     alert("You have less than 10 seconds");
     setTimeout(() => history.push("/success"), [1000]);
   }

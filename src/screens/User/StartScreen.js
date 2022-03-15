@@ -3,33 +3,27 @@ import { Link } from "react-router-dom";
 import Navigation from "../../components/Navigation";
 import AccountHeader from "../../components/UI/AccountHeader";
 import styles from "./styles.module.css";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { myDetails } from "../../redux/actions/userActions";
 import { getTestTime } from "../../redux/actions/testscoreAction";
 
 const StartScreen = ({ history }) => {
     const dispatch = useDispatch();
-    const userDetails = useSelector(
-      (state) => state.userDetails);
-        console.log(userDetails)
 
     const myDetail = JSON.parse(localStorage.getItem("candidateDetail"))
     const user = myDetail
-    console.log(user);
+    
 
     useEffect(() => {
+    dispatch(myDetails())
      if (!user){
     history.push("/login")
-    dispatch(myDetails())
-     }
-    
-    }, [history,dispatch]);
-
-    
+    }
+    }, [user,history,dispatch]);
 
     const clickHandler = () => {
+        setTimeout(() => history.push("/test"), [5000]);
         dispatch(getTestTime())
-        setTimeout(() => history.push("/test"), [3000]);
     };
 
     return (

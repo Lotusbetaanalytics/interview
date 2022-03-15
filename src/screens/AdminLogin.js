@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import image from "../assets/img-login.svg";
 import { useSelector, useDispatch } from "react-redux";
 import "./AdminLogin.css";
-import { loginAdmin } from "../redux/actions/userActions";
+import { loginAdmin, myAdminDetails } from "../redux/actions/userActions";
 import {
     Alert,
     AlertIcon,
@@ -20,6 +20,7 @@ function AdminLogin({ history }) {
     const sumbitHandler = (e) => {
         e.preventDefault();
         dispatch(loginAdmin(email, password));
+        dispatch(myAdminDetails());
     };
 
     const adminLogin = useSelector(

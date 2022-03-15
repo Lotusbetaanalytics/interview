@@ -116,6 +116,7 @@ export const logOut = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   localStorage.removeItem("candidateDetail");
   localStorage.removeItem("timer");
+  localStorage.removeItem("selected_answer");
   dispatch({
     type: USER_LOGOUT,
   });
@@ -284,6 +285,7 @@ export const loginAdmin = (email, password) => async (dispatch) => {
 
 export const adminLogout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
+
   dispatch({
     type: USERS_LOGOUT,
   });
@@ -308,6 +310,7 @@ export const myAdminDetails = () => async (dispatch, getState) => {
       type: USERS_DETAILS_SUCCESS,
       payload: data,
     });
+    localStorage.setItem("userDetails", JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: USERS_DETAILS_FAIL,
@@ -318,6 +321,7 @@ export const myAdminDetails = () => async (dispatch, getState) => {
     });
 
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("userDetails");
     dispatch({ type: USER_LOGOUT });
   }
 };

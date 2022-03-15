@@ -18,17 +18,27 @@ const RegisterScreen = ({ history }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [examType, setExamType] = useState("");
   const [msg, setMsg] = useState(false);
+  const [pmsg,setPmsg] = useState(false)
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (password === confirmPassword) {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !phone ||
+      !password ||
+      !confirmPassword || !examType
+    ) {
+      setPmsg(true);
+    } else if (password !== confirmPassword) {
+      setMsg(true)
+    } else {
       dispatch(
         registerUser(firstName, lastName, email, phone, password, examType)
       );
-    } else {
-      setMsg(true);
     }
   };
 
@@ -75,6 +85,15 @@ const RegisterScreen = ({ history }) => {
               </Alert>
             </div>
           )}
+          {pmsg && (
+            <div className={styles.inputContainer}>
+              <Alert status="warning">
+                <AlertIcon />
+                All field is required
+              </Alert>
+            </div>
+          )}
+
           {loading ? (
             <Center>
               <CircularProgress isIndeterminate color="purple.300" />

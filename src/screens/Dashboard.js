@@ -24,9 +24,9 @@ const Dashboard = ({ history }) => {
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("userDetails"));
-  const userFirstName = user.data.firstName;
-  console.log(userFirstName);
-
+  //  const userfirstName = user.data.firstName;
+  // console.log(user.data.firstName)
+// 
   const userName = JSON.parse(localStorage.getItem("userInfo"));
   console.log(userName);
 
@@ -34,7 +34,7 @@ const Dashboard = ({ history }) => {
     if (!userName) {
       history.push("/adminlogin");
     }
-    dispatch(myAdminDetails());
+    
   }, [userName, history, dispatch]);
 
   useEffect(() => {
@@ -79,13 +79,13 @@ const Dashboard = ({ history }) => {
   return (
     <>
       <Sidebar />
-      <Navbar title="Dashboard" name={`Hello ${userFirstName}`} />
+      {/* { <Navbar title="Dashboard" name={`Hello ${user.data.firstName}`} /> } */}
 
       <div className="container">
         <div className="feed">
           <div className="feed_user">
             <h2 className="feed_title">
-              {`Hello ${userFirstName}`}
+              {/* {`Hello ${userfirstName}`} */}
               👍👍🥇
             </h2>
             <br></br>
