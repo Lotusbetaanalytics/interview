@@ -43,6 +43,9 @@ import {
   GETALL_CANDIDATES_DETAILS_REQUEST,
   GETALL_CANDIDATES_DETAILS_SUCCESS,
   GETALL_CANDIDATES_DETAILS_FAIL,
+  DELETE_ADMIN_BYID_SUCCESS,
+  DELETE_ADMIN_BYID_REQUEST,
+  DELETE_ADMIN_BYID_FAIL,
 } from "../constants/userConstants";
 
 export const userRegisterReducer = (state = {}, action) => {
@@ -277,6 +280,30 @@ export const getViewAdminsReducer = (state = { getadmin: [] }, action) => {
         getadmin: action.payload.data,
       };
     case USER_VIEWADMIN_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const deleteAdminByIdReducer = (state = { adminId: [] }, action) => {
+  switch (action.type) {
+    case DELETE_ADMIN_BYID_REQUEST:
+      return {
+        ...state,
+        adminId: state.adminId.filter((x) => x._id !== action.payload),
+        loading: true,
+      };
+    case DELETE_ADMIN_BYID_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        deleteAdminid: action.payload.data,
+      };
+    case DELETE_ADMIN_BYID_FAIL:
       return {
         loading: false,
         error: action.payload,

@@ -7,7 +7,7 @@ import { getTestquestion } from "../../redux/actions/questionAction";
 import { postResponse } from "../../redux/actions/responseAction";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
 import { getTestTime } from "../../redux/actions/testscoreAction";
-import { myDetails } from "../../redux/actions/userActions";
+// import { myDetails } from "../../redux/actions/userActions";
 
 const TestScreen = ({ history }) => {
   const dispatch = useDispatch();

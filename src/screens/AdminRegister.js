@@ -92,6 +92,7 @@ const AdminRegister = ({ history }) => {
                   onChange={(e) => setFirstName(e.target.value)}
                   value={firstName}
                   placeholder="First Name"
+                  required={true}
                 />
 
                 <input
@@ -99,6 +100,7 @@ const AdminRegister = ({ history }) => {
                   onChange={(e) => setLastName(e.target.value)}
                   value={lastName}
                   placeholder="Last Name"
+                  required={true}
                 />
 
                 <input
@@ -106,13 +108,15 @@ const AdminRegister = ({ history }) => {
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                   placeholder="Email Address"
+                  required={true}
                 />
 
                 <input
                   type="number"
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => setPhone(e.currentTarget.value.slice(0, 11))}
                   value={phone}
                   placeholder="Phone Number"
+                  required={true}
                 />
 
                 <input
@@ -120,6 +124,7 @@ const AdminRegister = ({ history }) => {
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                   placeholder="Password"
+                  required={true}
                 />
 
                 <input
@@ -127,6 +132,7 @@ const AdminRegister = ({ history }) => {
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   value={confirmPassword}
                   placeholder="Confirm Password"
+                  required={true}
                 />
               </div>
 

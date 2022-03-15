@@ -26,8 +26,6 @@ function Widgetfeed() {
   const getCandidate = useSelector((state) => state.getCandidate);
   const { candidates } = getCandidate;
 
-  console.log(candidates);
-
   return (
     <div className="widget">
       <div className="widget_container">

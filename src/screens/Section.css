@@ -1,67 +1,22 @@
 .section_page {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-  padding-top: 4rem;
+  display: grid;
+  grid-template-columns: 45% 45%;
+  grid-column-gap: 4%;
+  grid-row-gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 2rem;
 }
 
-.section_page select {
-  padding: 0.7rem 1rem;
-}
-
-label {
-  padding: 30px;
-}
-
-.sec_top {
-  margin-bottom: 2rem;
-}
-
-.sec_top input {
-  padding: 0.7rem 1rem;
-  outline: none;
-}
-
-.section_name {
-  margin-bottom: 2rem;
-  margin-right: 2rem;
-}
-
-::placeholder {
-  padding: 10px;
-}
-
-.test_input2 {
-  width: 88%;
-  height: 70px;
-  margin-left: 25px;
-  margin-bottom: 30px;
-  border-radius: 20px;
+.section_page input {
+  width: 100%;
+  padding: 19px 20px;
+  border-radius: 30px;
   border: 1px solid lightgray;
 }
 
-.test_input3 {
-  width: 89%;
-  height: 70px;
-  margin-left: 1.5rem;
-  border-radius: 20px;
-  border: 1px solid lightgray;
-}
-
-.test_input4 {
-  width: 89%;
-  height: 70px;
-  margin-left: 1.5rem;
-  border-radius: 20px;
-  border: 1px solid lightgray;
-}
-
-.test_input5 {
-  width: 89%;
-  height: 70px;
-  margin-left: 1.5rem;
-  border-radius: 20px;
-  border: 1px solid lightgray;
+.test_btn2 {
+  padding-top: 2rem;
 }
 
 .section_btn {
@@ -74,6 +29,15 @@ label {
   cursor: pointer;
   border: none;
   border-radius: 40px;
+}
+
+.sec_top label {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.sec_top select {
+  padding: 19px 20px;
 }
 
 .section_btn:hover {
