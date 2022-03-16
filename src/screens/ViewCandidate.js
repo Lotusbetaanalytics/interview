@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
@@ -18,12 +18,12 @@ function ViewCandidate({ match }) {
   // const [testTitle, setTestTitle] = useState("");
   // const [score, setScore] = useState("");
 
-  // const user = JSON.parse(localStorage.getItem("getcandidates"));
-  // const candidateDetails = user.firstName;
-  // console.log(candidateDetails);
+  const candidate = JSON.parse(localStorage.getItem("getCandidates"));
+  const candidateDetails = candidate;
+  console.log(candidateDetails.data[0].candidate.firstName);
 
-  const candidatesDetails = JSON.parse(localStorage.getItem("candidateUser"));
-  console.log(candidatesDetails.data.firstName);
+  // const candidatesDetails = JSON.parse(localStorage.getItem("candidateUser"));
+  // console.log(candidatesDetails.data.firstName);
   useEffect(() => {
     dispatch(getAllCandidatesdetails());
   }, [dispatch]);
@@ -50,7 +50,9 @@ function ViewCandidate({ match }) {
               <header>First Name</header>
               <span className="titleContainer">
                 <p className="titleName">
-                  {data && data[0].candidate.firstName}
+                  {candidateDetails &&
+                    candidateDetails.data &&
+                    data[0].candidate.firstName}
                 </p>
               </span>
             </div>
@@ -59,7 +61,9 @@ function ViewCandidate({ match }) {
               <header>Last Name</header>
               <span className="titleContainer">
                 <p className="titleName">
-                  {data && data[0].candidate.lastName}
+                  {candidateDetails &&
+                    candidateDetails.data &&
+                    data[0].candidate.lastName}
                 </p>
               </span>
             </div>
@@ -67,28 +71,42 @@ function ViewCandidate({ match }) {
             <div className="eachGridBox">
               <header>Email</header>
               <span className="titleContainer">
-                <p className="titleName">{data && data[0].candidate.email}</p>
+                <p className="titleName">
+                  {candidateDetails &&
+                    candidateDetails.data &&
+                    data[0].candidate.email}
+                </p>
               </span>
             </div>
 
             <div className="eachGridBox">
               <header>Test Title</header>
               <span className="titleContainer">
-                <p className="titleName">{data && data[0].test.title}</p>
+                <p className="titleName">
+                  {candidateDetails &&
+                    candidateDetails.data &&
+                    data[0].test.title}
+                </p>
               </span>
             </div>
 
             <div className="eachGridBox">
               <header>Test Timer</header>
               <span className="titleContainer">
-                <p className="titleName">{data && data[0].test.timer}</p>
+                <p className="titleName">
+                  {candidateDetails &&
+                    candidateDetails.data &&
+                    data[0].test.timer}
+                </p>
               </span>
             </div>
 
             <div className="eachGridBox">
               <header>Test Score</header>
               <span className="titleContainer">
-                <p className="titleName">{data && data[0].score}</p>
+                <p className="titleName">
+                  {candidateDetails && candidateDetails.data && data[0].score}
+                </p>
               </span>
             </div>
           </div>

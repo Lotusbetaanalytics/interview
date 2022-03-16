@@ -15,6 +15,7 @@ import {
   getCandidatesdetailsReducer,
   getViewAdminsReducer,
   getallCandidatesdetailsReducer,
+  deleteAdminByIdReducer,
 } from "./reducers/userReducers";
 import { questionsReducer } from "./reducers/questionReducer";
 import { getTestReducer } from "./reducers/testReducer";
@@ -88,6 +89,7 @@ const reducer = combineReducers({
   deleteQuestion: deleteQuestionByIdReducer,
   deleteCandidate: deleteCandidateByIdReducer,
   deleteCandidateById: candidateByIdDeleteReducer,
+  deleteAdmin: deleteAdminByIdReducer,
   editQuestion: editQuestionByIdReducer,
   forgotPassword: forgetPasswordReducers,
   resetPassword: resetPasswordReducer,

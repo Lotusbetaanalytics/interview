@@ -68,19 +68,16 @@ function Section({ history }) {
             <div className="section_page">
               <div className="sec_top">
                 <label>Test</label>
+                <select onChange={(e) => setTest(e.target.value)}>
+                  <option>Select Test</option>
+                  {tests &&
+                    tests.map((item, i) => (
+                      <option key={i} value={item._id}>
+                        {item.title}
+                      </option>
+                    ))}
+                </select>
               </div>
-              <select
-                className="test_input2"
-                onChange={(e) => setTest(e.target.value)}
-              >
-                <option>Select Test</option>
-                {tests &&
-                  tests.map((item, i) => (
-                    <option key={i} value={item._id}>
-                      {item.title}
-                    </option>
-                  ))}
-              </select>
               <div className="sec_top">
                 <label>Section Name</label>
                 <input
@@ -112,7 +109,7 @@ function Section({ history }) {
                 />
               </div>
 
-              <div className="test_btn">
+              <div className="test_btn2">
                 <button type="submit" className="section_btn">
                   Add Section
                 </button>

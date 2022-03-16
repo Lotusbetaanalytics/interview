@@ -120,6 +120,7 @@ export const getQuestion = () => async (dispatch, getState) => {
       type: QUESTIONS_SUCCESS,
       payload: data,
     });
+    console.log(data);
   } catch (error) {
     dispatch({
       type: QUESTIONS_FAIL,

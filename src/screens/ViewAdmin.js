@@ -1,10 +1,13 @@
-import { Table, Tbody, Td, Th, Tr } from "@chakra-ui/react";
+import { Table, Tbody, Td, Th, Tr, Button } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-import { viewAllAdmindetails } from "../redux/actions/userActions";
+import {
+  deleteAdminId,
+  viewAllAdmindetails,
+} from "../redux/actions/userActions";
 
 function ViewAdmin() {
   const dispatch = useDispatch();
@@ -16,13 +19,33 @@ function ViewAdmin() {
   const getViewAdmins = useSelector((state) => state.getViewAdmins);
   const { getadmin } = getViewAdmins;
 
+  const handlerDelete = (_id) => {
+    if (window.confirm("Are you sure you want to delete this ?")) {
+      dispatch(deleteAdminId(_id));
+      window.location.reload(false);
+    }
+  };
+
   const arr = getadmin.map((item) => {
     return (
       <Tbody>
-        <Tr>
+        <Tr key={item._id}>
           <Td>{item.firstName}</Td>
+          <Td>{item.lastName}</Td>
           <Td>{item.email}</Td>
           <Td>{item.phone}</Td>
+          <Td>
+            <Button
+              className="chakar_btn"
+              colorScheme="red"
+              borderRadius="10"
+              width="full"
+              key={item._id}
+              onClick={() => handlerDelete(item._id)}
+            >
+              Delete
+            </Button>
+          </Td>
         </Tr>
       </Tbody>
     );
@@ -34,20 +57,22 @@ function ViewAdmin() {
         <Sidebar />
       </div>
       <div className="admin_container">
-        <Navbar />
+        <Navbar title="View Admin" />
         <Link to="/adminregister">
           <div className="goBack_btn">
-            <buuton type="button" className="btn">
+            <button type="button" className="btn">
               Go Back
-            </buuton>
+            </button>
           </div>
         </Link>
         <div className="question_table">
           <Table varient="striped" colorScheme="gray" size="md">
             <Tr>
-              <Th>Name</Th>
+              <Th>First Name</Th>
+              <Th>Last Name</Th>
               <Th>Email</Th>
               <Th>Phone</Th>
+              <Th>Action</Th>
             </Tr>
             {arr}
           </Table>

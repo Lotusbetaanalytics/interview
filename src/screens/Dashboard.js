@@ -24,11 +24,11 @@ const Dashboard = ({ history }) => {
   const dispatch = useDispatch();
 
   const user = JSON.parse(localStorage.getItem("userDetails"));
-  //  const userfirstName = user.data.firstName;
-  // console.log(user.data.firstName)
-// 
+  const person = user.data.firstName;
+  console.log(person);
+
   const userName = JSON.parse(localStorage.getItem("userInfo"));
-  console.log(userName);
+  // console.log(userName);
 
   useEffect(() => {
     if (!userName) {
@@ -79,13 +79,13 @@ const Dashboard = ({ history }) => {
   return (
     <>
       <Sidebar />
-      {/* { <Navbar title="Dashboard" name={`Hello ${user.data.firstName}`} /> } */}
+      <Navbar title="Dashboard" name={`Hello ${person}`} />
 
       <div className="container">
         <div className="feed">
           <div className="feed_user">
             <h2 className="feed_title">
-              {/* {`Hello ${userfirstName}`} */}
+              {`Hello ${person}`}
               👍👍🥇
             </h2>
             <br></br>

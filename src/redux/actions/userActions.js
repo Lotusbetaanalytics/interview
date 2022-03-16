@@ -39,6 +39,9 @@ import {
   USER_VIEWADMIN_FAIL,
   USER_VIEWADMIN_SUCCESS,
   USER_VIEWADMIN_REQUEST,
+  DELETE_ADMIN_BYID_SUCCESS,
+  DELETE_ADMIN_BYID_REQUEST,
+  DELETE_ADMIN_BYID_FAIL,
 } from "../constants/userConstants";
 
 export const registerUser =
@@ -404,6 +407,7 @@ export const getAllCandidatesdetails = () => async (dispatch, getState) => {
       type: GETCANDIDATESDETAILS_SUCCESS,
       payload: data,
     });
+    localStorage.setItem("getCandidates", JSON.stringify(data));
 
     console.log(data);
   } catch (error) {
@@ -449,6 +453,39 @@ export const viewAllAdmindetails = () => async (dispatch, getState) => {
     });
   }
 };
+
+export const deleteAdminId = (_id) => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: DELETE_ADMIN_BYID_REQUEST,
+    });
+    const {
+      adminLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+    const { adminId } = await axios.delete(`/api/v1/admin/${_id}`, config);
+    dispatch({
+      type: DELETE_ADMIN_BYID_SUCCESS,
+      payload: adminId,
+    });
+    console.log(adminId);
+  } catch (error) {
+    dispatch({
+      type: DELETE_ADMIN_BYID_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
 // export const viewAllAdmindetails =
 // () => async (dispatch, getState) => {
 //     try {

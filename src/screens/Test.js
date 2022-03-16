@@ -7,7 +7,6 @@ import "./Test.css";
 import { createTest } from "../redux/actions/testActions";
 import { useToast, CircularProgress, Alert, AlertIcon } from "@chakra-ui/react";
 import { CREATE_TEST_RESET } from "../redux/constants/testConstants";
-import { Link } from "react-router-dom";
 import { myDetails } from "../redux/actions/userActions";
 
 function Test({ history }) {
@@ -32,6 +31,12 @@ function Test({ history }) {
 
   const newTest = useSelector((state) => state.newTest);
   const { loading, success, error } = newTest;
+
+  if (success) {
+    setTimeout(() => {
+      history.push("/section");
+    }, [3000]);
+  }
 
   const toast = useToast();
 
@@ -78,11 +83,6 @@ function Test({ history }) {
               <button type="submit" className="btn2">
                 Add Test
               </button>
-              <Link to="/section">
-                <button type="submit" className="btn5">
-                  Add Section
-                </button>
-              </Link>
             </div>
           </form>
         )}
