@@ -23,19 +23,31 @@ import {
 const Dashboard = ({ history }) => {
   const dispatch = useDispatch();
 
+  // useEffect(() => {
+  //   dispatch(myAdminDetails());
+  // });
+  // const adminDetails = useSelector((state) => state.adminDetails);
+  // const { person1 } = adminDetails;
+  // console.log(person1);
+  const [person, setPerson] = React.useState("");
   const user = JSON.parse(localStorage.getItem("userDetails"));
-  const person = user.data.firstName;
-  console.log(person);
+  React.useEffect(() => {
+    if (user) setPerson(user.data.firstName);
+  }, [user]);
 
   const userName = JSON.parse(localStorage.getItem("userInfo"));
   // console.log(userName);
 
   useEffect(() => {
-    if (!userName) {
+    if (!userName && !user) {
       history.push("/adminlogin");
     }
+    // dispatch(myAdminDetails());
+  }, [userName, history, user, dispatch]);
+
+  useEffect(() => {
     dispatch(myAdminDetails());
-  }, [userName, history, dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(getQuestionsId());

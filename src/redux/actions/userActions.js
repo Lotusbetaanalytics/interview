@@ -312,6 +312,7 @@ export const myAdminDetails = () => async (dispatch, getState) => {
       payload: data,
     });
     localStorage.setItem("userDetails", JSON.stringify(data));
+    console.log(data);
   } catch (error) {
     dispatch({
       type: USERS_DETAILS_FAIL,
@@ -322,6 +323,7 @@ export const myAdminDetails = () => async (dispatch, getState) => {
     });
 
     localStorage.removeItem("userInfo");
+    localStorage.removeItem("userDetails");
     dispatch({ type: USER_LOGOUT });
   }
 };

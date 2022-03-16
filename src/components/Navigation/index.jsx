@@ -14,8 +14,8 @@ const Navigation = () => {
   //   dispatch(myDetails());
   // }, [dispatch]);
 
-  const myDetail = JSON.parse(localStorage.getItem("candidateDetail"))
-   const user = myDetail
+  const myDetail = JSON.parse(localStorage.getItem("candidateDetail"));
+  const user = myDetail;
 
   const logoutHandler = () => {
     dispatch(logOut());
@@ -47,7 +47,6 @@ const Navigation = () => {
               <div className="drop-content">
                 <Link to="/login">Sign In</Link>
                 <br />
-                <hr />
                 <Link to="/adminlogin">Admin Login</Link>
               </div>
             </div>

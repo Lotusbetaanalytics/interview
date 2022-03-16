@@ -12,17 +12,21 @@ import {
 function Widgetfeed() {
   const dispatch = useDispatch();
 
+  const [person, setPerson] = React.useState("");
+  const user = JSON.parse(localStorage.getItem("userDetails"));
+  React.useEffect(() => {
+    if (user) setPerson(user.data.firstName);
+  }, [user]);
+
   useEffect(() => {
     dispatch(myDetails());
   }, [dispatch]);
-
-  const adminDetails = useSelector((state) => state.adminDetails);
-  const { user } = adminDetails;
+  // const adminDetails = useSelector((state) => state.adminDetails);
+  // const { user } = adminDetails;
 
   useEffect(() => {
     dispatch(getAllCandidatesdetails());
   }, [dispatch]);
-
   const getCandidate = useSelector((state) => state.getCandidate);
   const { candidates } = getCandidate;
 
@@ -34,7 +38,7 @@ function Widgetfeed() {
             <img src={adminpic} alt="" />
           </div>
           <div className="widgetadmin">
-            <div className="widget_username">{`${user && user.firstName}`}</div>
+            <div className="widget_username">{`${person}`}</div>
             <Link to="/adminlogin">
               <button className="widget_btn">Admin</button>
             </Link>
@@ -47,8 +51,8 @@ function Widgetfeed() {
           </div>
 
           {candidates &&
-            candidates.map((item) => (
-              <div className="post_card">
+            candidates.map((item, i) => (
+              <div key={i} className="post_card">
                 <div className="user1_img">
                   <img src={icon} alt="" />
                 </div>

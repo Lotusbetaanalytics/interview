@@ -20,6 +20,11 @@ function QuestionBank() {
   const [option, setOption] = useState("");
   const [showSuccess, setShowSuccess] = useState(false);
 
+  const textInput = React.useRef();
+  // console.log(textInput);
+  const clearInput = () => (textInput.current.value = "");
+  console.log(textInput.current);
+
   const addOption = () => {
     setAnswers([...answers, option]);
   };
@@ -154,6 +159,7 @@ function QuestionBank() {
               </div>
               <div className="option_space">
                 <input
+                  ref={textInput}
                   type="text"
                   onChange={(e) => {
                     setOption(e.target.value);
@@ -162,7 +168,14 @@ function QuestionBank() {
                   placeholder="Answers"
                   className="option"
                 />
-                <button className="btn" onClick={addOption} type="button">
+                <button
+                  className="btn"
+                  onClick={() => {
+                    addOption();
+                    clearInput(option);
+                  }}
+                  type="button"
+                >
                   Add Option
                 </button>
               </div>
