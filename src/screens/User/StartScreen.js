@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Navigation from "../../components/Navigation";
 import AccountHeader from "../../components/UI/AccountHeader";
 import styles from "./styles.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { myDetails } from "../../redux/actions/userActions";
 import { getTestTime } from "../../redux/actions/testscoreAction";
 import { useHistory } from "react-router-dom";
@@ -21,6 +21,7 @@ const StartScreen = () => {
   useEffect(() => {
     if (!user) {
       history.push("/login");
+      dispatch(myDetails());
     }
   }, [user, history, dispatch]);
 

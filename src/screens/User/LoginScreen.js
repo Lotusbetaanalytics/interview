@@ -5,28 +5,17 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
-<<<<<<< HEAD
 import { loginUser} from "../../redux/actions/userActions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-=======
-import { loginUser, myDetails } from "../../redux/actions/userActions";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
-const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [msg, setMsg] = useState(false);
->>>>>>> 59f3591e93aa5366c9042fc4da1f8e6dcf862652
   const dispatch = useDispatch();
   const history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
-<<<<<<< HEAD
     dispatch(loginUser(email, password,history));
   };
 
@@ -34,24 +23,9 @@ const LoginScreen = () => {
  const { loading, error, userInfo } = userLogin;
   
 
-=======
-    dispatch(loginUser(email, password, history));
-    dispatch(myDetails());
-  };
-
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, success, userInfo } = userLogin;
-  console.log(userInfo);
-
-  // if (success){
-  //     setMsg(true)
-
-  //  }
->>>>>>> 59f3591e93aa5366c9042fc4da1f8e6dcf862652
 
   useEffect(() => {
     if (userInfo) {
-      // history.push("/start");
       setTimeout(() => {
         history.push("/start");
       }, 3000);
@@ -72,15 +46,6 @@ const LoginScreen = () => {
             {error}
           </Alert>
         )}
-<<<<<<< HEAD
-=======
-        {msg && (
-          <Alert status="success">
-            <AlertIcon />
-            login Successfully
-          </Alert>
-        )}
->>>>>>> 59f3591e93aa5366c9042fc4da1f8e6dcf862652
         {loading ? (
           <Center>
             <CircularProgress isIndeterminate color="purple.500" />
