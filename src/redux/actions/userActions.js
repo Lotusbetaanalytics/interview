@@ -314,7 +314,6 @@ export const myAdminDetails = () => async (dispatch, getState) => {
       payload: data,
     });
     localStorage.setItem("userDetails", JSON.stringify(data));
-    console.log(data);
   } catch (error) {
     dispatch({
       type: USERS_DETAILS_FAIL,
@@ -409,8 +408,6 @@ export const getAllCandidatesdetails = () => async (dispatch, getState) => {
       payload: data,
     });
     localStorage.setItem("getCandidates", JSON.stringify(data));
-
-    console.log(data);
   } catch (error) {
     dispatch({
       type: GETCANDIDATESDETAILS_FAIL,

@@ -23,7 +23,6 @@ function QuestionBank() {
   const textInput = React.useRef();
   // console.log(textInput);
   const clearInput = () => (textInput.current.value = "");
-  console.log(textInput.current);
 
   const addOption = () => {
     setAnswers([...answers, option]);

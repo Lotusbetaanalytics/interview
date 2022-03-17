@@ -31,7 +31,6 @@
 .drop-content {
   display: none;
   position: absolute;
-  margin-top: 3px;
   padding-left: 10px;
   background-color: rgb(248, 241, 241);
   min-width: 140px;

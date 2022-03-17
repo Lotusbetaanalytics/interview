@@ -42,17 +42,12 @@ const Dashboard = ({ history }) => {
     if (!userName && !user) {
       history.push("/adminlogin");
     }
-<<<<<<< HEAD
     // dispatch(myAdminDetails());
   }, [userName, history, user, dispatch]);
 
   useEffect(() => {
     dispatch(myAdminDetails());
   }, [dispatch]);
-=======
-    
-  }, [userName, history, dispatch]);
->>>>>>> ede1e38dfd96289159cc19a9aab39cf0f9927003
 
   useEffect(() => {
     dispatch(getQuestionsId());
