@@ -5,34 +5,27 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
-import { loginUser, myDetails } from "../../redux/actions/userActions";
+import { loginUser} from "../../redux/actions/userActions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [msg, setMsg] = useState(false);
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const dispatch = useDispatch();
   const history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(loginUser(email, password, history));
-    dispatch(myDetails());
+    dispatch(loginUser(email, password,history));
   };
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, success, userInfo } = userLogin;
-  console.log(userInfo);
+ const userLogin = useSelector((state) => state.userLogin);
+ const { loading, error, userInfo } = userLogin;
+  
 
-  // if (success){
-  //     setMsg(true)
-
-  //  }
 
   useEffect(() => {
     if (userInfo) {
-      // history.push("/start");
       setTimeout(() => {
         history.push("/start");
       }, 3000);
@@ -51,12 +44,6 @@ const LoginScreen = () => {
           <Alert status="error">
             <AlertIcon />
             {error}
-          </Alert>
-        )}
-        {msg && (
-          <Alert status="success">
-            <AlertIcon />
-            login Successfully
           </Alert>
         )}
         {loading ? (

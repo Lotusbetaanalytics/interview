@@ -119,6 +119,7 @@ export const logOut = () => (dispatch) => {
   localStorage.removeItem("userInfo");
   localStorage.removeItem("candidateDetail");
   localStorage.removeItem("timer");
+  localStorage.removeItem("selected_answer");
   dispatch({
     type: USER_LOGOUT,
   });
@@ -287,6 +288,7 @@ export const loginAdmin = (email, password) => async (dispatch) => {
 
 export const adminLogout = () => (dispatch) => {
   localStorage.removeItem("userInfo");
+
   dispatch({
     type: USERS_LOGOUT,
   });

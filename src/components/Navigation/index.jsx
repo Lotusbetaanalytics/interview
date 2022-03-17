@@ -1,18 +1,13 @@
 import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./styles.module.css";
-import { useSelector, useDispatch } from "react-redux";
-import { logOut, myDetails } from "../../redux/actions/userActions";
+import {  useDispatch } from "react-redux";
+import { logOut } from "../../redux/actions/userActions";
 
 const Navigation = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const userDetails = useSelector(
-  //   (state) => state.userDetails);
-  //   const user = userDetails
-  // useEffect(() => {
-  //   dispatch(myDetails());
-  // }, [dispatch]);
+ 
 
   const myDetail = JSON.parse(localStorage.getItem("candidateDetail"));
   const user = myDetail;
