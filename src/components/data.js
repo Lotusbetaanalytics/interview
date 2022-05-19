@@ -1,6 +1,5 @@
 const data = [
   {
-    section:
     question: "What is my Name",
     option: ["John", "David", "Joe", "Daniel"],
     correct_answer: "Joe",
