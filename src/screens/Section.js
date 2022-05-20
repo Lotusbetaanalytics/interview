@@ -8,6 +8,7 @@ import { useToast, CircularProgress, Alert, AlertIcon } from "@chakra-ui/react";
 import { CREATE_SECTION_RESET } from "../redux/constants/sectionConstants";
 import { createSection } from "../redux/actions/sectionActions";
 import { getTest } from "../redux/actions/testActions";
+import EmbedVideo from "../components/EmbedVideo";
 
 function Section({ history }) {
   const [title, setTitle] = useState("");
@@ -35,7 +36,7 @@ function Section({ history }) {
       title: "Notification",
       description: "Section created Successfully",
       status: "success",
-      duration: 6000,
+      duration: 4000,
       isClosable: true,
     });
     dispatch({ type: CREATE_SECTION_RESET });
@@ -108,7 +109,10 @@ function Section({ history }) {
                   className="test_input5"
                 />
               </div>
-
+              <div className="sec_top">
+                <label>Training Video</label>
+                <EmbedVideo embedId="" />
+              </div>
               <div className="test_btn2">
                 <button type="submit" className="section_btn">
                   Add Section

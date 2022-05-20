@@ -2,7 +2,7 @@
   "name": "interview",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://murmuring-everglades-30575.herokuapp.com",
+  "proxy": "https://e-interview.azurewebsites.net/",
   "dependencies": {
     "@chakra-ui/react": "^1.7.1",
     "@emotion/react": "^11.6.0",
