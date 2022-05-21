@@ -120,6 +120,7 @@ export const logOut = () => (dispatch) => {
   localStorage.removeItem("candidateDetail");
   localStorage.removeItem("timer");
   localStorage.removeItem("selected_answer");
+  localStorage.removeItem("test_training");
   dispatch({
     type: USER_LOGOUT,
   });

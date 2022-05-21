@@ -23,7 +23,7 @@ const WelcomeScreen = () => {
           <br />
           <br />
           <div className={styles.center}>
-          <Link to="/login" className="btn gold">
+          <Link to="/start" className="btn gold">
             Get Started
           </Link>
           </div>

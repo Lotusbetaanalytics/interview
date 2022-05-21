@@ -28,7 +28,7 @@ const LoginScreen = () => {
     if (userInfo) {
       setTimeout(() => {
         history.push("/start");
-      }, 3000);
+      }, 1000);
     }
   }, [userInfo, history, dispatch]);
 

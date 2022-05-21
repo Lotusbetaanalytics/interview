@@ -50,7 +50,7 @@ export const getTestTime = () => async (dispatch) => {
       payload: data.data,
     });
     localStorage.setItem("timer", JSON.stringify(data.data.timer));
-    localStorage.setItem("test_training", JSON.stringify(data.data));
+    localStorage.setItem("test_training", JSON.stringify(data && data.data));
   
   } catch (error) {
     dispatch({

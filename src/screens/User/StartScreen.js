@@ -33,13 +33,11 @@ const StartScreen = () => {
   }, [user, history, dispatch]);
 
   const clickHandler = () => {
-    if (training.isTraining === false){
-      console.log("nono")
-      setTimeout(() => history.push("/"), [1000]);
+    if (training && training.isTraining === false){
+      setTimeout(() => history.push("/training"), [1000]);
     } else {
-      // dispatch(getTestTime());
-      // 
-      console.log("yes")
+      dispatch(getTestTime());
+      setTimeout(() => history.push("/test"), [1000]);
     }
     
   };
