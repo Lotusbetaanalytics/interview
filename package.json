@@ -2,7 +2,11 @@
   "name": "interview",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
   "proxy": "https://e-interview.azurewebsites.net",
+=======
+  "proxy": "https://e-interview.azurewebsites.net/",
+>>>>>>> d497baacc130340755f31cb481f07b139d83f827
   "dependencies": {
     "@chakra-ui/react": "^1.7.1",
     "@emotion/react": "^11.6.0",
