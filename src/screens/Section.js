@@ -8,7 +8,7 @@ import { useToast, CircularProgress, Alert, AlertIcon } from "@chakra-ui/react";
 import { CREATE_SECTION_RESET } from "../redux/constants/sectionConstants";
 import { createSection } from "../redux/actions/sectionActions";
 import { getTest } from "../redux/actions/testActions";
-// import EmbedVideo from "../components/EmbedVideo";
+
 
 function Section({ history }) {
   const [title, setTitle] = useState("");
