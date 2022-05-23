@@ -11,15 +11,23 @@ import { myDetails } from "../redux/actions/userActions";
 
 function Test({ history }) {
   const [title, setTitle] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
+  const [isTraining, setIsTraining] = useState(false);
+
+  const handleClick = () => {
+    setIsTraining(!isTraining);
+  };
+
+  console.log(isTraining);
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (success) {
-      setTimeout(() => history.push("/section"), [5000]);
+      setTimeout(() => history.push("/section"), [3000]);
     }
-    dispatch(createTest(title));
+    dispatch(createTest(title, videoUrl, isTraining));
   };
 
   const adminDetails = useSelector((state) => state.adminDetails);
@@ -45,6 +53,16 @@ function Test({ history }) {
       title: "Notification",
       description: "Test created Successfully",
       status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
+    dispatch({ type: CREATE_TEST_RESET });
+  }
+  if (error) {
+    toast({
+      title: "Notification",
+      description: "Test Not Created",
+      status: "error",
       duration: 9000,
       isClosable: true,
     });
@@ -78,8 +96,26 @@ function Test({ history }) {
                 className="test_inputs"
               />
             </div>
+            <div className="test_page">
+              <input
+                type="text"
+                placeholder="Video URL"
+                onChange={(e) => setVideoUrl(e.target.value)}
+                value={videoUrl}
+                className="test_inputs"
+              />
+            </div>
 
             <div className="test_btn">
+              <div className="test_checkbox" onChange={handleClick}>
+                <label>Include Training Video</label>
+                <input
+                  type="checkbox"
+                  value={isTraining}
+                  disable={isTraining ? "false" : "true"}
+                  className="test_name"
+                />
+              </div>
               <button type="submit" className="btn2">
                 Add Test
               </button>

@@ -2,12 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 .test_inputs {
   width: 50%;
-  height: 90px;
+  height: 65px;
   padding: 10px;
   margin-right: 15%;
   border-radius: 20px;
@@ -15,10 +15,23 @@
   border: 1px solid lightgray;
 }
 
+.test_checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .test_btn {
-  padding: 10px;
-  margin-left: 20%;
-  margin-top: 20px;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  margin-left: 18%;
+  margin-top: 30px;
+}
+
+.test_checkbox label {
+  margin-right: 20px;
+  font-weight: bold;
 }
 
 .test_image {
@@ -55,10 +68,10 @@
   font-weight: bold;
   font-size: 0.8rem;
   cursor: pointer;
-  width: 50%;
+  width: 20%;
   border: none;
   border-radius: 40px;
-  margin-left: 20px;
+  margin-left: 23%;
 }
 
 @media (max-width: 599px) {

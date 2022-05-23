@@ -8,19 +8,26 @@ import { useToast, CircularProgress, Alert, AlertIcon } from "@chakra-ui/react";
 import { CREATE_SECTION_RESET } from "../redux/constants/sectionConstants";
 import { createSection } from "../redux/actions/sectionActions";
 import { getTest } from "../redux/actions/testActions";
-import EmbedVideo from "../components/EmbedVideo";
+// import EmbedVideo from "../components/EmbedVideo";
 
 function Section({ history }) {
   const [title, setTitle] = useState("");
   const [instruction, setInstruction] = useState("");
   const [timer, setTimer] = useState("");
   const [test, setTest] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
+  // const [isTraining, setIsTraining] = useState(false);
+
+  // const handleClick = () => {
+  //   setIsTraining(!isTraining);
+  // };
+  // console.log(isTraining);
 
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createSection(title, timer, instruction, test));
+    dispatch(createSection(title, timer, instruction, test, videoUrl));
   };
 
   const allTest = useSelector((state) => state.allTest);
@@ -110,9 +117,29 @@ function Section({ history }) {
                 />
               </div>
               <div className="sec_top">
+                <label>Video URL</label>
+                <input
+                  type="text"
+                  placeholder="Video URL"
+                  onChange={(e) => setVideoUrl(e.target.value)}
+                  value={videoUrl}
+                  className="test_input5"
+                />
+              </div>
+              {/* <div className="sec_top" onClick={handleClick}>
+                <label>Include Training Video</label>
+                <input
+                  type="Checkbox"
+                  value={isTraining}
+                  disable={isTraining ? "false" : "true"}
+                  className="test_input5"
+                />
+              </div> */}
+
+              {/* <div className="sec_top">
                 <label>Training Video</label>
                 <EmbedVideo embedId="" />
-              </div>
+              </div> */}
               <div className="test_btn2">
                 <button type="submit" className="section_btn">
                   Add Section
