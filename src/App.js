@@ -22,6 +22,7 @@ import ResetPassword from "./screens/ResetPassword";
 import EditAdmin from "./screens/EditAdmin";
 import ViewCandidate from "./screens/ViewCandidate";
 import ViewAllCandidates from "./screens/ViewAllCandidates";
+import Training from "./screens/User/training";
 
 //import protectedRoute from "./components/protectedRoute";
 
@@ -54,6 +55,7 @@ function App() {
         <Route path="/editquestion/:id" exact component={EditAdmin} />
         <Route path="/viewcandidate/:id" exact component={ViewCandidate} />
         <Route path="/allcandidate/" exact component={ViewAllCandidates} />
+        <Route path="/training/" exact component={Training} />
       </Switch>
     </Router>
   );

@@ -10,7 +10,7 @@ const SuccessScreen = () => {
   const dispatch = useDispatch();
 
   const Myscore = useSelector((state) => state.Myscore);
-  const { testscore, error } = Myscore;
+  const { testscore, error,loading } = Myscore;
   const score = testscore;
   
   useEffect(() => {
@@ -26,16 +26,23 @@ const SuccessScreen = () => {
             {error}
           </Alert>
         )}
-        <div className={`${styles.center} ${styles.justifyCenter}`}>
-          <h1>You have completed your exam</h1>
-          <br/>
-          <h1 className={styles.scores}><h1>{score}%</h1></h1>
-          <img
-            src="https://img.freepik.com/free-vector/men-success-laptop-relieve-work-from-home-computer-great_10045-646.jpg?size=338&ext=jpg"
-            alt="happy"
-          />
-          
-        </div>
+        {loading ? (<div>
+          fetching scores....
+        </div>) : (
+           <div className={`${styles.center} ${styles.justifyCenter}`}>
+           <h1>You have completed your exam</h1>
+           <br/>
+           <h1 className={styles.scores}><h1>{score}%</h1></h1>
+           {score < 50 ? (<div className={styles.imgContainer}><img
+             src="https://thumbs.dreamstime.com/z/failed-exam-bad-test-results-vector-illustration-flat-cartoon-unhappy-pupil-student-stressed-woman-girl-not-passed-examination-157082096.jpg"
+             alt="happy"
+           /></div>) : (<div className={styles.imgContainer}><img
+             src="https://img.freepik.com/free-vector/men-success-laptop-relieve-work-from-home-computer-great_10045-646.jpg?size=338&ext=jpg"
+             alt="happy"
+           /></div>)}
+         </div>
+        )}
+       
       </div>
     </div>
   );

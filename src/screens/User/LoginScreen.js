@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { Alert, AlertIcon, CircularProgress, Center } from "@chakra-ui/react";
-import { loginUser} from "../../redux/actions/userActions";
+import { loginUser, myDetails} from "../../redux/actions/userActions";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const LoginScreen = () => {
@@ -28,7 +28,8 @@ const LoginScreen = () => {
     if (userInfo) {
       setTimeout(() => {
         history.push("/start");
-      }, 3000);
+        dispatch(myDetails())
+      }, 1000);
     }
   }, [userInfo, history, dispatch]);
 

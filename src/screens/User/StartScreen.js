@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { myDetails } from "../../redux/actions/userActions";
 import { getTestTime } from "../../redux/actions/testscoreAction";
 import { useHistory } from "react-router-dom";
+import { getTestTyper } from "../../redux/actions/testAction";
+import { compose } from "redux";
 
 const StartScreen = () => {
   const history = useHistory();
@@ -18,16 +20,26 @@ const StartScreen = () => {
   const user = myDetail;
   console.log(user);
 
+  const training = JSON.parse(localStorage.getItem("test_training"));
+  console.log(training);
+  
+
   useEffect(() => {
     if (!user) {
       history.push("/login");
       dispatch(myDetails());
+      dispatch(getTestTime())
     }
   }, [user, history, dispatch]);
 
   const clickHandler = () => {
-    dispatch(getTestTime());
-    setTimeout(() => history.push("/test"), [3000]);
+    if (training && training.isTraining === false){
+      setTimeout(() => history.push("/training"), [1000]);
+    } else {
+      dispatch(getTestTime());
+      setTimeout(() => history.push("/test"), [1000]);
+    }
+    
   };
 
   return (
