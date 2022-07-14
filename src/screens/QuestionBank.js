@@ -8,7 +8,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { postQuestion } from "../redux/actions/questionAction";
 import { getTest } from "../redux/actions/testActions";
 import { getExamSection } from "../redux/actions/sectionActions";
-import { Alert, AlertIcon, Center, CircularProgress } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Center,
+  CircularProgress,
+  Button,
+  useToast,
+} from "@chakra-ui/react";
 import { QUESTIONS_RESET } from "../redux/constants/questionConstants";
 
 function QuestionBank() {
@@ -36,6 +43,7 @@ function QuestionBank() {
     dispatch(postQuestion(question, answers, correct_answers, section));
     dispatch({ type: QUESTIONS_RESET });
   };
+
   const adminQuestions = useSelector((state) => state.adminQuestions);
   const { success, error, loading } = adminQuestions;
 
@@ -44,6 +52,8 @@ function QuestionBank() {
 
   const examSection = useSelector((state) => state.examSection);
   const { sections } = examSection;
+
+  console.log(sections);
 
   const adminDetails = useSelector((state) => state.adminDetails);
   const { user } = adminDetails;
@@ -59,6 +69,7 @@ function QuestionBank() {
   const getOptions = (event) => {
     const id = event.target.value;
     dispatch(getExamSection(id));
+    console.log(id);
   };
 
   if (success) {
@@ -88,6 +99,33 @@ function QuestionBank() {
     setAnswers(filtered);
   };
 
+  const toast = useToast();
+  if (success) {
+    setQuestion("");
+    setAnswers("");
+    setCorrectAnswer("");
+    setOption("");
+    toast({
+      title: "Notification",
+      description: "Question created Successfully",
+      status: "success",
+      duration: 4000,
+      isClosable: true,
+    });
+    dispatch({ type: QUESTIONS_RESET });
+  }
+
+  if (error) {
+    toast({
+      title: "Notification",
+      description: "Question Error",
+      status: "error",
+      duration: 4000,
+      isClosable: true,
+    });
+    dispatch({ type: QUESTIONS_RESET });
+  }
+
   return (
     <div className="questionbank">
       <div>
@@ -103,7 +141,6 @@ function QuestionBank() {
         {showSuccess && (
           <Alert status="success">
             <AlertIcon />
-            Question Added Successfully
           </Alert>
         )}
 
@@ -203,12 +240,24 @@ function QuestionBank() {
               />
             </div>
             <div className="add_question">
-              <button
-                disabled={question.length > 0 ? false : true}
-                className="btn"
-              >
-                Add Question
-              </button>
+              {loading ? (
+                <Button
+                  isLoading
+                  loadingText="Validating Credentials..."
+                  colorScheme="teal"
+                  variant="outline"
+                  isFullWidth
+                  style={{ height: "5rem" }}
+                />
+              ) : (
+                <button
+                  type="submit"
+                  disabled={question.length > 0 ? false : true}
+                  className="btn"
+                >
+                  Add Question
+                </button>
+              )}
             </div>
           </form>
         )}

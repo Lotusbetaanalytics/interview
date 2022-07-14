@@ -14,7 +14,7 @@ function Section({ history }) {
   const [instruction, setInstruction] = useState("");
   const [timer, setTimer] = useState("");
   const [test, setTest] = useState("");
-  const [videoUrl, setVideoUrl] = useState("");
+  // const [videoUrl, setVideoUrl] = useState("");
   // const [isTraining, setIsTraining] = useState(false);
 
   // const handleClick = () => {
@@ -26,7 +26,7 @@ function Section({ history }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createSection(title, timer, instruction, test, videoUrl));
+    dispatch(createSection(title, timer, instruction, test));
   };
 
   const allTest = useSelector((state) => state.allTest);
@@ -115,7 +115,7 @@ function Section({ history }) {
                   className="test_input5"
                 />
               </div>
-              <div className="sec_top">
+              {/* <div className="sec_top">
                 <label>Video URL</label>
                 <input
                   type="text"
@@ -124,7 +124,7 @@ function Section({ history }) {
                   value={videoUrl}
                   className="test_input5"
                 />
-              </div>
+              </div> */}
               {/* <div className="sec_top" onClick={handleClick}>
                 <label>Include Training Video</label>
                 <input

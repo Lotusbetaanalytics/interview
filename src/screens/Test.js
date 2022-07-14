@@ -24,9 +24,9 @@ function Test({ history }) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (success) {
-      setTimeout(() => history.push("/section"), [3000]);
-    }
+    // if (success) {
+    //   setTimeout(() => history.push("/section"), [3000]);
+    // }
     dispatch(createTest(title, videoUrl, isTraining));
   };
 

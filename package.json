@@ -2,7 +2,7 @@
   "name": "interview",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://e-interview.azurewebsites.net",
+  "proxy": "https://lban-einterview.herokuapp.com",
   "dependencies": {
     "@chakra-ui/react": "^1.7.1",
     "@emotion/react": "^11.6.0",
